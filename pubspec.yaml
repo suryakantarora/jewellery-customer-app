@@ -1,0 +1,80 @@
+name: jewellery_customer
+description: "Multi-tenant jewellery customer application"
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State management
+  flutter_riverpod: ^2.6.1
+
+  # Navigation
+  go_router: ^14.6.2
+
+  # Networking
+  dio: ^5.7.0
+
+  # Storage
+  shared_preferences: ^2.3.3
+
+  # UI
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  flutter_svg: ^2.0.16
+
+  # Utils
+  intl: ^0.20.2
+  collection: ^1.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/demo/
+    - assets/art/
+    - assets/images/banners/
+    - assets/images/catalogue/
+    - assets/images/categories/
+    - assets/images/ui/
+
+  # Fonts are vendored, not fetched (same policy as the staff app): the app
+  # must never make an unexpected outbound request on launch.
+  #
+  # Playfair Display is the Didone display face the reference design asks for
+  # (OFL, see assets/fonts/PlayfairDisplay-OFL.txt). Google Fonts ships it as a
+  # variable font; weights are selected with FontVariation in the theme.
+  # Inter covers Latin body text; Noto Sans Lao is the fallback for Lao script.
+  fonts:
+    - family: PlayfairDisplay
+      fonts:
+        - asset: assets/fonts/PlayfairDisplay-Variable.ttf
+        - asset: assets/fonts/PlayfairDisplay-ItalicVariable.ttf
+          style: italic
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Inter-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold.ttf
+          weight: 700
+    - family: NotoSansLao
+      fonts:
+        - asset: assets/fonts/NotoSansLao-Regular.ttf

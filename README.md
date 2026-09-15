@@ -1,0 +1,111 @@
+# Jewellery Customer App
+
+Multi-tenant Flutter customer app for the jewellery ERP. One binary serves N
+shops: brand, palette, fonts, currency, languages and contact details all come
+from a `TenantConfig` (bundled JSON today, `GET /api/v1/public/tenant/{key}`
+later). Nothing brand-specific is hard-coded outside `assets/demo/tenant.json`.
+
+Plan and progress live in `../docs/CUSTOMER-APP-PLAN.md` and
+`../docs/CUSTOMER-APP-STATUS.md`.
+
+## Requirements
+
+Flutter 3.44 / Dart 3.12, Xcode 16 with CocoaPods for iOS, Android SDK with
+minSdk 26. Same toolchain as the staff app (`../jwellery-mobile-app`).
+
+## Running
+
+Three flavours exist on both platforms, matching the staff app's wiring.
+
+| Flavour | Android id | iOS bundle id | Name |
+|---|---|---|---|
+| dev | `com.finotechsoftware.jewelleryapp.customer.dev` | same | Fino Dev |
+| staging | `com.finotechsoftware.jewelleryapp.customer.staging` | same | Fino STG |
+| prod | `com.finotechsoftware.jewelleryapp.customer` | same | Fino Jewellery |
+
+```sh
+flutter pub get
+flutter run --flavor dev                                     # demo data, tenant "fino"
+flutter run --flavor staging --dart-define=ENV=staging
+flutter run --flavor prod --dart-define=ENV=prod --release
+flutter build ios --release --flavor dev --no-codesign       # what CI checks
+flutter build apk --flavor prod --dart-define=ENV=prod
+```
+
+### Dart-defines
+
+| Define | Values | Default | Effect |
+|---|---|---|---|
+| `ENV` | `dev` / `staging` / `prod` | `dev` | Base URL default, developer tools (shop-code screen, request logging). `prod` hides them. |
+| `API_BASE_URL` | URL | `http://localhost:8081` (`10.0.2.2` on Android) | Backend root; `/api/v1` is appended. |
+| `TENANT_KEY` | shop code | `fino` | Which company this build belongs to (white-label builds bake it in). |
+| `DATA_MODE` | `demo` / `api` | `demo` | `demo` reads bundled JSON with 420 ms simulated latency; `api` uses the Dio repositories (C10 — they throw `UnimplementedError` today). |
+
+Example: `flutter run --flavor dev --dart-define=DATA_MODE=api --dart-define=API_BASE_URL=http://192.168.1.20:8081`
+
+### Tenant key at runtime
+
+In `dev`/`staging` builds, Settings → Developer → *Shop code* changes the tenant
+key at runtime (persisted) and reloads the tenant config behind the branded
+splash. The demo tenant repository ignores the key and always returns the
+bundled Fino config; the API repository requests `/public/tenant/{key}` and
+falls back to the bundled config on any failure.
+
+## Layout
+
+```
+lib/
+  app.dart, main.dart             root widget; tenant resolved before first frame
+  core/
+    config/     AppConfig from dart-defines, Environment, DataMode
+    tenant/     TenantConfig, TenantPalette, Demo/Api repositories, tenantProvider
+    theme/      tokens (spacing, radius, type, shadows), 6 fallback palettes,
+                buildTheme(palette, brightness), AppColors extension, themeMode
+    motion/     durations, curves, reduced-motion, AppPage transition
+    l10n/       localeProvider (persisted; falls back to tenant default)
+    media/      ImageRef (asset:// key:// https://) + AppImage
+    format/     MoneyFormatter (tenant currency), DateFormatter
+    layout/     Breakpoints, ContentWidth (max 1180), ResponsiveGrid (2→3→4)
+    network/    Dio client + ApiClient envelope unwrapping
+    router/     go_router with StatefulShellRoute (4 tabs) + stacked pages
+  data/
+    models/     CatalogueItem (ERP shape) + RetailAttributes, Category, Banner, Review, …
+    repositories/ interfaces for catalogue, categories, banners, reviews, cart,
+                wishlist, orders, account, addresses, gold rates, policies
+    demo/       DemoStore (assets/demo/catalogue.json) + Demo* repositories
+    api/        Api* repositories (UnimplementedError until C10)
+    repository_providers.dart  the single Demo/Api switch
+  features/     splash, shell (header, drawer, tabs), home, collections,
+                profile, settings (+ shop code), support
+  shared/widgets/ SectionHead, Eyebrow, GoldRule, Skeleton, EmptyState,
+                ErrorState, PressScale, AppChip, AppBadge, StaggeredReveal, AppArt
+  l10n/         app_en.arb, app_lo.arb (generated AppL10n)
+assets/
+  demo/         tenant.json, catalogue.json (60 items, 8 categories, 5 banners)
+  images/       banners, catalogue photos, category icons, ui
+  art/          filigree-corner.svg, facets.svg (tinted per tenant)
+  fonts/        Playfair Display, Inter, Noto Sans Lao
+```
+
+## Tests
+
+`flutter test` covers tenant JSON parsing, palette → ThemeData, MoneyFormatter,
+ImageRef parsing, the demo catalogue (60 items, all metals/purities/stones),
+ARB completeness (every English key exists in Lao and is translated), and a
+shell smoke test (splash → tabs → dark mode → language → FAB → drawer).
+`flutter analyze` must stay clean.
+
+## Fonts and licences
+
+Fonts are vendored, never fetched at runtime.
+
+- **Playfair Display** — SIL Open Font License 1.1, see
+  `assets/fonts/PlayfairDisplay-OFL.txt`. Shipped as the two variable files
+  from Google Fonts (`PlayfairDisplay-Variable.ttf`, `-ItalicVariable.ttf`);
+  weights are selected through `FontVariation('wght', …)` in the theme.
+- **Inter** — SIL OFL 1.1 (copied from the staff app).
+- **Noto Sans Lao** — SIL OFL 1.1 (copied from the staff app), the fallback
+  for Lao script.
+
+Photographs under `assets/images` are the reference Ionic app's demo assets and
+are placeholders until the tenant's file server supplies real ones.

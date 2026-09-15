@@ -1,0 +1,94 @@
+{
+  "key": "fino",
+  "brandName": "Fino Jewellery",
+  "brandMark": "FINO",
+  "tagline": "Crafted to be kept",
+  "logo": {
+    "light": "asset://images/ui/app-icon.png",
+    "dark": "asset://images/ui/app-icon.png"
+  },
+  "paletteId": "ruby",
+  "palette": {
+    "primary": "#e40046",
+    "primaryDark": "#be0046",
+    "primaryLight": "#ff4f7d",
+    "accent": "#b8912f",
+    "accentSoft": "#f0e4c4",
+    "bg": "#fffcfa",
+    "surface": "#ffffff",
+    "surface2": "#faf3f2",
+    "card": "#ffffff",
+    "text": "#1c1416",
+    "textSecondary": "#5d5257",
+    "textMuted": "#8d8186",
+    "border": "#ebe2e3",
+    "borderStrong": "#dccfd2",
+    "scrim": "rgba(28,20,22,0.55)",
+    "shadowRgb": [
+      92,
+      24,
+      42
+    ]
+  },
+  "darkPalette": {
+    "primary": "#ff4f7d",
+    "primaryDark": "#e40046",
+    "primaryLight": "#ff7a9c",
+    "accent": "#d8b45c",
+    "accentSoft": "#3a3020",
+    "bg": "#0e0c0d",
+    "surface": "#161314",
+    "surface2": "#1e1a1b",
+    "card": "#1a1617",
+    "text": "#f4ede9",
+    "textSecondary": "#b3a7a2",
+    "textMuted": "#837873",
+    "border": "rgba(255,255,255,0.09)",
+    "borderStrong": "rgba(255,255,255,0.16)",
+    "scrim": "rgba(0,0,0,0.65)",
+    "shadowRgb": [
+      0,
+      0,
+      0
+    ]
+  },
+  "fontDisplay": "PlayfairDisplay",
+  "fontBody": "Inter",
+  "currency": {
+    "code": "LAK",
+    "symbol": "₭",
+    "decimals": 0,
+    "symbolFirst": true,
+    "locale": "en_US"
+  },
+  "supportedLocales": [
+    "en",
+    "lo"
+  ],
+  "defaultLocale": "en",
+  "contact": {
+    "phone": "+856 21 000 000",
+    "whatsapp": "+856 20 5555 0100",
+    "email": "care@fino.demo",
+    "storeAddress": "Setthathirath Rd, Vientiane",
+    "hours": "Mon–Sat, 9:00 – 19:00"
+  },
+  "featureFlags": {
+    "reviews": true,
+    "goldRates": true,
+    "wishlist": true,
+    "themePicker": true,
+    "commission": true,
+    "stories": true
+  },
+  "freeDeliveryThreshold": 500000,
+  "taxRate": 0.07,
+  "allowedPalettes": [
+    "ruby",
+    "burgundy",
+    "emerald",
+    "sapphire",
+    "rose",
+    "black"
+  ]
+}

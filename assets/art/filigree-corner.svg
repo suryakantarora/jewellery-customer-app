@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Fine gold filigree for the drawer banner corner. Single ink; tinted at runtime. -->
+  <path d="M8 8 H96 M8 8 V96"/>
+  <path d="M8 8 C 40 8, 60 28, 60 60 C 60 28, 80 8, 112 8"/>
+  <path d="M8 8 C 8 40, 28 60, 60 60 C 28 60, 8 80, 8 112"/>
+  <path d="M60 60 C 72 48, 90 48, 100 60 C 90 72, 72 72, 60 60 Z"/>
+  <path d="M60 60 C 48 72, 48 90, 60 100 C 72 90, 72 72, 60 60 Z"/>
+  <path d="M100 60 C 112 50, 126 52, 134 62 M60 100 C 50 112, 52 126, 62 134"/>
+  <path d="M112 8 C 120 16, 130 16, 140 10 M8 112 C 16 120, 16 130, 10 140"/>
+  <path d="M24 24 C 34 20, 44 26, 44 36 C 44 26, 50 16, 60 18"/>
+  <path d="M24 24 C 20 34, 26 44, 36 44 C 26 44, 16 50, 18 60"/>
+  <circle cx="60" cy="60" r="3"/>
+  <circle cx="134" cy="62" r="1.6"/>
+  <circle cx="62" cy="134" r="1.6"/>
+  <circle cx="140" cy="10" r="1.2"/>
+  <circle cx="10" cy="140" r="1.2"/>
+  <path d="M80 30 C 86 24, 94 26, 96 32 M30 80 C 24 86, 26 94, 32 96" stroke-width=".8"/>
+  <path d="M104 44 C 110 40, 118 42, 122 48 M44 104 C 40 110, 42 118, 48 122" stroke-width=".8"/>
+</svg>
