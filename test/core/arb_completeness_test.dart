@@ -23,4 +23,4 @@ void main() {
 }
 
 /// Placeholders-only strings are legitimately identical.
-const _allowedSame = {'splashTagline'};
+const _allowedSame = {'splashTagline', 'sizeUs', 'sizeUk', 'paymentCardSub'};

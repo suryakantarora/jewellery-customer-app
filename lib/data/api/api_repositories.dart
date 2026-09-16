@@ -23,6 +23,8 @@ class ApiCatalogueRepository implements CatalogueRepository {
   @override
   Future<CatalogueItem?> byId(String id) => _todo('CatalogueRepository.byId');
   @override
+  Future<List<CatalogueItem>> byIds(List<String> ids) => _todo('CatalogueRepository.byIds');
+  @override
   Future<List<CatalogueItem>> featured() => _todo('CatalogueRepository.featured');
   @override
   Future<List<CatalogueItem>> newArrivals() => _todo('CatalogueRepository.newArrivals');
@@ -33,6 +35,9 @@ class ApiCatalogueRepository implements CatalogueRepository {
   @override
   Future<List<CatalogueItem>> related(String id, {int limit = 8}) =>
       _todo('CatalogueRepository.related');
+  @override
+  Future<PriceBounds> priceBounds({String? categoryId, String? audience}) =>
+      _todo('CatalogueRepository.priceBounds');
 }
 
 class ApiCategoryRepository implements CategoryRepository {
@@ -60,17 +65,32 @@ class ApiReviewRepository implements ReviewRepository {
   Future<List<Review>> featured() => _todo('ReviewRepository.featured');
 }
 
+class ApiAuthRepository implements AuthRepository {
+  const ApiAuthRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<CustomerSession?> restore() => _todo('AuthRepository.restore');
+  @override
+  Future<OtpChallenge> requestOtp(String phone) => _todo('AuthRepository.requestOtp');
+  @override
+  Future<CustomerSession> verifyOtp(String phone, String code) =>
+      _todo('AuthRepository.verifyOtp');
+  @override
+  Future<CustomerSession> continueAsGuest() => _todo('AuthRepository.continueAsGuest');
+  @override
+  Future<CustomerSession> updateProfile(Account account) =>
+      _todo('AuthRepository.updateProfile');
+  @override
+  Future<void> signOut() => _todo('AuthRepository.signOut');
+}
+
 class ApiCartRepository implements CartRepository {
   const ApiCartRepository(this.client);
   final ApiClient client;
   @override
   Future<List<CartItem>> items() => _todo('CartRepository.items');
   @override
-  Future<void> add(CartItem item) => _todo('CartRepository.add');
-  @override
-  Future<void> remove(String productId, {String? size}) => _todo('CartRepository.remove');
-  @override
-  Future<void> clear() => _todo('CartRepository.clear');
+  Future<void> save(List<CartItem> items) => _todo('CartRepository.save');
 }
 
 class ApiWishlistRepository implements WishlistRepository {
@@ -79,7 +99,7 @@ class ApiWishlistRepository implements WishlistRepository {
   @override
   Future<List<WishlistItem>> items() => _todo('WishlistRepository.items');
   @override
-  Future<void> toggle(String productId) => _todo('WishlistRepository.toggle');
+  Future<void> save(List<WishlistItem> items) => _todo('WishlistRepository.save');
 }
 
 class ApiOrderRepository implements OrderRepository {
@@ -89,13 +109,8 @@ class ApiOrderRepository implements OrderRepository {
   Future<List<Order>> list() => _todo('OrderRepository.list');
   @override
   Future<Order?> byId(String id) => _todo('OrderRepository.byId');
-}
-
-class ApiAccountRepository implements AccountRepository {
-  const ApiAccountRepository(this.client);
-  final ApiClient client;
   @override
-  Future<Account?> current() => _todo('AccountRepository.current');
+  Future<Order> place(OrderDraft draft) => _todo('OrderRepository.place');
 }
 
 class ApiAddressRepository implements AddressRepository {
@@ -103,6 +118,24 @@ class ApiAddressRepository implements AddressRepository {
   final ApiClient client;
   @override
   Future<List<Address>> list() => _todo('AddressRepository.list');
+  @override
+  Future<List<Address>> save(Address address) => _todo('AddressRepository.save');
+  @override
+  Future<List<Address>> delete(String id) => _todo('AddressRepository.delete');
+  @override
+  Future<List<Address>> setDefault(String id) => _todo('AddressRepository.setDefault');
+}
+
+class ApiPaymentMethodRepository implements PaymentMethodRepository {
+  const ApiPaymentMethodRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<List<PaymentMethod>> list() => _todo('PaymentMethodRepository.list');
+  @override
+  Future<List<PaymentMethod>> setDefault(String id) =>
+      _todo('PaymentMethodRepository.setDefault');
+  @override
+  Future<List<PaymentMethod>> remove(String id) => _todo('PaymentMethodRepository.remove');
 }
 
 class ApiGoldRateRepository implements GoldRateRepository {

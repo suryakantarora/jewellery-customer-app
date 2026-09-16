@@ -31,18 +31,79 @@ class CatalogueQuery {
   final bool inStockOnly;
   final CatalogueSort sort;
   final String? search;
+
+  /// Number of facets the user has set (for the filter badge).
+  int get activeFacetCount =>
+      (metals.isEmpty ? 0 : 1) +
+      (purities.isEmpty ? 0 : 1) +
+      (stones.isEmpty ? 0 : 1) +
+      (minPrice != null || maxPrice != null ? 1 : 0) +
+      (minRating != null ? 1 : 0) +
+      (inStockOnly ? 1 : 0);
+
+  CatalogueQuery copyWith({
+    String? categoryId,
+    String? audience,
+    List<String>? metals,
+    List<String>? purities,
+    List<String>? stones,
+    num? minPrice,
+    num? maxPrice,
+    double? minRating,
+    bool? inStockOnly,
+    CatalogueSort? sort,
+    String? search,
+    bool clearPrice = false,
+    bool clearRating = false,
+  }) => CatalogueQuery(
+    categoryId: categoryId ?? this.categoryId,
+    audience: audience ?? this.audience,
+    metals: metals ?? this.metals,
+    purities: purities ?? this.purities,
+    stones: stones ?? this.stones,
+    minPrice: clearPrice ? null : (minPrice ?? this.minPrice),
+    maxPrice: clearPrice ? null : (maxPrice ?? this.maxPrice),
+    minRating: clearRating ? null : (minRating ?? this.minRating),
+    inStockOnly: inStockOnly ?? this.inStockOnly,
+    sort: sort ?? this.sort,
+    search: search ?? this.search,
+  );
+
+  /// Same listing with every facet cleared (sort and scope kept).
+  CatalogueQuery cleared() =>
+      CatalogueQuery(categoryId: categoryId, audience: audience, sort: sort, search: search);
+
+  @override
+  bool operator ==(Object other) =>
+      other is CatalogueQuery && other.toString() == toString();
+
+  @override
+  int get hashCode => toString().hashCode;
+
+  @override
+  String toString() =>
+      '$categoryId|$audience|$metals|$purities|$stones|$minPrice|$maxPrice|$minRating|$inStockOnly|$sort|$search';
 }
 
 enum CatalogueSort { featured, newest, priceAsc, priceDesc, rating }
 
+/// Min/max price of the catalogue scope, for the filter's range slider.
+class PriceBounds {
+  const PriceBounds(this.min, this.max);
+  final num min;
+  final num max;
+}
+
 abstract interface class CatalogueRepository {
   Future<List<CatalogueItem>> list([CatalogueQuery query = const CatalogueQuery()]);
   Future<CatalogueItem?> byId(String id);
+  Future<List<CatalogueItem>> byIds(List<String> ids);
   Future<List<CatalogueItem>> featured();
   Future<List<CatalogueItem>> newArrivals();
   Future<List<CatalogueItem>> trending();
   Future<List<CatalogueItem>> bestSellers();
   Future<List<CatalogueItem>> related(String id, {int limit = 8});
+  Future<PriceBounds> priceBounds({String? categoryId, String? audience});
 }
 
 abstract interface class CategoryRepository {
@@ -59,29 +120,48 @@ abstract interface class ReviewRepository {
   Future<List<Review>> featured();
 }
 
+/// Customer identity: phone + OTP, guest mode, profile.
+abstract interface class AuthRepository {
+  /// The persisted session, if any, without a network round trip.
+  Future<CustomerSession?> restore();
+  Future<OtpChallenge> requestOtp(String phone);
+
+  /// Throws [OtpRejectedException] on a wrong code.
+  Future<CustomerSession> verifyOtp(String phone, String code);
+  Future<CustomerSession> continueAsGuest();
+  Future<CustomerSession> updateProfile(Account account);
+  Future<void> signOut();
+}
+
 abstract interface class CartRepository {
   Future<List<CartItem>> items();
-  Future<void> add(CartItem item);
-  Future<void> remove(String productId, {String? size});
-  Future<void> clear();
+  Future<void> save(List<CartItem> items);
 }
 
 abstract interface class WishlistRepository {
   Future<List<WishlistItem>> items();
-  Future<void> toggle(String productId);
+  Future<void> save(List<WishlistItem> items);
 }
 
 abstract interface class OrderRepository {
   Future<List<Order>> list();
   Future<Order?> byId(String id);
-}
-
-abstract interface class AccountRepository {
-  Future<Account?> current();
+  Future<Order> place(OrderDraft draft);
 }
 
 abstract interface class AddressRepository {
   Future<List<Address>> list();
+
+  /// Insert or update; an empty id means new. Returns the stored list.
+  Future<List<Address>> save(Address address);
+  Future<List<Address>> delete(String id);
+  Future<List<Address>> setDefault(String id);
+}
+
+abstract interface class PaymentMethodRepository {
+  Future<List<PaymentMethod>> list();
+  Future<List<PaymentMethod>> setDefault(String id);
+  Future<List<PaymentMethod>> remove(String id);
 }
 
 abstract interface class GoldRateRepository {

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/motion/motion.dart';
 import '../../core/router/app_routes.dart';
 import '../../core/tenant/tenant_provider.dart';
+import '../../features/cart/cart_provider.dart';
+import '../../features/wishlist/wishlist_provider.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
@@ -20,8 +23,6 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
     this.showSearch = true,
     this.showWishlist = true,
     this.showCart = true,
-    this.wishlistCount = 0,
-    this.cartCount = 0,
     this.tinted = false,
   }) : _isBrand = true,
        title = null;
@@ -30,17 +31,13 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
     : _isBrand = false,
       showSearch = false,
       showWishlist = false,
-      showCart = false,
-      wishlistCount = 0,
-      cartCount = 0;
+      showCart = false;
 
   final bool _isBrand;
   final String? title;
   final bool showSearch;
   final bool showWishlist;
   final bool showCart;
-  final int wishlistCount;
-  final int cartCount;
 
   /// Swaps the toolbar for the banner gradient ground.
   final bool tinted;
@@ -53,6 +50,8 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
     final l10n = AppL10n.of(context);
     final c = context.colors;
     final ink = tinted ? AppColors.bannerInk : c.text;
+    final wishlistCount = _isBrand ? ref.watch(wishlistCountProvider) : 0;
+    final cartCount = _isBrand ? ref.watch(cartCountProvider) : 0;
 
     final Widget leading;
     final Widget middle;
@@ -173,8 +172,51 @@ class _HeaderIcon extends StatelessWidget {
         Positioned(
           top: 6,
           right: 4,
-          child: IgnorePointer(child: BadgePip(count: count)),
+          child: IgnorePointer(child: _PopOnChange(count: count)),
         ),
     ],
+  );
+}
+
+/// `u-pop`: the pip scales 1 → 1.35 → 1 whenever its count changes.
+class _PopOnChange extends StatefulWidget {
+  const _PopOnChange({required this.count});
+
+  final int count;
+
+  @override
+  State<_PopOnChange> createState() => _PopOnChangeState();
+}
+
+class _PopOnChangeState extends State<_PopOnChange>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 420),
+  );
+
+  @override
+  void didUpdateWidget(_PopOnChange old) {
+    super.didUpdateWidget(old);
+    if (old.count != widget.count && !AppMotion.reduced(context)) {
+      _c.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: _c,
+    builder: (context, child) {
+      final t = _c.value;
+      final scale = t < .5 ? 1 + .35 * (t / .5) : 1.35 - .35 * ((t - .5) / .5);
+      return Transform.scale(scale: scale, child: child);
+    },
+    child: BadgePip(count: widget.count),
   );
 }

@@ -7,11 +7,13 @@ import '../../core/media/app_image.dart';
 import '../../core/media/image_ref.dart';
 import '../../core/motion/motion.dart';
 import '../../core/router/app_routes.dart';
+import '../../core/session/session_provider.dart';
 import '../../core/tenant/tenant_provider.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/theme_mode_provider.dart';
 import '../../core/theme/tokens.dart';
 import '../../data/repository_providers.dart';
+import '../cart/cart_provider.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_art.dart';
 import '../../shared/widgets/eyebrow.dart';
@@ -150,13 +152,25 @@ class AppDrawer extends ConsumerWidget {
           reveal(
             ListTile(
               dense: true,
-              leading: const Icon(Icons.logout_rounded, size: 22, color: AppColors.danger),
-              title: Text(
-                l10n.drawerSignOut,
-                style: const TextStyle(color: AppColors.danger),
+              leading: Icon(
+                ref.watch(isSignedInProvider) ? Icons.logout_rounded : Icons.login_rounded,
+                size: 22,
+                color: ref.watch(isSignedInProvider) ? AppColors.danger : c.primary,
               ),
-              // Auth lands in C2; the row is present so the layout is final.
-              onTap: () => Navigator.of(context).pop(),
+              title: Text(
+                ref.watch(isSignedInProvider) ? l10n.drawerSignOut : l10n.authSignInWithPhone,
+                style: TextStyle(
+                  color: ref.watch(isSignedInProvider) ? AppColors.danger : c.primary,
+                ),
+              ),
+              onTap: () async {
+                Navigator.of(context).pop();
+                if (ref.read(isSignedInProvider)) {
+                  await ref.read(cartProvider.notifier).clear();
+                  await ref.read(sessionProvider.notifier).signOut();
+                }
+                if (context.mounted) context.go(AppRoutes.welcome);
+              },
             ),
           ),
           Padding(
@@ -181,6 +195,7 @@ class _DrawerBanner extends ConsumerWidget {
     final c = context.colors;
     final text = Theme.of(context).textTheme;
     final tenant = ref.watch(tenantProvider).valueOrNull;
+    final account = ref.watch(accountProvider);
     return Container(
       decoration: BoxDecoration(color: c.bannerGround, gradient: c.bannerGradient),
       child: Stack(
@@ -218,20 +233,22 @@ class _DrawerBanner extends ConsumerWidget {
                     ),
                     child: ClipOval(
                       child: AppImage(
-                        ImageRef.fromString('asset://images/ui/avtr2.png'),
+                        account == null || account.avatar.isEmpty
+                            ? ImageRef.fromString('asset://images/ui/avtr2.png')
+                            : account.avatar,
                       ),
                     ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
-                    l10n.drawerGuest,
+                    account?.name ?? l10n.drawerGuest,
                     style: text.headlineSmall!.copyWith(
                       color: AppColors.bannerInk,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    l10n.drawerGuestHint,
+                    account?.phone ?? l10n.drawerGuestHint,
                     style: text.bodySmall!.copyWith(
                       color: AppColors.bannerInkSoft,
                     ),

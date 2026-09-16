@@ -1,62 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:jewellery_customer/app.dart';
-import 'package:jewellery_customer/core/providers.dart';
-import 'package:jewellery_customer/core/storage/local_store.dart';
-import 'package:jewellery_customer/core/tenant/tenant_provider.dart';
 import 'package:jewellery_customer/core/theme/theme_mode_provider.dart';
-import 'package:jewellery_customer/data/demo/demo_store.dart';
-import 'package:jewellery_customer/data/repository_providers.dart';
+import 'package:jewellery_customer/features/account/account_screen.dart';
 import 'package:jewellery_customer/features/home/home_screen.dart';
 import 'package:jewellery_customer/features/settings/settings_screen.dart';
 import 'package:jewellery_customer/features/shell/app_shell.dart';
-import 'package:jewellery_customer/features/splash/splash_screen.dart';
 import 'package:jewellery_customer/features/support/support_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-/// Shimmer runs forever, so tests pump fixed durations instead of settling:
-/// one frame to apply state, then enough time for the longest transition.
-Future<void> settle(WidgetTester tester, [int ms = 600]) async {
-  await tester.pump();
-  await tester.pump(Duration(milliseconds: ms));
-}
+import '../support/app_harness.dart';
 
 void main() {
-  testWidgets('splash → shell, tabs, FAB and drawer all resolve', (tester) async {
-    SharedPreferences.setMockInitialValues({});
-    final store = await LocalStore.create();
-    final container = ProviderContainer(
-      overrides: [
-        localStoreProvider.overrideWithValue(store),
-        demoStoreProvider.overrideWithValue(DemoStore(latency: Duration.zero)),
-      ],
-    );
-    addTearDown(container.dispose);
-    await container.read(tenantProvider.future);
-
-    tester.view.physicalSize = const Size(1170, 2532);
-    tester.view.devicePixelRatio = 3;
-    addTearDown(tester.view.reset);
-
-    await tester.pumpWidget(
-      UncontrolledProviderScope(
-        container: container,
-        child: const JewelleryCustomerApp(),
-      ),
-    );
-    expect(find.byType(SplashScreen), findsOneWidget);
-    expect(find.text('FINO'), findsWidgets);
-
-    // Splash hands over after ~1.1 s.
+  testWidgets('returning guest: shell, tabs, FAB, drawer, profile prompt', (tester) async {
+    final container = await bootApp(tester, prefs: returningGuestPrefs);
     await settle(tester, 1200);
     await settle(tester, 500);
     expect(find.byType(AppShell), findsOneWidget);
     expect(find.byType(HomeScreen), findsOneWidget);
 
-    // Demo data has rendered: banner titles and categories.
+    // Demo data has rendered: hero and categories.
     await settle(tester, 1000);
-    expect(find.text('Timeless elegance'), findsOneWidget);
+    expect(find.text('Timeless elegance'), findsWidgets);
     expect(find.text('Rings'), findsWidgets);
 
     // Settings tab.
@@ -81,6 +44,12 @@ void main() {
     await settle(tester);
     expect(find.text('Settings'), findsWidgets);
 
+    // Profile tab shows the guest prompt.
+    await tester.tap(find.text('Profile'));
+    await settle(tester);
+    expect(find.byType(AccountScreen), findsOneWidget);
+    expect(find.text('Sign in to continue'), findsOneWidget);
+
     // Raised FAB → support, then back.
     await tester.tap(find.byType(FloatingActionButton));
     await settle(tester);
@@ -96,5 +65,6 @@ void main() {
     await settle(tester, 900);
     expect(find.text('SHOP FOR'), findsOneWidget);
     expect(find.text('Rings'), findsWidgets);
+    await unmount(tester);
   });
 }

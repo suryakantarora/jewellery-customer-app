@@ -12,6 +12,7 @@ import '../../core/theme/theme_mode_provider.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_chip.dart';
+import '../../shared/widgets/app_panel.dart';
 import '../../shared/widgets/eyebrow.dart';
 import '../shell/fino_header.dart';
 
@@ -41,7 +42,7 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             Eyebrow(l10n.settingsAppearance),
             const SizedBox(height: AppSpacing.sm),
-            _Panel(
+            AppPanel(
               children: [
                 ListTile(
                   leading: const Icon(Icons.dark_mode_outlined),
@@ -97,7 +98,7 @@ class SettingsScreen extends ConsumerWidget {
               const SizedBox(height: AppSpacing.lg),
               Eyebrow(l10n.settingsDeveloper),
               const SizedBox(height: AppSpacing.sm),
-              _Panel(
+              AppPanel(
                 children: [
                   ListTile(
                     leading: const Icon(Icons.storefront_outlined),
@@ -133,35 +134,6 @@ class SettingsScreen extends ConsumerWidget {
             ),
             const SizedBox(height: AppLayout.tabBarHeight),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Panel extends StatelessWidget {
-  const _Panel({required this.children});
-
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = context.colors;
-    return Container(
-      decoration: BoxDecoration(
-        color: c.card,
-        borderRadius: AppRadius.circular(AppRadius.md),
-        border: Border.all(color: c.border),
-        boxShadow: AppShadows.sm(c.shadow),
-      ),
-      clipBehavior: Clip.antiAlias,
-      // ListTiles paint on the nearest Material; give them one so ink and
-      // selection stay visible above the panel's own background.
-      child: Material(
-        color: Colors.transparent,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: children,
         ),
       ),
     );

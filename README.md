@@ -43,6 +43,14 @@ flutter build apk --flavor prod --dart-define=ENV=prod
 
 Example: `flutter run --flavor dev --dart-define=DATA_MODE=api --dart-define=API_BASE_URL=http://192.168.1.20:8081`
 
+### Demo sign-in
+
+Phone + OTP only. In demo mode any 6-digit code verifies. `+856 20 5555 0142`
+signs in as the seeded customer (orders, addresses and payment methods come from
+`assets/demo/commerce.json`); any other number creates a fresh account and asks
+for a name. "Continue as guest" skips sign-in; checkout, orders, addresses and
+payment methods prompt guests to sign in when reached.
+
 ### Tenant key at runtime
 
 In `dev`/`staging` builds, Settings → Developer → *Shop code* changes the tenant
@@ -69,19 +77,29 @@ lib/
     network/    Dio client + ApiClient envelope unwrapping
     router/     go_router with StatefulShellRoute (4 tabs) + stacked pages
   data/
-    models/     CatalogueItem (ERP shape) + RetailAttributes, Category, Banner, Review, …
-    repositories/ interfaces for catalogue, categories, banners, reviews, cart,
-                wishlist, orders, account, addresses, gold rates, policies
-    demo/       DemoStore (assets/demo/catalogue.json) + Demo* repositories
+    session/    sessionProvider (guest / customer), seenTourProvider
+    models/     CatalogueItem (ERP shape) + RetailAttributes, Category, Banner, Review,
+                commerce (Cart, Wishlist, Order, Address, PaymentMethod, Account, Session)
+    repositories/ interfaces for catalogue, categories, banners, reviews, auth, cart,
+                wishlist, orders, addresses, payment methods, gold rates, policies
+    demo/       DemoStore (assets/demo/*.json) + Demo* repositories (customer data
+                persisted in LocalStore)
     api/        Api* repositories (UnimplementedError until C10)
-    repository_providers.dart  the single Demo/Api switch
-  features/     splash, shell (header, drawer, tabs), home, collections,
-                profile, settings (+ shop code), support
-  shared/widgets/ SectionHead, Eyebrow, GoldRule, Skeleton, EmptyState,
-                ErrorState, PressScale, AppChip, AppBadge, StaggeredReveal, AppArt
+    repository_providers.dart  the single Demo/Api switch + read-side providers
+  features/     splash, onboarding (tour, welcome), auth (phone, OTP, profile setup,
+                ensureSignedIn), shell (header, drawer, tabs), home, search,
+                collections, catalogue (category, filter sheet, size guide, lookbook),
+                product, wishlist, cart, checkout, orders, account (addresses,
+                payment methods, profile), settings (+ shop code), support
+  shared/widgets/ SectionHead, Eyebrow, GoldRule, Skeleton, EmptyState, ErrorState,
+                PressScale, AppChip, AppBadge, StaggeredReveal, AppArt, ProductCard,
+                product skeletons/rail, RatingStars, PriceText, HeartButton,
+                QuantityStepper, StatusPill, SegmentedControl, AnimatedTick,
+                AppTextField, AppPanel, AppSheet, BadgeCount, Scrim, showToast
   l10n/         app_en.arb, app_lo.arb (generated AppL10n)
 assets/
-  demo/         tenant.json, catalogue.json (60 items, 8 categories, 5 banners)
+  demo/         tenant.json, catalogue.json (60 items, 8 categories, 5 banners),
+                commerce.json (demo account, addresses, payment methods, orders)
   images/       banners, catalogue photos, category icons, ui
   art/          filigree-corner.svg, facets.svg (tinted per tenant)
   fonts/        Playfair Display, Inter, Noto Sans Lao
@@ -91,9 +109,12 @@ assets/
 
 `flutter test` covers tenant JSON parsing, palette → ThemeData, MoneyFormatter,
 ImageRef parsing, the demo catalogue (60 items, all metals/purities/stones),
-ARB completeness (every English key exists in Lao and is translated), and a
-shell smoke test (splash → tabs → dark mode → language → FAB → drawer).
-`flutter analyze` must stay clean.
+the demo commerce repositories (auth, cart/wishlist persistence, orders and
+placement, addresses, payment methods), cart totals, ARB completeness (every
+English key exists in Lao and is translated), a shell smoke test (first-run
+tour → welcome → guest → home; tabs → dark mode → language → FAB → drawer) and
+an end-to-end commerce flow (category → product → bag → OTP sign-in → checkout
+→ confirmation → order detail). `flutter analyze` must stay clean.
 
 ## Fonts and licences
 

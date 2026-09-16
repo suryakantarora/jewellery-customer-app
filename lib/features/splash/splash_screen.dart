@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/motion/motion.dart';
 import '../../core/router/app_routes.dart';
+import '../../core/session/session_provider.dart';
 import '../../core/tenant/tenant_config.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/theme/tokens.dart';
@@ -34,7 +35,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
     super.initState();
     if (widget.standalone) {
       Future<void>.delayed(const Duration(milliseconds: 1100), () {
-        if (mounted) context.go(AppRoutes.home);
+        if (!mounted) return;
+        if (!ref.read(seenTourProvider)) {
+          context.go(AppRoutes.tutorial);
+        } else if (ref.read(sessionProvider).valueOrNull == null) {
+          context.go(AppRoutes.welcome);
+        } else {
+          context.go(AppRoutes.home);
+        }
       });
     }
   }

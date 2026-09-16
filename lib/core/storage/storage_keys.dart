@@ -6,4 +6,21 @@ abstract final class StorageKeys {
 
   /// Runtime tenant override from the dev-only shop-code screen.
   static const tenantKeyOverride = 'dev.tenant_key';
+
+  /// First-run tour completed.
+  static const seenTour = 'onboarding.seen_tour';
+
+  /// The customer session (guest or verified), JSON.
+  static const session = 'auth.session';
+
+  /// Recent search terms, JSON list.
+  static const recentSearches = 'search.recent';
+
+  // Demo-mode persistence of customer data (api mode keeps these server-side).
+  static const demoCart = 'demo.cart';
+  static const demoWishlist = 'demo.wishlist';
+  static const demoOrders = 'demo.orders';
+  static const demoAddresses = 'demo.addresses';
+  static const demoPaymentMethods = 'demo.payment_methods';
+  static const demoAccounts = 'demo.accounts';
 }

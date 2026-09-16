@@ -1,0 +1,106 @@
+{
+  "accounts": [
+    {
+      "id": "C-1001",
+      "name": "Suryakant Kumar",
+      "phone": "+856 20 5555 0142",
+      "email": "surya@fino.demo",
+      "avatar": "asset://images/ui/avtr2.png",
+      "memberSince": "2024-03-14",
+      "tier": "Gold Member"
+    }
+  ],
+  "addresses": [
+    {
+      "id": "A1",
+      "label": "home",
+      "name": "Suryakant Kumar",
+      "line1": "48 Setthathirath Rd, Chanthabouly",
+      "city": "Vientiane",
+      "postcode": "01000",
+      "phone": "+856 20 5555 0142",
+      "isDefault": true
+    },
+    {
+      "id": "A2",
+      "label": "work",
+      "name": "Suryakant Kumar",
+      "line1": "Level 4, Lao Plaza, Samsenthai Rd",
+      "city": "Vientiane",
+      "postcode": "01000",
+      "phone": "+856 21 555 0198",
+      "isDefault": false
+    }
+  ],
+  "paymentMethods": [
+    { "id": "P1", "kind": "card", "label": "Visa", "detail": "•••• •••• •••• 4242 · 09/29", "isDefault": true },
+    { "id": "P2", "kind": "card", "label": "Mastercard", "detail": "•••• 8817 · 04/28", "isDefault": false },
+    { "id": "P3", "kind": "wallet", "label": "BCEL One", "detail": "+856 20 5555 0142", "isDefault": false },
+    { "id": "P4", "kind": "cod", "label": "Cash on delivery", "detail": "", "isDefault": false }
+  ],
+  "orders": [
+    {
+      "id": "FINO-100482",
+      "date": "2026-08-02",
+      "status": "delivered",
+      "items": [
+        { "productId": "FINO-002", "name": "Celeste Diamond Earrings", "image": "asset://images/catalogue/14.jpg", "price": 987500, "quantity": 1 }
+      ],
+      "subtotal": 987500, "shipping": 0, "tax": 69125, "total": 1056625,
+      "address": "48 Setthathirath Rd, Chanthabouly, Vientiane 01000",
+      "paymentKind": "card",
+      "courier": "Lao Express", "trackingNumber": "LX-4471-928-LA"
+    },
+    {
+      "id": "FINO-100455",
+      "date": "2026-07-19",
+      "status": "shipped",
+      "items": [
+        { "productId": "FINO-001", "name": "Eternal Solitaire Ring", "image": "asset://images/catalogue/7.jpg", "price": 4520000, "quantity": 1, "size": "7" }
+      ],
+      "subtotal": 4520000, "shipping": 0, "tax": 316400, "total": 4836400,
+      "address": "48 Setthathirath Rd, Chanthabouly, Vientiane 01000",
+      "paymentKind": "wallet",
+      "courier": "Lao Express", "trackingNumber": "LX-5518-330-LA",
+      "eta": { "en": "Arriving today by 18:00", "lo": "ຈະມາຮອດມື້ນີ້ກ່ອນ 18:00" }
+    },
+    {
+      "id": "FINO-100430",
+      "date": "2026-07-10",
+      "status": "packed",
+      "items": [
+        { "productId": "FINO-022", "name": "Peacock Filigree Jhumka", "image": "asset://images/catalogue/6.jpg", "price": 1189000, "quantity": 1 },
+        { "productId": "FINO-020", "name": "Sunburst Kids Studs", "image": "asset://images/catalogue/29.jpg", "price": 286000, "quantity": 2 }
+      ],
+      "subtotal": 1761000, "shipping": 0, "tax": 123270, "total": 1884270,
+      "address": "Level 4, Lao Plaza, Samsenthai Rd, Vientiane 01000",
+      "paymentKind": "card",
+      "courier": "Lao Express", "trackingNumber": "LX-5602-114-LA",
+      "eta": { "en": "Ships within 24 hours", "lo": "ຈັດສົ່ງພາຍໃນ 24 ຊົ່ວໂມງ" }
+    },
+    {
+      "id": "FINO-100411",
+      "date": "2026-07-04",
+      "status": "delivered",
+      "items": [
+        { "productId": "FINO-017", "name": "Dew Drop Anklet", "image": "asset://images/catalogue/8.jpg", "price": 339000, "quantity": 1, "size": "18" },
+        { "productId": "FINO-012", "name": "Braided Silver Cuff", "image": "asset://images/catalogue/10.jpg", "price": 423000, "quantity": 1, "size": "2.6" }
+      ],
+      "subtotal": 762000, "shipping": 25000, "tax": 53340, "total": 840340,
+      "address": "48 Setthathirath Rd, Chanthabouly, Vientiane 01000",
+      "paymentKind": "cod",
+      "courier": "Lao Express", "trackingNumber": "LX-4102-771-LA"
+    },
+    {
+      "id": "FINO-100377",
+      "date": "2026-06-21",
+      "status": "cancelled",
+      "items": [
+        { "productId": "FINO-021", "name": "Nordic Wedding Band", "image": "asset://images/catalogue/36.jpg", "price": 3210000, "quantity": 1, "size": "9" }
+      ],
+      "subtotal": 3210000, "shipping": 0, "tax": 224700, "total": 3434700,
+      "address": "48 Setthathirath Rd, Chanthabouly, Vientiane 01000",
+      "paymentKind": "card"
+    }
+  ]
+}

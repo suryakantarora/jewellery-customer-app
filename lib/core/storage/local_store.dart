@@ -38,5 +38,25 @@ class LocalStore {
   Future<void> setJson(String key, Map<String, dynamic> value) =>
       _prefs.setString(key, jsonEncode(value));
 
+  /// A JSON array of objects, or null when absent or malformed.
+  List<Map<String, dynamic>>? getJsonList(String key) {
+    final raw = _prefs.getString(key);
+    if (raw == null) return null;
+    try {
+      final decoded = jsonDecode(raw);
+      if (decoded is! List) return null;
+      return decoded.whereType<Map<String, dynamic>>().toList();
+    } on FormatException {
+      return null;
+    }
+  }
+
+  Future<void> setJsonList(String key, List<Map<String, dynamic>> value) =>
+      _prefs.setString(key, jsonEncode(value));
+
+  List<String>? getStringList(String key) => _prefs.getStringList(key);
+  Future<void> setStringList(String key, List<String> value) =>
+      _prefs.setStringList(key, value);
+
   Future<void> remove(String key) => _prefs.remove(key);
 }

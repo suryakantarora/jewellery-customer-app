@@ -24,5 +24,7 @@ class LocalizedText {
 
   String get en => _values['en'] ?? '';
 
+  Map<String, String> toJson() => Map.of(_values);
+
   bool get isEmpty => _values.isEmpty;
 }

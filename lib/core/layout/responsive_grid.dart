@@ -11,6 +11,7 @@ class ResponsiveGrid extends StatelessWidget {
     required this.itemCount,
     required this.itemBuilder,
     this.childAspectRatio = .72,
+    this.mainAxisExtentBuilder,
     this.spacing = AppSpacing.sm,
     this.padding = EdgeInsets.zero,
     this.shrinkWrap = true,
@@ -20,6 +21,12 @@ class ResponsiveGrid extends StatelessWidget {
   final int itemCount;
   final IndexedWidgetBuilder itemBuilder;
   final double childAspectRatio;
+
+  /// When set, each cell is exactly this tall for the given cell width and
+  /// [childAspectRatio] is ignored. Lets cards with a fixed text block sit
+  /// under a square image without sub-pixel overflow.
+  final double Function(BuildContext context, double cellWidth)?
+  mainAxisExtentBuilder;
   final double spacing;
   final EdgeInsetsGeometry padding;
   final bool shrinkWrap;
@@ -27,18 +34,25 @@ class ResponsiveGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, constraints) => GridView.builder(
-      padding: padding,
-      shrinkWrap: shrinkWrap,
-      physics: physics,
-      itemCount: itemCount,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: Breakpoints.gridColumns(constraints.maxWidth),
-        mainAxisSpacing: spacing,
-        crossAxisSpacing: spacing,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: itemBuilder,
-    ),
+    builder: (context, constraints) {
+      final columns = Breakpoints.gridColumns(constraints.maxWidth);
+      final cellWidth =
+          (constraints.maxWidth - spacing * (columns - 1)) / columns;
+      final extent = mainAxisExtentBuilder?.call(context, cellWidth);
+      return GridView.builder(
+        padding: padding,
+        shrinkWrap: shrinkWrap,
+        physics: physics,
+        itemCount: itemCount,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: columns,
+          mainAxisSpacing: spacing,
+          crossAxisSpacing: spacing,
+          childAspectRatio: extent == null ? childAspectRatio : 1,
+          mainAxisExtent: extent,
+        ),
+        itemBuilder: itemBuilder,
+      );
+    },
   );
 }

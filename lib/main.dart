@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app.dart';
 import 'core/layout/breakpoints.dart';
 import 'core/providers.dart';
+import 'core/session/session_provider.dart';
 import 'core/storage/local_store.dart';
 import 'core/tenant/tenant_provider.dart';
 
@@ -27,6 +28,7 @@ Future<void> main() async {
   );
   try {
     await container.read(tenantProvider.future);
+    await container.read(sessionProvider.future);
   } on Object catch (error) {
     // The demo repository is the fallback of last resort; if even that fails
     // the app still launches and the error state explains itself.

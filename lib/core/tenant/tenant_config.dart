@@ -75,8 +75,11 @@ class TenantConfig {
     required this.contact,
     required this.featureFlags,
     required this.freeDeliveryThreshold,
+    required this.deliveryFee,
     required this.taxRate,
     required this.allowedPalettes,
+    required this.phoneCountryCode,
+    this.storefrontUrl,
   });
 
   final String key;
@@ -101,8 +104,17 @@ class TenantConfig {
   final Map<String, bool> featureFlags;
   final num freeDeliveryThreshold;
 
+  /// Flat delivery charge below the free-delivery threshold.
+  final num deliveryFee;
+
   /// Fraction, e.g. 0.07 for 7% VAT.
   final double taxRate;
+
+  /// Dialling prefix pre-filled on the phone sign-in screen (`+856`).
+  final String phoneCountryCode;
+
+  /// Public web storefront, used to build share links. Optional.
+  final String? storefrontUrl;
 
   /// Palette ids the settings picker may offer. Empty = picker hidden.
   final List<String> allowedPalettes;
@@ -140,9 +152,12 @@ class TenantConfig {
       contact: TenantContact.fromJson(json['contact'] as Map<String, dynamic>?),
       featureFlags: flags,
       freeDeliveryThreshold: json['freeDeliveryThreshold'] as num? ?? 0,
+      deliveryFee: json['deliveryFee'] as num? ?? 0,
       taxRate: (json['taxRate'] as num?)?.toDouble() ?? 0,
       allowedPalettes:
           (json['allowedPalettes'] as List?)?.cast<String>() ?? const [],
+      phoneCountryCode: json['phoneCountryCode'] as String? ?? '+856',
+      storefrontUrl: json['storefrontUrl'] as String?,
     );
   }
 
@@ -168,7 +183,10 @@ class TenantConfig {
     contact: contact,
     featureFlags: featureFlags,
     freeDeliveryThreshold: freeDeliveryThreshold,
+    deliveryFee: deliveryFee,
     taxRate: taxRate,
     allowedPalettes: allowedPalettes,
+    phoneCountryCode: phoneCountryCode,
+    storefrontUrl: storefrontUrl,
   );
 }

@@ -151,6 +151,11 @@ class CollectionsScreen extends ConsumerWidget {
                       onTap: () =>
                           context.push(AppRoutes.categoryPath('all')),
                     ),
+                    AppChip(
+                      label: l10n.lookbookTitle,
+                      leading: const Icon(Icons.auto_stories_outlined),
+                      onTap: () => context.push(AppRoutes.lookbook),
+                    ),
                   ],
                 ),
               ],
