@@ -148,22 +148,20 @@ class _ProductCardState extends ConsumerState<ProductCard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Flexible(
-                    child: Text(
-                      item.productName,
-                      style: text.titleSmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  // Name and meta keep their full line height (a Flexible
+                  // here let the meta row paint over the name's descenders).
+                  Text(
+                    item.productName,
+                    style: text.titleSmall,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 2),
-                  Flexible(
-                    child: Text(
-                      '${item.purityName} · ${item.categoryName}',
-                      style: text.labelSmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
+                  const SizedBox(height: 3),
+                  Text(
+                    '${item.purityName} · ${item.categoryName}',
+                    style: text.labelSmall,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: AppSpacing.xxs),
                   Flexible(

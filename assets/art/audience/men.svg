@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 384"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A0F24"/><stop offset=".55" stop-color="#2A0A16"/><stop offset="1" stop-color="#160609"/></linearGradient><radialGradient id="glow" cx=".5" cy=".42" r=".55"><stop offset="0" stop-color="#D8B45C" stop-opacity=".28"/><stop offset="1" stop-color="#D8B45C" stop-opacity="0"/></radialGradient></defs><rect width="300" height="384" fill="url(#g)"/><rect width="300" height="384" fill="url(#glow)"/><rect x="10" y="10" width="280" height="364" rx="14" fill="none" stroke="#D8B45C" stroke-opacity=".35"/>
+  <g transform="translate(0,-34)">
+  <!-- Signet ring and a cuff link. -->
+  <g fill="none" stroke="#E6C36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="150" cy="210" rx="62" ry="70"/>
+    <ellipse cx="150" cy="210" rx="44" ry="52"/>
+    <path d="M118 150 C 130 128, 170 128, 182 150 L176 168 C 166 156, 134 156, 124 168 Z" fill="#2A0A16"/>
+    <path d="M136 158 H164 M140 150 H160" stroke-width="2"/>
+    <path d="M210 300 h40 a10 10 0 0 1 0 20 h-40 a10 10 0 0 1 0 -20 Z" stroke-width="2.5"/>
+    <path d="M230 300 V280 M222 280 H238" stroke-width="2.5"/>
+  </g>
+  <path d="M232 72 L236 60 L240 72 L252 76 L240 80 L236 92 L232 80 L220 76 Z" fill="#F3E2A4" opacity=".85"/>
+  <path d="M62 300 L65 292 L68 300 L76 303 L68 306 L65 314 L62 306 L54 303 Z" fill="#F3E2A4" opacity=".7"/>
+</g>
+</svg>

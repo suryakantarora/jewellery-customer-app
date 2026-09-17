@@ -97,7 +97,8 @@ class RailSkeleton extends StatelessWidget {
 abstract final class ProductGrid {
   /// Fixed, unscaled parts of the text block: paddings (12 + 8), gaps
   /// (2 + 4 + 4), the 34 px price row, and 4 px of slack.
-  static const _fixed = 12.0 + 8 + 2 + 4 + 4 + 34 + 4;
+  // Padding, gaps, the quick-add button, and 6px of slack for font metrics.
+  static const _fixed = 12.0 + 8 + 3 + 4 + 4 + 34 + 4 + 6;
 
   /// Height of the text block for the current theme, locale and font scale:
   /// name (titleSmall) + meta (labelSmall) + rating row (labelLarge) on top

@@ -50,6 +50,7 @@ flutter:
     - assets/demo/
     - assets/art/
     - assets/art/menu/
+    - assets/art/audience/
     - assets/images/banners/
     - assets/images/catalogue/
     - assets/images/categories/

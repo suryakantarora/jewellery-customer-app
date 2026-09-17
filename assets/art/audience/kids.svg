@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 384"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A0F24"/><stop offset=".55" stop-color="#2A0A16"/><stop offset="1" stop-color="#160609"/></linearGradient><radialGradient id="glow" cx=".5" cy=".42" r=".55"><stop offset="0" stop-color="#D8B45C" stop-opacity=".28"/><stop offset="1" stop-color="#D8B45C" stop-opacity="0"/></radialGradient></defs><rect width="300" height="384" fill="url(#g)"/><rect width="300" height="384" fill="url(#glow)"/><rect x="10" y="10" width="280" height="364" rx="14" fill="none" stroke="#D8B45C" stroke-opacity=".35"/>
+  <g transform="translate(0,-34)">
+  <!-- Small charm bangle with a star and a heart. -->
+  <g fill="none" stroke="#E6C36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="150" cy="200" rx="78" ry="46"/>
+    <ellipse cx="150" cy="200" rx="66" ry="36"/>
+    <path d="M150 236 V252"/>
+    <path d="M150 252 C 140 240, 124 250, 134 262 L150 276 L166 262 C 176 250, 160 240, 150 252 Z" stroke-width="2.5"/>
+    <path d="M92 214 V230"/>
+    <path d="M92 230 L96 240 L107 241 L99 248 L101 259 L92 253 L83 259 L85 248 L77 241 L88 240 Z" stroke-width="2"/>
+    <path d="M208 214 V226"/>
+    <circle cx="208" cy="234" r="8" stroke-width="2.5"/>
+  </g>
+  <g fill="#E6C36B"><circle cx="118" cy="168" r="3"/><circle cx="150" cy="162" r="3"/><circle cx="182" cy="168" r="3"/></g>
+  <path d="M232 92 L236 80 L240 92 L252 96 L240 100 L236 112 L232 100 L220 96 Z" fill="#F3E2A4" opacity=".9"/>
+  <path d="M66 120 L69 112 L72 120 L80 123 L72 126 L69 134 L66 126 L58 123 Z" fill="#F3E2A4" opacity=".7"/>
+  <path d="M60 290 L62 284 L64 290 L70 292 L64 294 L62 300 L60 294 L54 292 Z" fill="#F3E2A4" opacity=".6"/>
+</g>
+</svg>

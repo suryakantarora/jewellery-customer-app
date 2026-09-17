@@ -145,10 +145,10 @@ class AppDrawer extends ConsumerWidget {
                     (
                       l10n.audienceWomen,
                       'women',
-                      'asset://images/ui/women.png',
+                      'asset://art/audience/women.svg',
                     ),
-                    (l10n.audienceMen, 'men', 'asset://images/ui/men.png'),
-                    (l10n.audienceKids, 'kids', 'asset://images/ui/kid.jpg'),
+                    (l10n.audienceMen, 'men', 'asset://art/audience/men.svg'),
+                    (l10n.audienceKids, 'kids', 'asset://art/audience/kids.svg'),
                   ].indexed) ...[
                     if (i > 0) const SizedBox(width: AppSpacing.sm),
                     Expanded(

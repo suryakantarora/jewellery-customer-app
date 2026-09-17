@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 384"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A0F24"/><stop offset=".55" stop-color="#2A0A16"/><stop offset="1" stop-color="#160609"/></linearGradient><radialGradient id="glow" cx=".5" cy=".42" r=".55"><stop offset="0" stop-color="#D8B45C" stop-opacity=".28"/><stop offset="1" stop-color="#D8B45C" stop-opacity="0"/></radialGradient></defs><rect width="300" height="384" fill="url(#g)"/><rect width="300" height="384" fill="url(#glow)"/><rect x="10" y="10" width="280" height="364" rx="14" fill="none" stroke="#D8B45C" stroke-opacity=".35"/>
+  <g transform="translate(0,-34)">
+  <!-- Necklace with a pear drop. -->
+  <g fill="none" stroke="#E6C36B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M70 110 C 70 200, 110 250, 150 250 C 190 250, 230 200, 230 110"/>
+    <path d="M150 250 V272"/>
+    <path d="M150 272 C 132 292, 132 318, 150 330 C 168 318, 168 292, 150 272 Z"/>
+    <path d="M150 288 L158 302 L150 318 L142 302 Z" stroke-width="2"/>
+  </g>
+  <g fill="#E6C36B">
+    <circle cx="96" cy="185" r="4"/><circle cx="118" cy="222" r="4"/><circle cx="204" cy="185" r="4"/><circle cx="182" cy="222" r="4"/>
+    <circle cx="150" cy="248" r="5"/>
+  </g>
+  <path d="M60 96 L64 84 L68 96 L80 100 L68 104 L64 116 L60 104 L48 100 Z" fill="#F3E2A4" opacity=".9"/>
+  <path d="M236 70 L239 62 L242 70 L250 73 L242 76 L239 84 L236 76 L228 73 Z" fill="#F3E2A4" opacity=".7"/>
+</g>
+</svg>

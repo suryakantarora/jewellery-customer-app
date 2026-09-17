@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../shared/widgets/skeleton.dart';
@@ -40,6 +41,14 @@ class AppImage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final Widget child = switch (image) {
+      AssetImageRef(:final assetPath) when assetPath.endsWith('.svg') =>
+        SvgPicture.asset(
+          assetPath,
+          fit: fit,
+          width: width,
+          height: height,
+          alignment: alignment,
+        ),
       AssetImageRef(:final assetPath) => Image.asset(
         assetPath,
         fit: fit,

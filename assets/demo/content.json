@@ -629,7 +629,7 @@
     "en": "For the little ones",
     "lo": "ສຳລັບເດັກນ້ອຍ"
    },
-   "image": "asset://images/ui/kid.jpg"
+   "image": "asset://art/audience/kids.svg"
   }
  ],
  "trending": [
@@ -648,7 +648,7 @@
   },
   {
    "id": "T2",
-   "image": "asset://images/ui/women.png",
+   "image": "asset://art/audience/women.svg",
    "headline": {
     "en": "Everyday",
     "lo": "ປະຈຳວັນ"
@@ -812,7 +812,7 @@
    "date": "2026-05-30",
    "rating": 4.5,
    "body": "Tiny bangle for our newborn. Smooth edges, safe clasp.",
-   "image": "asset://images/ui/kid.jpg",
+   "image": "asset://art/audience/kids.svg",
    "productName": "First Steps Baby Bangle",
    "likes": 14,
    "comments": 1
