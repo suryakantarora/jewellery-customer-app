@@ -54,7 +54,7 @@ class _TutorialScreenState extends ConsumerState<TutorialScreen> {
     final last = _index == slides.length - 1;
 
     return Scaffold(
-      backgroundColor: c.bannerGround,
+      backgroundColor: c.heroGround,
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -100,7 +100,7 @@ class _TutorialScreenState extends ConsumerState<TutorialScreen> {
                           decoration: BoxDecoration(
                             color: i == _index
                                 ? c.accent
-                                : AppColors.bannerInkFaint,
+                                : AppColors.photoInkFaint,
                             borderRadius: AppRadius.circular(AppRadius.pill),
                           ),
                         ),
@@ -126,8 +126,8 @@ class _TutorialScreenState extends ConsumerState<TutorialScreen> {
                               width: double.infinity,
                               child: OutlinedButton(
                                 style: OutlinedButton.styleFrom(
-                                  foregroundColor: AppColors.bannerInk,
-                                  side: BorderSide(color: c.bannerHairline),
+                                  foregroundColor: AppColors.photoInk,
+                                  side: BorderSide(color: c.photoHairline),
                                 ),
                                 onPressed: () => _controller.nextPage(
                                   duration: AppMotion.of(context, AppMotion.slow),
@@ -189,12 +189,12 @@ class _Slide extends StatelessWidget {
                   const SizedBox(height: AppSpacing.xs),
                   Text(
                     title,
-                    style: text.displayMedium!.copyWith(color: AppColors.bannerInk),
+                    style: text.displayMedium!.copyWith(color: AppColors.photoInk),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     body,
-                    style: text.bodyLarge!.copyWith(color: AppColors.bannerInkSoft),
+                    style: text.bodyLarge!.copyWith(color: AppColors.photoInkSoft),
                   ),
                 ],
               ),
@@ -226,7 +226,7 @@ class _SkipPill extends StatelessWidget {
             child: Text(
               label,
               style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                color: AppColors.bannerInk,
+                color: AppColors.photoInk,
               ),
             ),
           ),

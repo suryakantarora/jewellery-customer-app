@@ -64,9 +64,9 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
     final height = MediaQuery.sizeOf(context).height;
 
     return Scaffold(
-      backgroundColor: c.bannerGround,
+      backgroundColor: c.heroGround,
       body: DecoratedBox(
-        decoration: BoxDecoration(gradient: c.bannerGradient),
+        decoration: BoxDecoration(gradient: c.heroGradient),
         child: Stack(
           children: [
             // Hero photo, panning slowly, fading out towards its base.
@@ -117,7 +117,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
                         Text(
                           tenant?.brandName ?? '',
                           textAlign: TextAlign.center,
-                          style: text.displayLarge!.copyWith(color: AppColors.bannerInk),
+                          style: text.displayLarge!.copyWith(color: AppColors.photoInk),
                         ),
                         const SizedBox(height: AppSpacing.sm),
                         GoldRule(width: 48, color: c.accent),
@@ -127,7 +127,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
                           child: Text(
                             tenant?.tagline ?? '',
                             textAlign: TextAlign.center,
-                            style: text.bodyLarge!.copyWith(color: AppColors.bannerInkSoft),
+                            style: text.bodyLarge!.copyWith(color: AppColors.photoInkSoft),
                           ),
                         ),
                       ],
@@ -149,8 +149,8 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
                           const SizedBox(height: AppSpacing.xs),
                           OutlinedButton(
                             style: OutlinedButton.styleFrom(
-                              foregroundColor: AppColors.bannerInk,
-                              side: BorderSide(color: c.bannerHairline),
+                              foregroundColor: AppColors.photoInk,
+                              side: BorderSide(color: c.photoHairline),
                             ),
                             onPressed: _guest,
                             child: Text(l10n.authContinueAsGuest),
@@ -166,7 +166,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
                       padding: const EdgeInsets.only(left: AppLayout.gutter),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Eyebrow(l10n.welcomeTeaser, color: AppColors.bannerInkFaint),
+                        child: Eyebrow(l10n.welcomeTeaser, color: AppColors.photoInkFaint),
                       ),
                     ),
                   ),
@@ -210,7 +210,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen>
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: text.labelLarge!.copyWith(
-                                          color: AppColors.bannerInk,
+                                          color: AppColors.photoInk,
                                           letterSpacing: 0,
                                         ),
                                       ),

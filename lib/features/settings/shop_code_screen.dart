@@ -53,7 +53,10 @@ class _ShopCodeScreenState extends ConsumerState<ShopCodeScreen> {
       appBar: FinoHeader.page(title: l10n.shopCodeTitle),
       body: ContentWidth(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: gutter, vertical: AppSpacing.lg),
+          padding: EdgeInsets.symmetric(
+            horizontal: gutter,
+            vertical: AppSpacing.lg,
+          ),
           children: [
             Text(
               l10n.shopCodeIntro,

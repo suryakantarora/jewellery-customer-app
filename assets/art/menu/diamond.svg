@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Brilliant-cut gem. -->
+  <path d="M7 4 H17 L21 9 L12 21 L3 9 Z"/>
+  <path d="M3 9 H21 M7 4 L10 9 L12 21 M17 4 L14 9 L12 21 M10 9 H14"/>
+</svg>

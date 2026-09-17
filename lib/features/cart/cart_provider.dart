@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/tenant/tenant_config.dart';
 import '../../core/tenant/tenant_provider.dart';
 import '../../data/models/catalogue_item.dart';
+import '../../core/providers.dart';
+import '../../core/storage/storage_keys.dart';
 import '../../data/models/commerce.dart';
+import '../../data/models/content.dart';
 import '../../data/repository_providers.dart';
 
 /// The bag: persisted line items joined with their products.
@@ -108,7 +111,36 @@ final cartCountProvider = Provider<int>(
       .fold(0, (n, l) => n + l.quantity),
 );
 
-/// Subtotal, savings, shipping, tax and total per the tenant's rules.
+/// The coupon applied in the bag (C8 offers), persisted by code.
+class AppliedOfferController extends AsyncNotifier<Offer?> {
+  @override
+  Future<Offer?> build() async {
+    final code = ref.read(localStoreProvider).getString(StorageKeys.appliedOffer);
+    if (code == null || code.isEmpty) return null;
+    return ref.watch(offerRepositoryProvider).byCode(code);
+  }
+
+  /// Applies a code; returns false when it is unknown or expired.
+  Future<bool> apply(String code) async {
+    final offer = await ref.read(offerRepositoryProvider).byCode(code);
+    if (offer == null) return false;
+    await ref.read(localStoreProvider).setString(StorageKeys.appliedOffer, offer.code);
+    state = AsyncData(offer);
+    return true;
+  }
+
+  Future<void> clear() async {
+    await ref.read(localStoreProvider).remove(StorageKeys.appliedOffer);
+    state = const AsyncData(null);
+  }
+}
+
+final appliedOfferProvider = AsyncNotifierProvider<AppliedOfferController, Offer?>(
+  AppliedOfferController.new,
+);
+
+/// Subtotal, savings, discount, shipping, tax and total per the tenant's
+/// rules and the applied offer.
 class CartTotals {
   const CartTotals({
     required this.subtotal,
@@ -116,6 +148,8 @@ class CartTotals {
     required this.shipping,
     required this.tax,
     required this.freeDeliveryThreshold,
+    this.discount = 0,
+    this.offer,
   });
 
   final num subtotal;
@@ -124,7 +158,15 @@ class CartTotals {
   final num tax;
   final num freeDeliveryThreshold;
 
-  num get total => subtotal + shipping + tax;
+  /// Taken off by the applied coupon (0 when none or not eligible).
+  final num discount;
+  final Offer? offer;
+
+  /// The offer is present but the bag does not meet its minimum.
+  bool get offerIneligible =>
+      offer != null && subtotal > 0 && subtotal < offer!.minSubtotal;
+
+  num get total => subtotal - discount + shipping + tax;
   bool get freeDelivery => shipping == 0;
   num get remainingForFreeDelivery =>
       (freeDeliveryThreshold - subtotal).clamp(0, double.infinity);
@@ -132,16 +174,22 @@ class CartTotals {
       ? 1
       : (subtotal / freeDeliveryThreshold).clamp(0, 1).toDouble();
 
-  static CartTotals compute(List<CartLine> lines, TenantConfig tenant) {
+  static CartTotals compute(List<CartLine> lines, TenantConfig tenant, {Offer? offer}) {
     final subtotal = lines.fold<num>(0, (n, l) => n + l.lineTotal);
     final savings = lines.fold<num>(0, (n, l) => n + l.lineSavings);
-    final shipping = lines.isEmpty || subtotal >= tenant.freeDeliveryThreshold
+    final discount = offer?.discountFor(subtotal) ?? 0;
+    final freeByOffer = offer != null &&
+        offer.kind == OfferKind.freeDelivery &&
+        subtotal >= offer.minSubtotal;
+    final shipping = lines.isEmpty || subtotal >= tenant.freeDeliveryThreshold || freeByOffer
         ? 0
         : tenant.deliveryFee;
-    final tax = (subtotal * tenant.taxRate).round();
+    final tax = ((subtotal - discount) * tenant.taxRate).round();
     return CartTotals(
       subtotal: subtotal,
       savings: savings,
+      discount: discount,
+      offer: offer,
       shipping: shipping,
       tax: tax,
       freeDeliveryThreshold: tenant.freeDeliveryThreshold,
@@ -152,5 +200,6 @@ class CartTotals {
 final cartTotalsProvider = Provider<CartTotals>((ref) {
   final tenant = ref.watch(tenantProvider).requireValue;
   final lines = ref.watch(cartProvider).valueOrNull ?? const [];
-  return CartTotals.compute(lines, tenant);
+  final offer = ref.watch(appliedOfferProvider).valueOrNull;
+  return CartTotals.compute(lines, tenant, offer: offer);
 });

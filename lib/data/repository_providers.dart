@@ -7,6 +7,7 @@ import 'demo/demo_repositories.dart';
 import 'demo/demo_store.dart';
 import 'models/catalogue_item.dart';
 import 'models/category.dart';
+import 'models/content.dart';
 import 'models/review.dart';
 import 'repositories/repositories.dart';
 
@@ -118,7 +119,7 @@ final paymentMethodRepositoryProvider = Provider<PaymentMethodRepository>(
 final goldRateRepositoryProvider = Provider<GoldRateRepository>(
   (ref) => _pick(
     ref,
-    demo: () => const DemoGoldRateRepository(),
+    demo: () => DemoGoldRateRepository(ref.watch(demoStoreProvider)),
     api: () => ApiGoldRateRepository(ref.watch(apiClientProvider)),
   ),
 );
@@ -126,8 +127,51 @@ final goldRateRepositoryProvider = Provider<GoldRateRepository>(
 final policyRepositoryProvider = Provider<PolicyRepository>(
   (ref) => _pick(
     ref,
-    demo: () => const DemoPolicyRepository(),
+    demo: () => DemoPolicyRepository(ref.watch(demoStoreProvider)),
     api: () => ApiPolicyRepository(ref.watch(apiClientProvider)),
+  ),
+);
+
+final storeRepositoryProvider = Provider<StoreRepository>(
+  (ref) => _pick(
+    ref,
+    demo: () => DemoStoreRepository(ref.watch(demoStoreProvider)),
+    api: () => ApiStoreRepository(ref.watch(apiClientProvider)),
+  ),
+);
+
+final offerRepositoryProvider = Provider<OfferRepository>(
+  (ref) => _pick(
+    ref,
+    demo: () => DemoOfferRepository(ref.watch(demoStoreProvider)),
+    api: () => ApiOfferRepository(ref.watch(apiClientProvider)),
+  ),
+);
+
+final contentRepositoryProvider = Provider<ContentRepository>(
+  (ref) => _pick(
+    ref,
+    demo: () => DemoContentRepository(ref.watch(demoStoreProvider)),
+    api: () => ApiContentRepository(ref.watch(apiClientProvider)),
+  ),
+);
+
+final feedbackRepositoryProvider = Provider<FeedbackRepository>(
+  (ref) => _pick(
+    ref,
+    demo: () => DemoFeedbackRepository(ref.watch(localStoreProvider)),
+    api: () => ApiFeedbackRepository(ref.watch(apiClientProvider)),
+  ),
+);
+
+final notificationRepositoryProvider = Provider<NotificationRepository>(
+  (ref) => _pick(
+    ref,
+    demo: () => DemoNotificationRepository(
+      ref.watch(demoStoreProvider),
+      ref.watch(localStoreProvider),
+    ),
+    api: () => ApiNotificationRepository(ref.watch(apiClientProvider)),
   ),
 );
 
@@ -193,3 +237,42 @@ final priceBoundsProvider = FutureProvider.autoDispose.family<PriceBounds, Strin
     );
   },
 );
+
+// --- Read-side content providers ---------------------------------------------
+
+final policiesProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(policyRepositoryProvider).list(),
+);
+
+final policyProvider = FutureProvider.autoDispose.family<PolicyDoc?, String>(
+  (ref, key) => ref.watch(policyRepositoryProvider).byKey(key),
+);
+
+final storesProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(storeRepositoryProvider).list(),
+);
+
+final storeProvider = FutureProvider.autoDispose.family<Store?, String>(
+  (ref, id) => ref.watch(storeRepositoryProvider).byId(id),
+);
+
+final offersProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(offerRepositoryProvider).list(),
+);
+
+final brandsProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(contentRepositoryProvider).brands(),
+);
+
+final trendingCardsProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(contentRepositoryProvider).trending(),
+);
+
+final storiesProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(contentRepositoryProvider).stories(),
+);
+
+final aboutProvider = FutureProvider.autoDispose(
+  (ref) => ref.watch(contentRepositoryProvider).about(),
+);
+

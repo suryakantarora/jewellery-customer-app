@@ -326,7 +326,7 @@ class _Idle extends ConsumerWidget {
                       bottom: AppSpacing.xs,
                       child: Text(
                         list[i].name.resolve(locale),
-                        style: text.titleSmall!.copyWith(color: AppColors.bannerInk),
+                        style: text.titleSmall!.copyWith(color: AppColors.photoInk),
                       ),
                     ),
                   ],

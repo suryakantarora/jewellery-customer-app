@@ -23,4 +23,16 @@ abstract final class StorageKeys {
   static const demoAddresses = 'demo.addresses';
   static const demoPaymentMethods = 'demo.payment_methods';
   static const demoAccounts = 'demo.accounts';
+  static const demoNotifications = 'demo.notifications';
+  static const demoStoryLikes = 'demo.story_likes';
+  static const demoFeedback = 'demo.feedback';
+
+  /// Coupon code applied in the bag.
+  static const appliedOffer = 'cart.offer';
+
+  /// Support chat transcript, so leaving the page keeps the thread.
+  static const supportThread = 'support.thread';
+
+  /// Push registration (token echoed back so C10 can unregister).
+  static const pushToken = 'push.token';
 }

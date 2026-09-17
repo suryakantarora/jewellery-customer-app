@@ -111,13 +111,13 @@ class CollectionsScreen extends ConsumerWidget {
                                             list[i].name.resolve(locale),
                                             style: text.headlineMedium!
                                                 .copyWith(
-                                                  color: AppColors.bannerInk,
+                                                  color: AppColors.photoInk,
                                                 ),
                                           ),
                                           Text(
                                             list[i].description.resolve(locale),
                                             style: text.bodySmall!.copyWith(
-                                              color: AppColors.bannerInkSoft,
+                                              color: AppColors.photoInkSoft,
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
@@ -129,7 +129,7 @@ class CollectionsScreen extends ConsumerWidget {
                                     Text(
                                       l10n.piecesCount(list[i].productCount),
                                       style: text.labelSmall!.copyWith(
-                                        color: AppColors.bannerInkFaint,
+                                        color: AppColors.photoInkFaint,
                                       ),
                                     ),
                                   ],

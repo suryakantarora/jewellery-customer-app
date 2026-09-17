@@ -12,6 +12,16 @@ import '../../features/auth/profile_setup_screen.dart';
 import '../../features/cart/cart_screen.dart';
 import '../../features/catalogue/category_screen.dart';
 import '../../features/catalogue/lookbook_screen.dart';
+import '../../features/content/about_screen.dart';
+import '../../features/content/contact_screen.dart';
+import '../../features/content/stories_screen.dart';
+import '../../features/feedback/feedback_screen.dart';
+import '../../features/feedback/rate_us_screen.dart';
+import '../../features/gold_rates/gold_rates_screen.dart';
+import '../../features/notifications/notifications_screen.dart';
+import '../../features/offers/offers_screen.dart';
+import '../../features/policies/policy_screen.dart';
+import '../../features/stores/stores_screen.dart';
 import '../../features/catalogue/size_guide_screen.dart';
 import '../../features/checkout/checkout_screen.dart';
 import '../../features/collections/collections_screen.dart';
@@ -25,11 +35,9 @@ import '../../features/search/search_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import '../../features/settings/shop_code_screen.dart';
 import '../../features/shell/app_shell.dart';
-import '../../features/shell/placeholder_screen.dart';
 import '../../features/splash/splash_screen.dart';
 import '../../features/support/support_screen.dart';
 import '../../features/wishlist/wishlist_screen.dart';
-import '../../l10n/app_localizations.dart';
 import '../motion/page_transition.dart';
 import '../providers.dart';
 import '../tenant/tenant_provider.dart';
@@ -42,15 +50,6 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   Page<void> stacked(GoRouterState state, Widget child) =>
       AppPage(key: state.pageKey, child: child);
-
-  Page<void> placeholder(GoRouterState state, String Function(AppL10n) title) =>
-      AppPage(
-        key: state.pageKey,
-        child: Builder(
-          builder: (context) =>
-              PlaceholderScreen(title: title(AppL10n.of(context))),
-        ),
-      );
 
   return GoRouter(
     initialLocation: AppRoutes.splash,
@@ -113,6 +112,9 @@ final routerProvider = Provider<GoRouter>((ref) {
           CategoryScreen(
             categoryId: state.pathParameters['id']!,
             audience: state.uri.queryParameters['audience'],
+            metal: state.uri.queryParameters['metal'],
+            tag: state.uri.queryParameters['tag'],
+            brand: state.uri.queryParameters['brand'],
           ),
         ),
       ),
@@ -175,13 +177,55 @@ final routerProvider = Provider<GoRouter>((ref) {
           path: AppRoutes.shopCode,
           pageBuilder: (_, state) => stacked(state, const ShopCodeScreen()),
         ),
+      // --- Settings & content (C7) -----------------------------------------
       GoRoute(
         path: AppRoutes.goldRates,
-        pageBuilder: (_, state) => placeholder(state, (l) => l.drawerGoldRates),
+        pageBuilder: (_, state) => stacked(state, const GoldRatesScreen()),
+      ),
+      GoRoute(
+        path: '${AppRoutes.policy}/:key',
+        pageBuilder: (_, state) =>
+            stacked(state, PolicyScreen(policyKey: state.pathParameters['key']!)),
+      ),
+      GoRoute(
+        path: AppRoutes.about,
+        pageBuilder: (_, state) => stacked(state, const AboutScreen()),
       ),
       GoRoute(
         path: AppRoutes.contact,
-        pageBuilder: (_, state) => placeholder(state, (l) => l.drawerContact),
+        pageBuilder: (_, state) => stacked(state, const ContactScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.feedback,
+        pageBuilder: (_, state) => stacked(state, const FeedbackScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.rateUs,
+        pageBuilder: (_, state) => stacked(state, const RateUsScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.stories,
+        pageBuilder: (_, state) => stacked(state, const StoriesScreen()),
+      ),
+      // --- Support & extras (C8) -------------------------------------------
+      GoRoute(
+        path: AppRoutes.notifications,
+        pageBuilder: (_, state) => stacked(state, const NotificationsScreen()),
+      ),
+      GoRoute(
+        path: AppRoutes.stores,
+        pageBuilder: (_, state) => stacked(state, const StoresScreen()),
+        routes: [
+          GoRoute(
+            path: ':id',
+            pageBuilder: (_, state) =>
+                stacked(state, StoreDetailScreen(storeId: state.pathParameters['id']!)),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: AppRoutes.offers,
+        pageBuilder: (_, state) => stacked(state, const OffersScreen()),
       ),
       StatefulShellRoute.indexedStack(
         builder: (_, __, shell) => AppShell(navigationShell: shell),

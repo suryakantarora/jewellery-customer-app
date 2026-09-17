@@ -15,6 +15,7 @@ import '../../core/theme/tokens.dart';
 import '../../data/models/commerce.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_badge.dart';
+import '../../shared/widgets/banner_ground.dart';
 import '../../shared/widgets/app_panel.dart';
 import '../../shared/widgets/app_sheet.dart';
 import '../../shared/widgets/app_text_field.dart';
@@ -232,8 +233,8 @@ class _Banner extends ConsumerWidget {
     final avatar = account?.avatar.isEmpty ?? true
         ? const ImageRef.asset('images/ui/avtr2.png')
         : account!.avatar;
-    return Container(
-      decoration: BoxDecoration(color: c.bannerGround, gradient: c.bannerGradient),
+    return BannerGround(
+      hairline: true,
       child: SafeArea(
         bottom: false,
         child: Padding(
@@ -245,14 +246,14 @@ class _Banner extends ConsumerWidget {
                 children: [
                   IconButton(
                     tooltip: l10n.actionMenu,
-                    icon: const Icon(Icons.menu_rounded, color: AppColors.bannerInk),
+                    icon: Icon(Icons.menu_rounded, color: c.bannerInk),
                     onPressed: () => context.findRootAncestorStateOfType<ScaffoldState>()?.openDrawer(),
                   ),
                   Expanded(
                     child: Text(
                       l10n.profileTitle,
                       textAlign: TextAlign.center,
-                      style: text.headlineSmall!.copyWith(color: AppColors.bannerInk),
+                      style: text.headlineSmall!.copyWith(color: c.bannerInk),
                     ),
                   ),
                   const SizedBox(width: 48),
@@ -296,18 +297,18 @@ class _Banner extends ConsumerWidget {
                       children: [
                         Text(
                           account?.name ?? l10n.drawerGuest,
-                          style: text.headlineMedium!.copyWith(color: AppColors.bannerInk),
+                          style: text.headlineMedium!.copyWith(color: c.bannerInk),
                         ),
                         Text(
                           account?.phone ?? l10n.profileWelcome(brand),
-                          style: text.bodySmall!.copyWith(color: AppColors.bannerInkSoft),
+                          style: text.bodySmall!.copyWith(color: c.bannerInkSoft),
                         ),
                         if (account?.email != null)
-                          Text(account!.email!, style: text.bodySmall!.copyWith(color: AppColors.bannerInkSoft)),
+                          Text(account!.email!, style: text.bodySmall!.copyWith(color: c.bannerInkSoft)),
                         if (account?.memberSince != null)
                           Text(
                             l10n.accountMemberSince(dates.short(account!.memberSince!)),
-                            style: text.labelSmall!.copyWith(color: AppColors.bannerInkFaint),
+                            style: text.labelSmall!.copyWith(color: c.bannerInkFaint),
                           ),
                       ],
                     ),
@@ -315,7 +316,7 @@ class _Banner extends ConsumerWidget {
                   if (account != null)
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: AppColors.bannerInk,
+                        foregroundColor: c.bannerInk,
                         side: BorderSide(color: c.bannerHairline),
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                         minimumSize: const Size(0, 36),

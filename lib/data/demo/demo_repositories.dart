@@ -6,6 +6,7 @@ import '../models/banner.dart';
 import '../models/catalogue_item.dart';
 import '../models/category.dart';
 import '../models/commerce.dart';
+import '../models/content.dart';
 import '../models/localized_text.dart';
 import '../models/retail_attributes.dart';
 import '../models/review.dart';
@@ -46,6 +47,14 @@ class DemoCatalogueRepository implements CatalogueRepository {
       if (query.maxPrice != null && i.price > query.maxPrice!) return false;
       if (query.minRating != null && r.rating < query.minRating!) return false;
       if (query.inStockOnly && !r.inStock) return false;
+      if (query.tag != null &&
+          !r.tags.map((t) => t.toLowerCase()).contains(query.tag!.toLowerCase())) {
+        return false;
+      }
+      if (query.brand != null &&
+          r.brand.toLowerCase() != query.brand!.toLowerCase()) {
+        return false;
+      }
       final term = query.search?.trim().toLowerCase();
       if (term != null && term.isNotEmpty) {
         final hay = [
@@ -56,6 +65,8 @@ class DemoCatalogueRepository implements CatalogueRepository {
           r.stone,
           r.collection,
           r.audience.name,
+          r.brand,
+          ...r.tags,
         ].join(' ').toLowerCase();
         if (!hay.contains(term)) return false;
       }
@@ -469,18 +480,156 @@ class DemoPaymentMethodRepository implements PaymentMethodRepository {
   }
 }
 
-// --- TODO(C7): demo stubs, return empty until their phase lands. ------------
+// --- Content & services (C7, C8) --------------------------------------------
 
+/// Gold rates with the reference's 320 ms latency; the live drift lives in
+/// the provider so the repository stays a plain read.
 class DemoGoldRateRepository implements GoldRateRepository {
-  const DemoGoldRateRepository();
+  const DemoGoldRateRepository(this._store);
+  final DemoStore _store;
+
   @override
-  Future<List<GoldRate>> current() async => const [];
+  Future<GoldRateSheet> current() => _store.readContent(
+    (c) => GoldRateSheet(rates: c.goldRates, updatedAt: DateTime.now()),
+    latency: const Duration(milliseconds: 320),
+  );
 }
 
 class DemoPolicyRepository implements PolicyRepository {
-  const DemoPolicyRepository();
+  const DemoPolicyRepository(this._store);
+  final DemoStore _store;
+
   @override
-  Future<List<PolicyDoc>> list() async => const [];
+  Future<List<PolicyDoc>> list() => _store.readContent((c) => c.policies);
+
   @override
-  Future<PolicyDoc?> byKey(String key) async => null;
+  Future<PolicyDoc?> byKey(String key) => _store.readContent(
+    (c) => c.policies.where((p) => p.key == key).firstOrNull,
+  );
+}
+
+class DemoStoreRepository implements StoreRepository {
+  const DemoStoreRepository(this._store);
+  final DemoStore _store;
+
+  @override
+  Future<List<Store>> list() => _store.readContent((c) => c.stores);
+
+  @override
+  Future<Store?> byId(String id) =>
+      _store.readContent((c) => c.stores.where((s) => s.id == id).firstOrNull);
+}
+
+class DemoOfferRepository implements OfferRepository {
+  const DemoOfferRepository(this._store);
+  final DemoStore _store;
+
+  @override
+  Future<List<Offer>> list() =>
+      _store.readContent((c) => c.offers.where((o) => !o.expired).toList());
+
+  @override
+  Future<Offer?> byCode(String code) => _store.readContent(
+    (c) => c.offers
+        .where((o) => o.code.toLowerCase() == code.trim().toLowerCase() && !o.expired)
+        .firstOrNull,
+  );
+}
+
+class DemoContentRepository implements ContentRepository {
+  const DemoContentRepository(this._store);
+  final DemoStore _store;
+
+  @override
+  Future<List<Brand>> brands() => _store.readContent((c) => c.brands);
+
+  @override
+  Future<List<TrendingCard>> trending() => _store.readContent((c) => c.trending);
+
+  @override
+  Future<List<Story>> stories() => _store.readContent((c) => c.stories);
+
+  @override
+  Future<AboutContent> about() => _store.readContent((c) => c.about);
+}
+
+/// Feedback and ratings are kept locally so the confirmation can show a
+/// stable ticket number.
+class DemoFeedbackRepository implements FeedbackRepository {
+  const DemoFeedbackRepository(this._local);
+  final LocalStore _local;
+
+  static const latency = Duration(milliseconds: 1100);
+
+  @override
+  Future<String> submit(FeedbackDraft draft) async {
+    await Future<void>.delayed(latency);
+    final sent = _local.getJsonList(StorageKeys.demoFeedback) ?? [];
+    final ticket = 'FB-2${(1000 + sent.length * 37 + Random().nextInt(900)).toString().padLeft(4, '0')}';
+    await _local.setJsonList(StorageKeys.demoFeedback, [
+      ...sent,
+      {
+        'ticket': ticket,
+        'happy': draft.happy,
+        'topic': draft.topic,
+        'message': draft.message,
+        'email': draft.email,
+        'followUp': draft.followUp,
+        'date': DateTime.now().toIso8601String(),
+      },
+    ]);
+    return ticket;
+  }
+
+  @override
+  Future<void> rate(int stars, {String? comment}) async {
+    await Future<void>.delayed(const Duration(milliseconds: 600));
+    await _local.setJson('${StorageKeys.demoFeedback}.rating', {
+      'stars': stars,
+      'comment': comment,
+      'date': DateTime.now().toIso8601String(),
+    });
+  }
+}
+
+/// Seeded notifications; read state persists locally. Device registration
+/// only records the token so the C10 swap has nothing to migrate.
+class DemoNotificationRepository implements NotificationRepository {
+  const DemoNotificationRepository(this._store, this._local);
+  final DemoStore _store;
+  final LocalStore _local;
+
+  Future<List<AppNotification>> _all() => _store.readContent((c) {
+    final stored = _local.getJsonList(StorageKeys.demoNotifications);
+    if (stored != null) return stored.map(AppNotification.fromJson).toList();
+    return c.notifications;
+  });
+
+  Future<List<AppNotification>> _persist(List<AppNotification> list) async {
+    await _local.setJsonList(
+      StorageKeys.demoNotifications,
+      list.map((n) => n.toJson()).toList(),
+    );
+    return list;
+  }
+
+  @override
+  Future<List<AppNotification>> list() async =>
+      (await _all())..sort((a, b) => b.date.compareTo(a.date));
+
+  @override
+  Future<List<AppNotification>> markRead(String id) async => _persist([
+    for (final n in await _all()) n.id == id ? n.copyWith(read: true) : n,
+  ]);
+
+  @override
+  Future<List<AppNotification>> markAllRead() async =>
+      _persist([for (final n in await _all()) n.copyWith(read: true)]);
+
+  @override
+  Future<void> registerDevice({required String token, required String platform}) =>
+      _local.setString(StorageKeys.pushToken, '$platform:$token');
+
+  @override
+  Future<void> unregisterDevice(String token) => _local.remove(StorageKeys.pushToken);
 }

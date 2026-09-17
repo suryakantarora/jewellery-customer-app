@@ -29,10 +29,26 @@ import 'filter_sheet.dart';
 /// chip rail + filter button with badge, count, responsive grid, filter
 /// sheet, empty state.
 class CategoryScreen extends ConsumerStatefulWidget {
-  const CategoryScreen({super.key, required this.categoryId, this.audience});
+  const CategoryScreen({
+    super.key,
+    required this.categoryId,
+    this.audience,
+    this.metal,
+    this.tag,
+    this.brand,
+  });
 
   final String categoryId;
   final String? audience;
+
+  /// Scope the listing to one metal (drawer: Gold / Diamond / Silver…).
+  final String? metal;
+
+  /// Scope to a merchandising tag (Solitaire, Gift store).
+  final String? tag;
+
+  /// Scope to a house brand (home "Our brands" rail).
+  final String? brand;
 
   @override
   ConsumerState<CategoryScreen> createState() => _CategoryScreenState();
@@ -42,6 +58,9 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
   late CatalogueQuery _query = CatalogueQuery(
     categoryId: widget.categoryId,
     audience: widget.audience,
+    metals: widget.metal == null ? const [] : [widget.metal!],
+    tag: widget.tag,
+    brand: widget.brand,
   );
 
   bool get _isAll => widget.categoryId == 'all';
@@ -65,9 +84,20 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
     final category = _isAll ? null : ref.watch(categoryProvider(widget.categoryId));
     final items = ref.watch(catalogueListProvider(_query));
 
-    final title = _isAll
-        ? (widget.audience == null ? l10n.collectionsAll : _audienceLabel(l10n, widget.audience!))
-        : category?.valueOrNull?.name.resolve(locale) ?? '';
+    final String title;
+    if (widget.brand != null) {
+      title = widget.brand!;
+    } else if (widget.tag != null) {
+      title = _tagLabel(l10n, widget.tag!);
+    } else if (widget.metal != null) {
+      title = l10n.metalListing(widget.metal!);
+    } else if (_isAll) {
+      title = widget.audience == null
+          ? l10n.collectionsAll
+          : _audienceLabel(l10n, widget.audience!);
+    } else {
+      title = category?.valueOrNull?.name.resolve(locale) ?? '';
+    }
 
     final sorts = [
       (CatalogueSort.featured, l10n.sortFeatured),
@@ -106,11 +136,11 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
                                     Eyebrow(l10n.collectionsEyebrow),
                                     Text(
                                       cat.name.resolve(locale),
-                                      style: text.displaySmall!.copyWith(color: AppColors.bannerInk),
+                                      style: text.displaySmall!.copyWith(color: AppColors.photoInk),
                                     ),
                                     Text(
                                       cat.description.resolve(locale),
-                                      style: text.bodySmall!.copyWith(color: AppColors.bannerInkSoft),
+                                      style: text.bodySmall!.copyWith(color: AppColors.photoInkSoft),
                                     ),
                                   ],
                                 ),
@@ -209,6 +239,12 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
     'men' => l10n.audienceMen,
     'kids' => l10n.audienceKids,
     _ => l10n.collectionsAll,
+  };
+
+  static String _tagLabel(AppL10n l10n, String tag) => switch (tag) {
+    'solitaire' => l10n.menuSolitaire,
+    'gift' => l10n.menuGiftStore,
+    _ => tag,
   };
 }
 

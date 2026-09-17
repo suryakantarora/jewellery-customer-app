@@ -2,6 +2,7 @@ import '../models/banner.dart';
 import '../models/catalogue_item.dart';
 import '../models/category.dart';
 import '../models/commerce.dart';
+import '../models/content.dart';
 import '../models/review.dart';
 
 /// Query for a catalogue listing (sort + facets), mirrors the Ionic filter.
@@ -18,6 +19,8 @@ class CatalogueQuery {
     this.inStockOnly = false,
     this.sort = CatalogueSort.featured,
     this.search,
+    this.tag,
+    this.brand,
   });
 
   final String? categoryId;
@@ -31,6 +34,12 @@ class CatalogueQuery {
   final bool inStockOnly;
   final CatalogueSort sort;
   final String? search;
+
+  /// Scope to one merchandising tag (`solitaire`, `gift`).
+  final String? tag;
+
+  /// Scope to one house brand.
+  final String? brand;
 
   /// Number of facets the user has set (for the filter badge).
   int get activeFacetCount =>
@@ -53,6 +62,8 @@ class CatalogueQuery {
     bool? inStockOnly,
     CatalogueSort? sort,
     String? search,
+    String? tag,
+    String? brand,
     bool clearPrice = false,
     bool clearRating = false,
   }) => CatalogueQuery(
@@ -67,11 +78,20 @@ class CatalogueQuery {
     inStockOnly: inStockOnly ?? this.inStockOnly,
     sort: sort ?? this.sort,
     search: search ?? this.search,
+    tag: tag ?? this.tag,
+    brand: brand ?? this.brand,
   );
 
   /// Same listing with every facet cleared (sort and scope kept).
   CatalogueQuery cleared() =>
-      CatalogueQuery(categoryId: categoryId, audience: audience, sort: sort, search: search);
+      CatalogueQuery(
+        categoryId: categoryId,
+        audience: audience,
+        sort: sort,
+        search: search,
+        tag: tag,
+        brand: brand,
+      );
 
   @override
   bool operator ==(Object other) =>
@@ -82,7 +102,7 @@ class CatalogueQuery {
 
   @override
   String toString() =>
-      '$categoryId|$audience|$metals|$purities|$stones|$minPrice|$maxPrice|$minRating|$inStockOnly|$sort|$search';
+      '$categoryId|$audience|$metals|$purities|$stones|$minPrice|$maxPrice|$minRating|$inStockOnly|$sort|$search|$tag|$brand';
 }
 
 enum CatalogueSort { featured, newest, priceAsc, priceDesc, rating }
@@ -165,10 +185,61 @@ abstract interface class PaymentMethodRepository {
 }
 
 abstract interface class GoldRateRepository {
-  Future<List<GoldRate>> current();
+  Future<GoldRateSheet> current();
 }
 
 abstract interface class PolicyRepository {
   Future<List<PolicyDoc>> list();
   Future<PolicyDoc?> byKey(String key);
+}
+
+abstract interface class StoreRepository {
+  Future<List<Store>> list();
+  Future<Store?> byId(String id);
+}
+
+abstract interface class OfferRepository {
+  Future<List<Offer>> list();
+  Future<Offer?> byCode(String code);
+}
+
+/// Editorial content the home and settings screens show.
+abstract interface class ContentRepository {
+  Future<List<Brand>> brands();
+  Future<List<TrendingCard>> trending();
+  Future<List<Story>> stories();
+  Future<AboutContent> about();
+}
+
+/// A submitted feedback form.
+class FeedbackDraft {
+  const FeedbackDraft({
+    required this.happy,
+    required this.topic,
+    required this.message,
+    this.email,
+    this.followUp = false,
+  });
+
+  final bool happy;
+  final String topic;
+  final String message;
+  final String? email;
+  final bool followUp;
+}
+
+abstract interface class FeedbackRepository {
+  /// Returns the ticket reference (`FB-2xxxx`).
+  Future<String> submit(FeedbackDraft draft);
+  Future<void> rate(int stars, {String? comment});
+}
+
+/// Notification centre plus the push device registration the staff app
+/// already uses (`POST /notifications/devices`).
+abstract interface class NotificationRepository {
+  Future<List<AppNotification>> list();
+  Future<List<AppNotification>> markRead(String id);
+  Future<List<AppNotification>> markAllRead();
+  Future<void> registerDevice({required String token, required String platform});
+  Future<void> unregisterDevice(String token);
 }

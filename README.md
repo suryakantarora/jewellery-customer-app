@@ -80,8 +80,11 @@ lib/
     session/    sessionProvider (guest / customer), seenTourProvider
     models/     CatalogueItem (ERP shape) + RetailAttributes, Category, Banner, Review,
                 commerce (Cart, Wishlist, Order, Address, PaymentMethod, Account, Session)
+    models/     content (GoldRate, PolicyDoc, Store, Offer, Brand, TrendingCard,
+                AppNotification, Story, AboutContent)
     repositories/ interfaces for catalogue, categories, banners, reviews, auth, cart,
-                wishlist, orders, addresses, payment methods, gold rates, policies
+                wishlist, orders, addresses, payment methods, gold rates, policies,
+                stores, offers, content, feedback, notifications
     demo/       DemoStore (assets/demo/*.json) + Demo* repositories (customer data
                 persisted in LocalStore)
     api/        Api* repositories (UnimplementedError until C10)
@@ -89,26 +92,38 @@ lib/
   features/     splash, onboarding (tour, welcome), auth (phone, OTP, profile setup,
                 ensureSignedIn), shell (header, drawer, tabs), home, search,
                 collections, catalogue (category, filter sheet, size guide, lookbook),
-                product, wishlist, cart, checkout, orders, account (addresses,
-                payment methods, profile), settings (+ shop code), support
+                product, wishlist, cart (+ coupon panel), checkout, orders, account
+                (addresses, payment methods, profile), settings (theme picker, shop
+                code), policies, gold_rates (live drift), content (about, contact,
+                stories), feedback (feedback, rate us), support (scripted chat),
+                notifications, stores, offers, catalogue/commission_sheet (camera)
   shared/widgets/ SectionHead, Eyebrow, GoldRule, Skeleton, EmptyState, ErrorState,
                 PressScale, AppChip, AppBadge, StaggeredReveal, AppArt, ProductCard,
                 product skeletons/rail, RatingStars, PriceText, HeartButton,
                 QuantityStepper, StatusPill, SegmentedControl, AnimatedTick,
-                AppTextField, AppPanel, AppSheet, BadgeCount, Scrim, showToast
+                AppTextField, AppPanel, AppSheet, BadgeCount, Scrim, showToast,
+                BannerGround (themed ground + animated gold sheen)
+  core/platform/ Launch (tel / mailto / WhatsApp / maps via url_launcher)
   l10n/         app_en.arb, app_lo.arb (generated AppL10n)
 assets/
-  demo/         tenant.json, catalogue.json (60 items, 8 categories, 5 banners),
-                commerce.json (demo account, addresses, payment methods, orders)
+  demo/         tenant.json, catalogue.json (75 items, 9 categories incl. Coins & Bars,
+                5 banners), commerce.json (demo account, addresses, payment methods,
+                orders), content.json (gold rates, 6 policies, 5 stores, 5 offers,
+                4 brands, trending cards, notifications, stories, about)
   images/       banners, catalogue photos, category icons, ui
-  art/          filigree-corner.svg, facets.svg (tinted per tenant)
+  art/          filigree-corner.svg, facets.svg, flourish.svg, menu/*.svg (10 drawer
+                icons) — all single-ink, tinted per tenant
   fonts/        Playfair Display, Inter, Noto Sans Lao
 ```
 
 ## Tests
 
 `flutter test` covers tenant JSON parsing, palette → ThemeData, MoneyFormatter,
-ImageRef parsing, the demo catalogue (60 items, all metals/purities/stones),
+ImageRef parsing, the demo catalogue (75 items, all metals/purities/stones,
+metal / tag / brand scopes), the demo content repositories (rates, policies,
+stores, offers, notifications, feedback), coupon totals, the scripted support
+flow (fake_async), a settings & content widget flow (theme swatch → policy →
+gold rates → offers → coupon in bag → stores → notifications → support → about),
 the demo commerce repositories (auth, cart/wishlist persistence, orders and
 placement, addresses, payment methods), cart totals, ARB completeness (every
 English key exists in Lao and is translated), a shell smoke test (first-run

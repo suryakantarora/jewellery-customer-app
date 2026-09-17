@@ -20,7 +20,7 @@ void main() {
     // Demo data has rendered: hero and categories.
     await settle(tester, 1000);
     expect(find.text('Timeless elegance'), findsWidgets);
-    expect(find.text('Rings'), findsWidgets);
+    expect(find.text("What's trending"), findsOneWidget);
 
     // Settings tab.
     await tester.tap(find.text('Settings'));
@@ -37,6 +37,7 @@ void main() {
     );
 
     // Language switch to Lao relabels the tabs; back to English.
+    await revealForTap(tester, find.text('ພາສາລາວ'));
     await tester.tap(find.text('ພາສາລາວ'));
     await settle(tester);
     expect(find.text('ຕັ້ງຄ່າ'), findsWidgets);
@@ -64,7 +65,8 @@ void main() {
     await tester.tap(find.byIcon(Icons.menu_rounded));
     await settle(tester, 900);
     expect(find.text('SHOP FOR'), findsOneWidget);
-    expect(find.text('Rings'), findsWidgets);
+    expect(find.text('All Jewellery'), findsOneWidget);
+    expect(find.text('Coins & Bars'), findsOneWidget);
     await unmount(tester);
   });
 }

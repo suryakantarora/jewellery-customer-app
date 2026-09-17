@@ -6,6 +6,7 @@ import '../models/banner.dart';
 import '../models/catalogue_item.dart';
 import '../models/category.dart';
 import '../models/commerce.dart';
+import '../models/content.dart';
 import '../models/review.dart';
 
 /// Parses the bundled demo JSON once and shares it between the demo
@@ -15,6 +16,7 @@ class DemoStore {
   DemoStore({
     this.assetPath = 'assets/demo/catalogue.json',
     this.commerceAssetPath = 'assets/demo/commerce.json',
+    this.contentAssetPath = 'assets/demo/content.json',
     Duration? latency,
   }) : latency = latency ?? defaultLatency;
 
@@ -22,10 +24,12 @@ class DemoStore {
 
   final String assetPath;
   final String commerceAssetPath;
+  final String contentAssetPath;
   final Duration latency;
 
   Future<DemoData>? _loading;
   Future<DemoCommerceSeed>? _loadingCommerce;
+  Future<DemoContent>? _loadingContent;
 
   Future<Map<String, dynamic>> _json(String path) async {
     // `loadString` hands anything over 50 KB to an isolate; decoding here
@@ -67,6 +71,34 @@ class DemoStore {
       orders: list('orders', Order.fromJson),
     );
   }();
+
+  Future<DemoContent> _loadContent() => _loadingContent ??= () async {
+    final json = await _json(contentAssetPath);
+    List<T> list<T>(String key, T Function(Map<String, dynamic>) from) =>
+        (json[key] as List? ?? const [])
+            .map((e) => from(e as Map<String, dynamic>))
+            .toList();
+    return DemoContent(
+      goldRates: list('goldRates', GoldRate.fromJson),
+      policies: list('policies', PolicyDoc.fromJson),
+      stores: list('stores', Store.fromJson),
+      offers: list('offers', Offer.fromJson),
+      brands: list('brands', Brand.fromJson),
+      trending: list('trending', TrendingCard.fromJson),
+      notifications: list('notifications', AppNotification.fromJson),
+      stories: list('stories', Story.fromJson),
+      about: AboutContent.fromJson(json['about'] as Map<String, dynamic>? ?? const {}),
+    );
+  }();
+
+  Future<T> readContent<T>(
+    T Function(DemoContent content) select, {
+    Duration? latency,
+  }) async {
+    final content = await _loadContent();
+    await Future<void>.delayed(latency ?? this.latency);
+    return select(content);
+  }
 
   Future<T> read<T>(T Function(DemoData data) select) async {
     final data = await _load();
@@ -113,4 +145,29 @@ class DemoCommerceSeed {
   final List<Address> addresses;
   final List<PaymentMethod> paymentMethods;
   final List<Order> orders;
+}
+
+/// Editorial and service content (`assets/demo/content.json`).
+class DemoContent {
+  const DemoContent({
+    required this.goldRates,
+    required this.policies,
+    required this.stores,
+    required this.offers,
+    required this.brands,
+    required this.trending,
+    required this.notifications,
+    required this.stories,
+    required this.about,
+  });
+
+  final List<GoldRate> goldRates;
+  final List<PolicyDoc> policies;
+  final List<Store> stores;
+  final List<Offer> offers;
+  final List<Brand> brands;
+  final List<TrendingCard> trending;
+  final List<AppNotification> notifications;
+  final List<Story> stories;
+  final AboutContent about;
 }

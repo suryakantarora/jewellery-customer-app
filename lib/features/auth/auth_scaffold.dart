@@ -65,7 +65,7 @@ class _AuthScaffoldState extends ConsumerState<AuthScaffold>
     final heroHeight = MediaQuery.sizeOf(context).height * .42;
 
     return Scaffold(
-      backgroundColor: c.bannerGround,
+      backgroundColor: c.heroGround,
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
@@ -119,7 +119,7 @@ class _AuthScaffoldState extends ConsumerState<AuthScaffold>
                           Text(
                             tenant?.brandMark ?? '',
                             style: text.displaySmall!.copyWith(
-                              color: AppColors.bannerInk,
+                              color: AppColors.photoInk,
                               letterSpacing: AppType.tracking(AppType.xxl, AppType.trackWider),
                             ),
                           ),
@@ -129,7 +129,7 @@ class _AuthScaffoldState extends ConsumerState<AuthScaffold>
                           Text(
                             tenant?.tagline ?? '',
                             style: text.labelMedium!.copyWith(
-                              color: AppColors.bannerInkSoft,
+                              color: AppColors.photoInkSoft,
                             ),
                           ),
                         ],
@@ -214,7 +214,7 @@ class _CircleBack extends StatelessWidget {
       child: const SizedBox(
         width: 40,
         height: 40,
-        child: Icon(Icons.arrow_back_rounded, color: AppColors.bannerInk, size: 20),
+        child: Icon(Icons.arrow_back_rounded, color: AppColors.photoInk, size: 20),
       ),
     ),
   );

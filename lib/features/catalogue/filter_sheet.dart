@@ -13,8 +13,8 @@ import '../../shared/widgets/eyebrow.dart';
 
 /// Facet vocabulary the catalogue knows (matches the ERP master data).
 abstract final class Facets {
-  static const metals = ['Gold', 'White Gold', 'Rose Gold', 'Platinum', 'Silver'];
-  static const purities = ['925', '14K', '18K', '22K', '24K', 'PT950'];
+  static const metals = ['Gold', 'White Gold', 'Rose Gold', 'Platinum', 'Silver', 'Diamond'];
+  static const purities = ['925', '14K', '18K', '22K', '24K', 'PT950', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1'];
   static const stones = ['Diamond', 'Ruby', 'Emerald', 'Sapphire', 'Pearl', 'Tourmaline', 'None'];
   static const ratings = [4.5, 4.0, 3.5];
   static const priceStep = 50000;

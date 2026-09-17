@@ -1,0 +1,866 @@
+{
+ "goldRates": [
+  {
+   "purityCode": "24K",
+   "label": "24K",
+   "rates": {
+    "LAK": 1048000,
+    "USD": 48.2,
+    "THB": 1690
+   }
+  },
+  {
+   "purityCode": "22K",
+   "label": "22K",
+   "rates": {
+    "LAK": 961000,
+    "USD": 44.2,
+    "THB": 1549
+   }
+  },
+  {
+   "purityCode": "21K",
+   "label": "21K",
+   "rates": {
+    "LAK": 917000,
+    "USD": 42.15,
+    "THB": 1478
+   }
+  },
+  {
+   "purityCode": "18K",
+   "label": "18K",
+   "rates": {
+    "LAK": 786000,
+    "USD": 36.15,
+    "THB": 1268
+   }
+  },
+  {
+   "purityCode": "14K",
+   "label": "14K",
+   "rates": {
+    "LAK": 611000,
+    "USD": 28.1,
+    "THB": 985
+   }
+  },
+  {
+   "purityCode": "10K",
+   "label": "10K",
+   "rates": {
+    "LAK": 437000,
+    "USD": 20.1,
+    "THB": 705
+   }
+  },
+  {
+   "purityCode": "PT950",
+   "label": "Platinum 950",
+   "rates": {
+    "LAK": 702000,
+    "USD": 32.3,
+    "THB": 1132
+   }
+  }
+ ],
+ "policies": [
+  {
+   "key": "return",
+   "title": "Returns",
+   "icon": "refresh",
+   "tagline": "Fourteen days to change your mind.",
+   "updated": "1 Aug 2026",
+   "highlights": [
+    {
+     "value": "14",
+     "label": "days"
+    },
+    {
+     "value": "Free",
+     "label": "pickup"
+    },
+    {
+     "value": "5–7",
+     "label": "days refund"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "What can be returned",
+     "body": "Any unworn piece in its original packaging with the tag intact and the assay certificate, within 14 days of delivery."
+    },
+    {
+     "heading": "Not eligible",
+     "bullets": [
+      "Engraved or personalised pieces",
+      "Coins and bars (priced on the day's rate)",
+      "Pieces resized on request",
+      "Earrings, for hygiene, unless faulty"
+     ]
+    },
+    {
+     "heading": "How it works",
+     "steps": [
+      "Open the order and tap Request return",
+      "Choose a pickup slot; our courier brings a sealed pouch",
+      "We inspect the piece within two working days",
+      "Your refund goes back to the original payment method"
+     ]
+    },
+    {
+     "heading": "Refund timelines",
+     "table": [
+      [
+       "Method",
+       "Timeline"
+      ],
+      [
+       "Card",
+       "5–7 working days"
+      ],
+      [
+       "BCEL One",
+       "1–2 working days"
+      ],
+      [
+       "Cash on delivery",
+       "Bank transfer, 3–5 days"
+      ]
+     ]
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Can I return a gift?",
+     "a": "Yes. Refunds go to the buyer; we can issue store credit to you instead."
+    },
+    {
+     "q": "Is there a restocking fee?",
+     "a": "No."
+    }
+   ]
+  },
+  {
+   "key": "exchange",
+   "title": "Exchange",
+   "icon": "swap",
+   "tagline": "Trade up, resize or swap within 30 days.",
+   "updated": "1 Aug 2026",
+   "highlights": [
+    {
+     "value": "30",
+     "label": "days"
+    },
+    {
+     "value": "100%",
+     "label": "gold value"
+    },
+    {
+     "value": "0",
+     "label": "deductions"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Exchange for another piece",
+     "body": "Within 30 days you may exchange any unworn piece for another of equal or higher value. Pay only the difference."
+    },
+    {
+     "heading": "Old gold exchange",
+     "body": "Bring any hallmarked gold to a boutique. We credit the full metal value at the day's buying rate, with no melting or wastage deduction."
+    },
+    {
+     "heading": "Steps",
+     "steps": [
+      "Visit a boutique or book a home visit",
+      "We weigh and test the piece in front of you",
+      "Choose your new piece and settle the difference"
+     ]
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Can I exchange online purchases in store?",
+     "a": "Yes, at any boutique."
+    }
+   ]
+  },
+  {
+   "key": "repair",
+   "title": "Repair & Care",
+   "icon": "build",
+   "tagline": "Lifetime polishing and prong checks.",
+   "updated": "15 Jul 2026",
+   "highlights": [
+    {
+     "value": "Free",
+     "label": "cleaning"
+    },
+    {
+     "value": "Lifetime",
+     "label": "warranty"
+    },
+    {
+     "value": "48h",
+     "label": "resizing"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Included for life",
+     "bullets": [
+      "Ultrasonic cleaning and polishing",
+      "Prong and clasp checks",
+      "One free resize within the first year"
+     ]
+    },
+    {
+     "heading": "Caring for gold",
+     "body": "Remove jewellery before swimming, exercise and household chemicals. Store pieces separately in the pouch provided."
+    },
+    {
+     "heading": "Caring for pearls and stones",
+     "bullets": [
+      "Put pearls on last, take them off first",
+      "Wipe with a soft dry cloth after wearing",
+      "Avoid ultrasonic cleaners for emeralds and pearls"
+     ]
+    }
+   ],
+   "faqs": [
+    {
+     "q": "How long does a repair take?",
+     "a": "Most repairs are ready in 3–5 working days; we message you when it's done."
+    }
+   ]
+  },
+  {
+   "key": "shipping",
+   "title": "Shipping",
+   "icon": "local_shipping",
+   "tagline": "Insured delivery across Laos.",
+   "updated": "1 Aug 2026",
+   "highlights": [
+    {
+     "value": "Free",
+     "label": "over ₭500,000"
+    },
+    {
+     "value": "2–5",
+     "label": "days"
+    },
+    {
+     "value": "100%",
+     "label": "insured"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Rates and timelines",
+     "table": [
+      [
+       "Region",
+       "Cost",
+       "Time"
+      ],
+      [
+       "Vientiane",
+       "₭25,000",
+       "1–2 days"
+      ],
+      [
+       "Provincial capitals",
+       "₭25,000",
+       "2–4 days"
+      ],
+      [
+       "Rural",
+       "₭25,000",
+       "3–5 days"
+      ]
+     ]
+    },
+    {
+     "heading": "Handover",
+     "body": "Every parcel is insured and signed for. Bring a photo ID; the courier checks it against the order name."
+    },
+    {
+     "heading": "Tracking",
+     "steps": [
+      "Order placed",
+      "Confirmed by the atelier",
+      "Packed and sealed",
+      "Out for delivery",
+      "Delivered"
+     ]
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Can someone else receive my parcel?",
+     "a": "Yes, if you add their name in the delivery note before dispatch."
+    }
+   ]
+  },
+  {
+   "key": "emi",
+   "title": "EMI & Payment",
+   "icon": "credit_card",
+   "tagline": "Pay your way, in full or over time.",
+   "updated": "20 Jun 2026",
+   "highlights": [
+    {
+     "value": "0%",
+     "label": "3 months"
+    },
+    {
+     "value": "3",
+     "label": "methods"
+    },
+    {
+     "value": "COD",
+     "label": "nationwide"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Accepted methods",
+     "bullets": [
+      "Visa and Mastercard",
+      "BCEL One wallet",
+      "Cash on delivery"
+     ]
+    },
+    {
+     "heading": "Instalments",
+     "table": [
+      [
+       "Plan",
+       "Interest",
+       "Minimum"
+      ],
+      [
+       "3 months",
+       "0%",
+       "₭3,000,000"
+      ],
+      [
+       "6 months",
+       "4.5%",
+       "₭6,000,000"
+      ],
+      [
+       "12 months",
+       "9%",
+       "₭12,000,000"
+      ]
+     ]
+    },
+    {
+     "heading": "Security",
+     "body": "Card details are handled by the payment gateway; we never store them."
+    }
+   ],
+   "faqs": [
+    {
+     "q": "Can I pay part in old gold?",
+     "a": "Yes, at any boutique the metal value is credited against the bill."
+    }
+   ]
+  },
+  {
+   "key": "help",
+   "title": "Help Centre",
+   "icon": "help",
+   "tagline": "Answers to the questions we hear most.",
+   "updated": "1 Sep 2026",
+   "highlights": [
+    {
+     "value": "9–19",
+     "label": "Mon–Sat"
+    },
+    {
+     "value": "<2h",
+     "label": "reply time"
+    }
+   ],
+   "sections": [
+    {
+     "heading": "Orders",
+     "bullets": [
+      "Track from Orders → the order → timeline",
+      "Change the address before dispatch from the order page",
+      "Cancel free of charge before the atelier confirms"
+     ]
+    },
+    {
+     "heading": "Sizing",
+     "body": "Use the size guide from any product page, or visit a boutique for a fitting. One resize is free in the first year."
+    },
+    {
+     "heading": "Certificates",
+     "body": "Every diamond over 0.30 ct carries a GIA or IGI report; gold is BIS hallmarked. Certificates ship inside the box."
+    }
+   ],
+   "faqs": [
+    {
+     "q": "How do I reach a person?",
+     "a": "Tap the chat button, then Talk to a live agent, or call the boutique."
+    },
+    {
+     "q": "Do you ship abroad?",
+     "a": "Not yet."
+    }
+   ]
+  }
+ ],
+ "stores": [
+  {
+   "id": "vte-setthathirath",
+   "name": "Setthathirath Flagship",
+   "city": "Vientiane",
+   "address": "Setthathirath Rd, Chanthabouly, Vientiane",
+   "phone": "+856 21 000 000",
+   "hours": "Mon–Sat 9:00–19:00 · Sun 10:00–17:00",
+   "image": "asset://images/catalogue/22.jpg",
+   "lat": 17.9646,
+   "lng": 102.6114,
+   "flagship": true,
+   "services": [
+    "Bridal suite",
+    "Old gold exchange",
+    "Resizing on site",
+    "Private viewing"
+   ]
+  },
+  {
+   "id": "vte-center",
+   "name": "Vientiane Center",
+   "city": "Vientiane",
+   "address": "Level 2, Vientiane Center, Khouvieng Rd",
+   "phone": "+856 21 000 001",
+   "hours": "Daily 10:00–21:00",
+   "image": "asset://images/catalogue/15.jpg",
+   "lat": 17.9648,
+   "lng": 102.6219,
+   "services": [
+    "Coins & bars",
+    "Gift wrapping"
+   ]
+  },
+  {
+   "id": "lpb",
+   "name": "Luang Prabang Boutique",
+   "city": "Luang Prabang",
+   "address": "Sisavangvong Rd, Luang Prabang",
+   "phone": "+856 71 000 002",
+   "hours": "Daily 9:30–20:00",
+   "image": "asset://images/catalogue/9.jpg",
+   "lat": 19.8856,
+   "lng": 102.1347,
+   "services": [
+    "Heritage collection",
+    "Repairs"
+   ]
+  },
+  {
+   "id": "pakse",
+   "name": "Pakse Boutique",
+   "city": "Pakse",
+   "address": "Road No. 13, Pakse, Champasak",
+   "phone": "+856 31 000 003",
+   "hours": "Mon–Sat 9:00–18:30",
+   "image": "asset://images/catalogue/17.jpg",
+   "lat": 15.12,
+   "lng": 105.7815,
+   "services": [
+    "Old gold exchange"
+   ]
+  },
+  {
+   "id": "svk",
+   "name": "Savannakhet Boutique",
+   "city": "Savannakhet",
+   "address": "Ratsavongseuk Rd, Kaysone Phomvihane",
+   "phone": "+856 41 000 004",
+   "hours": "Mon–Sat 9:00–18:30",
+   "image": "asset://images/catalogue/28.jpg",
+   "lat": 16.556,
+   "lng": 104.752,
+   "services": [
+    "Repairs"
+   ]
+  }
+ ],
+ "offers": [
+  {
+   "id": "O1",
+   "code": "SPARKLE20",
+   "title": {
+    "en": "September Sparkle",
+    "lo": "ປະກາຍເດືອນກັນຍາ"
+   },
+   "subtitle": {
+    "en": "Up to 20% off all jewellery",
+    "lo": "ຫຼຸດສູງສຸດ 20% ເຄື່ອງປະດັບທັງໝົດ"
+   },
+   "kind": "percent",
+   "value": 20,
+   "minSubtotal": 2000000,
+   "expires": "2026-09-30T23:59:59",
+   "image": "asset://images/banners/home-img-2.jpg",
+   "featured": true,
+   "terms": [
+    "Excludes coins and bars",
+    "One code per order"
+   ]
+  },
+  {
+   "id": "O2",
+   "code": "WELCOME10",
+   "title": {
+    "en": "First order",
+    "lo": "ຄຳສັ່ງຊື້ທຳອິດ"
+   },
+   "subtitle": {
+    "en": "10% off your first purchase",
+    "lo": "ຫຼຸດ 10% ສຳລັບການຊື້ຄັ້ງທຳອິດ"
+   },
+   "kind": "percent",
+   "value": 10,
+   "minSubtotal": 500000,
+   "expires": "2026-12-31T23:59:59",
+   "image": "asset://images/banners/home-img-3.jpg",
+   "terms": [
+    "New customers only"
+   ]
+  },
+  {
+   "id": "O3",
+   "code": "FREESHIP",
+   "title": {
+    "en": "Free delivery",
+    "lo": "ສົ່ງຟຣີ"
+   },
+   "subtitle": {
+    "en": "On every order this month",
+    "lo": "ທຸກຄຳສັ່ງຊື້ໃນເດືອນນີ້"
+   },
+   "kind": "freeDelivery",
+   "value": 0,
+   "minSubtotal": 0,
+   "expires": "2026-09-30T23:59:59",
+   "image": "asset://images/banners/home-img-4.jpg",
+   "terms": []
+  },
+  {
+   "id": "O4",
+   "code": "BRIDAL500",
+   "title": {
+    "en": "Bridal edit",
+    "lo": "ຊຸດແຕ່ງງານ"
+   },
+   "subtitle": {
+    "en": "₭500,000 off bridal sets over ₭10M",
+    "lo": "ຫຼຸດ ₭500,000 ຊຸດແຕ່ງງານເກີນ ₭10 ລ້ານ"
+   },
+   "kind": "amount",
+   "value": 500000,
+   "minSubtotal": 10000000,
+   "expires": "2026-11-15T23:59:59",
+   "image": "asset://images/catalogue/22.jpg",
+   "terms": [
+    "Bridal category only"
+   ]
+  },
+  {
+   "id": "O5",
+   "code": "GOLD5",
+   "title": {
+    "en": "Gold days",
+    "lo": "ວັນຄຳ"
+   },
+   "subtitle": {
+    "en": "5% off 22K and 24K pieces",
+    "lo": "ຫຼຸດ 5% ຊິ້ນ 22K ແລະ 24K"
+   },
+   "kind": "percent",
+   "value": 5,
+   "minSubtotal": 1000000,
+   "expires": "2026-10-10T23:59:59",
+   "image": "asset://images/catalogue/17.jpg",
+   "terms": []
+  }
+ ],
+ "brands": [
+  {
+   "id": "Aurum House",
+   "name": "Aurum House",
+   "tagline": {
+    "en": "22K & 24K heritage gold",
+    "lo": "ຄຳມໍລະດົກ 22K ແລະ 24K"
+   },
+   "image": "asset://images/catalogue/17.jpg",
+   "tall": true
+  },
+  {
+   "id": "Lumière",
+   "name": "Lumière",
+   "tagline": {
+    "en": "Certified diamonds",
+    "lo": "ເພັດຮັບຮອງ"
+   },
+   "image": "asset://images/catalogue/14.jpg"
+  },
+  {
+   "id": "Champa Atelier",
+   "name": "Champa Atelier",
+   "tagline": {
+    "en": "Everyday fine jewellery",
+    "lo": "ເຄື່ອງປະດັບປະຈຳວັນ"
+   },
+   "image": "asset://images/catalogue/9.jpg"
+  },
+  {
+   "id": "Little Sparks",
+   "name": "Little Sparks",
+   "tagline": {
+    "en": "For the little ones",
+    "lo": "ສຳລັບເດັກນ້ອຍ"
+   },
+   "image": "asset://images/ui/kid.jpg"
+  }
+ ],
+ "trending": [
+  {
+   "id": "T1",
+   "image": "asset://images/catalogue/12.jpg",
+   "headline": {
+    "en": "18 KT",
+    "lo": "18 KT"
+   },
+   "subline": {
+    "en": "Gold & Diamonds",
+    "lo": "ຄຳ ແລະ ເພັດ"
+   },
+   "link": "/category/all?metal=Diamond"
+  },
+  {
+   "id": "T2",
+   "image": "asset://images/ui/women.png",
+   "headline": {
+    "en": "Everyday",
+    "lo": "ປະຈຳວັນ"
+   },
+   "subline": {
+    "en": "Ultra light · adjustable",
+    "lo": "ເບົາພິເສດ · ປັບໄດ້"
+   },
+   "link": "/category/all?tag=gift"
+  },
+  {
+   "id": "T3",
+   "image": "asset://images/catalogue/22.jpg",
+   "headline": {
+    "en": "Bridal",
+    "lo": "ແຕ່ງງານ"
+   },
+   "subline": {
+    "en": "Sets made for the day",
+    "lo": "ຊຸດສຳລັບວັນສຳຄັນ"
+   },
+   "link": "/category/bridal"
+  },
+  {
+   "id": "T4",
+   "image": "asset://images/catalogue/30.jpg",
+   "headline": {
+    "en": "24 KT",
+    "lo": "24 KT"
+   },
+   "subline": {
+    "en": "Coins & bars",
+    "lo": "ຫຼຽນ ແລະ ຄຳແທ່ງ"
+   },
+   "link": "/category/coins"
+  }
+ ],
+ "notifications": [
+  {
+   "id": "N1",
+   "kind": "order",
+   "title": "Out for delivery",
+   "body": "Your order FINO-100612 is with Lao Express and arrives today.",
+   "date": "2026-09-16T08:40:00",
+   "link": "/orders/FINO-100612"
+  },
+  {
+   "id": "N2",
+   "kind": "offer",
+   "title": "September Sparkle is on",
+   "body": "Up to 20% off all jewellery with SPARKLE20 until 30 Sep.",
+   "date": "2026-09-14T10:00:00",
+   "link": "/offers"
+  },
+  {
+   "id": "N3",
+   "kind": "goldRate",
+   "title": "Gold dipped 0.6% today",
+   "body": "22K is ₭961,000 per gram. A good moment for that bangle.",
+   "date": "2026-09-13T09:05:00",
+   "link": "/goldvalue"
+  },
+  {
+   "id": "N4",
+   "kind": "general",
+   "title": "Luang Prabang boutique now open",
+   "body": "Visit us on Sisavangvong Rd. Heritage pieces in store only.",
+   "date": "2026-09-10T12:00:00",
+   "link": "/stores",
+   "read": true
+  },
+  {
+   "id": "N5",
+   "kind": "order",
+   "title": "Delivered",
+   "body": "FINO-100482 was handed to you on 5 Aug. Enjoy your earrings.",
+   "date": "2026-08-05T15:22:00",
+   "link": "/orders/FINO-100482",
+   "read": true
+  },
+  {
+   "id": "N6",
+   "kind": "general",
+   "title": "Welcome to the boutique",
+   "body": "Save pieces to your wishlist and we'll tell you when they're on offer.",
+   "date": "2026-07-30T09:00:00",
+   "read": true
+  }
+ ],
+ "stories": [
+  {
+   "id": "S1",
+   "productId": "FINO-001",
+   "author": "Souphaphone V.",
+   "avatar": "asset://images/ui/avtr2.png",
+   "date": "2026-08-02",
+   "rating": 5,
+   "body": "The solitaire is even brighter in person. Resized in two days and the box is beautiful.",
+   "image": "asset://images/catalogue/7.jpg",
+   "productName": "Eternal Solitaire Ring",
+   "likes": 42,
+   "comments": 6
+  },
+  {
+   "id": "S2",
+   "productId": "FINO-004",
+   "author": "Khamla P.",
+   "avatar": "asset://images/ui/men.png",
+   "date": "2026-07-21",
+   "rating": 5,
+   "body": "Bought the bangle for my mother's 60th. She hasn't taken it off.",
+   "image": "asset://images/catalogue/17.jpg",
+   "productName": "Heritage Gold Bangle",
+   "likes": 31,
+   "comments": 4
+  },
+  {
+   "id": "S3",
+   "productId": "FINO-002",
+   "author": "Mai T.",
+   "avatar": "asset://images/ui/women.png",
+   "date": "2026-07-09",
+   "rating": 4.5,
+   "body": "Light enough to wear all day. Delivery to Pakse took three days.",
+   "image": "asset://images/catalogue/14.jpg",
+   "productName": "Celeste Diamond Earrings",
+   "likes": 19,
+   "comments": 2
+  },
+  {
+   "id": "S4",
+   "productId": "FINO-005",
+   "author": "Anousone K.",
+   "avatar": "asset://images/ui/avtr2.png",
+   "date": "2026-06-28",
+   "rating": 5,
+   "body": "The pearl has a lovely glow. The chain length options were exactly what I needed.",
+   "image": "asset://images/catalogue/9.jpg",
+   "productName": "Aurora Pearl Pendant",
+   "likes": 27,
+   "comments": 3
+  },
+  {
+   "id": "S5",
+   "productId": "FINO-003",
+   "author": "Vilayvanh S.",
+   "avatar": "asset://images/ui/women.png",
+   "date": "2026-06-12",
+   "rating": 5,
+   "body": "Wore it for our engagement dinner. Everyone asked where it was from.",
+   "image": "asset://images/catalogue/15.jpg",
+   "productName": "Royal Ruby Necklace",
+   "likes": 58,
+   "comments": 9
+  },
+  {
+   "id": "S6",
+   "productId": "FINO-013",
+   "author": "Bounmy L.",
+   "avatar": "asset://images/ui/men.png",
+   "date": "2026-05-30",
+   "rating": 4.5,
+   "body": "Tiny bangle for our newborn. Smooth edges, safe clasp.",
+   "image": "asset://images/ui/kid.jpg",
+   "productName": "First Steps Baby Bangle",
+   "likes": 14,
+   "comments": 1
+  }
+ ],
+ "about": {
+  "hero": "asset://images/banners/home-img-1.jpg",
+  "founded": "1994",
+  "intro": "A family atelier on Setthathirath Road, crafting gold and diamond jewellery for three generations of Lao families.",
+  "stats": [
+   {
+    "value": "1994",
+    "label": "founded"
+   },
+   {
+    "value": "5",
+    "label": "boutiques"
+   },
+   {
+    "value": "40+",
+    "label": "artisans"
+   },
+   {
+    "value": "12k",
+    "label": "happy customers"
+   }
+  ],
+  "sections": [
+   {
+    "heading": "The atelier",
+    "body": "Every piece begins as a sketch at our Vientiane workshop. Master goldsmiths shape, set and polish by hand, using techniques passed down through three generations."
+   },
+   {
+    "heading": "Materials",
+    "body": "We work in BIS-hallmarked 14K to 24K gold, 950 platinum and 925 silver. Diamonds above 0.30 ct carry GIA or IGI reports; coloured stones are natural and disclosed when treated."
+   },
+   {
+    "heading": "Old gold",
+    "body": "Bring any hallmarked gold and we credit the full metal value at the day's rate, with no wastage deductions. Heritage pieces can be reset rather than melted."
+   },
+   {
+    "heading": "Care for life",
+    "body": "Cleaning, polishing and prong checks are free for as long as you own the piece. One resize in the first year is on us."
+   },
+   {
+    "heading": "Giving back",
+    "body": "A share of every bridal set funds the goldsmith apprenticeship at the Lao Handicraft Association."
+   }
+  ]
+ }
+}

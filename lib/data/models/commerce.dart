@@ -339,21 +339,6 @@ class PaymentMethod {
   };
 }
 
-class GoldRate {
-  const GoldRate({required this.purityCode, required this.rates});
-  final String purityCode;
-
-  /// Per currency code, e.g. `{LAK: 6_800_000, USD: 82.4}`.
-  final Map<String, num> rates;
-}
-
-class PolicyDoc {
-  const PolicyDoc({required this.key, required this.title, required this.body});
-  final String key;
-  final String title;
-  final String body;
-}
-
 class Account {
   const Account({
     required this.id,

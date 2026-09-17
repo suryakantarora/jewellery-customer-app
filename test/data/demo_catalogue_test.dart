@@ -11,24 +11,24 @@ void main() {
   final categories = DemoCategoryRepository(store);
   final banners = DemoBannerRepository(store);
 
-  test('loads 60 items covering every metal, purity and stone', () async {
+  test('loads 75 items covering every metal, purity and stone', () async {
     final items = await catalogue.list();
-    expect(items, hasLength(60));
-    expect(items.map((i) => i.id).toSet(), hasLength(60), reason: 'ids unique');
+    expect(items, hasLength(75));
+    expect(items.map((i) => i.id).toSet(), hasLength(75), reason: 'ids unique');
 
     expect(
       items.map((i) => i.metalName).toSet(),
-      {'Gold', 'White Gold', 'Rose Gold', 'Platinum', 'Silver'},
+      {'Gold', 'White Gold', 'Rose Gold', 'Platinum', 'Silver', 'Diamond'},
     );
     expect(
       items.map((i) => i.purityCode).toSet(),
-      {'925', '14K', '18K', '22K', '24K', 'PT950'},
+      {'925', '14K', '18K', '22K', '24K', 'PT950', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1'},
     );
     expect(
       items.map((i) => i.retail.stone).toSet(),
       {'Diamond', 'Ruby', 'Emerald', 'Sapphire', 'Pearl', 'Tourmaline', 'None'},
     );
-    expect(items.map((i) => i.categoryId).toSet(), hasLength(8));
+    expect(items.map((i) => i.categoryId).toSet(), hasLength(9));
     for (final item in items) {
       expect(item.heroImage.isEmpty, isFalse, reason: '${item.id} has an image');
       expect(item.price, greaterThan(0));
@@ -36,10 +36,10 @@ void main() {
     }
   });
 
-  test('8 categories with counts derived from the catalogue', () async {
+  test('9 categories with counts derived from the catalogue', () async {
     final list = await categories.list();
-    expect(list, hasLength(8));
-    expect(list.fold<int>(0, (n, c) => n + c.productCount), 60);
+    expect(list, hasLength(9));
+    expect(list.fold<int>(0, (n, c) => n + c.productCount), 75);
     expect(list.first.name.en, isNotEmpty);
     expect((await categories.byId('rings'))?.productCount, greaterThan(0));
   });

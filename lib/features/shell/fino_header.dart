@@ -11,6 +11,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/theme/tokens.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_badge.dart';
+import '../../shared/widgets/banner_ground.dart';
 import '../../shared/widgets/gold_rule.dart';
 
 /// The app header in its two variants.
@@ -25,13 +26,18 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
     this.showCart = true,
     this.tinted = false,
   }) : _isBrand = true,
-       title = null;
+       title = null,
+       actions = const [];
 
-  const FinoHeader.page({super.key, required this.title, this.tinted = false})
-    : _isBrand = false,
-      showSearch = false,
-      showWishlist = false,
-      showCart = false;
+  const FinoHeader.page({
+    super.key,
+    required this.title,
+    this.tinted = false,
+    this.actions = const [],
+  }) : _isBrand = false,
+       showSearch = false,
+       showWishlist = false,
+       showCart = false;
 
   final bool _isBrand;
   final String? title;
@@ -42,6 +48,10 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
   /// Swaps the toolbar for the banner gradient ground.
   final bool tinted;
 
+  /// Trailing buttons on the page variant (balances the back button when
+  /// empty).
+  final List<Widget> actions;
+
   @override
   Size get preferredSize => const Size.fromHeight(AppLayout.headerHeight);
 
@@ -49,7 +59,8 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppL10n.of(context);
     final c = context.colors;
-    final ink = tinted ? AppColors.bannerInk : c.text;
+    final ink = tinted ? c.bannerInk : c.text;
+    final goldRule = tinted ? c.bannerGold : null;
     final wishlistCount = _isBrand ? ref.watch(wishlistCountProvider) : 0;
     final cartCount = _isBrand ? ref.watch(cartCountProvider) : 0;
 
@@ -77,7 +88,7 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
             ),
           ),
           const SizedBox(height: 3),
-          GoldRule(color: tinted ? c.accent : null),
+          GoldRule(color: goldRule),
         ],
       );
     } else {
@@ -94,17 +105,7 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
       );
     }
 
-    return Container(
-      decoration: tinted
-          ? BoxDecoration(
-              color: c.bannerGround,
-              gradient: c.bannerGradient,
-            )
-          : BoxDecoration(
-              color: c.surface,
-              border: Border(bottom: BorderSide(color: c.border)),
-            ),
-      child: SafeArea(
+    final bar = SafeArea(
         bottom: false,
         child: SizedBox(
           height: AppLayout.headerHeight,
@@ -135,11 +136,27 @@ class FinoHeader extends ConsumerWidget implements PreferredSizeWidget {
                   count: cartCount,
                   onTap: () => context.push(AppRoutes.cart),
                 ),
-              if (!_isBrand) const SizedBox(width: 48),
+              if (!_isBrand && actions.isEmpty) const SizedBox(width: 48),
+              if (!_isBrand) ...actions,
             ],
           ),
         ),
+      );
+
+    if (tinted) {
+      return BannerGround(
+        hairline: true,
+        filigreeSize: 150,
+        filigreeAlignment: Alignment.centerRight,
+        child: bar,
+      );
+    }
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: c.surface,
+        border: Border(bottom: BorderSide(color: c.border)),
       ),
+      child: bar,
     );
   }
 }

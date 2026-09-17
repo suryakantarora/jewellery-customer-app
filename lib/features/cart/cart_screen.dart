@@ -13,6 +13,7 @@ import '../../core/theme/tokens.dart';
 import '../../data/models/commerce.dart';
 import '../../l10n/app_localizations.dart';
 import '../../shared/widgets/app_panel.dart';
+import '../../shared/widgets/app_text_field.dart';
 import '../../shared/widgets/app_toast.dart';
 import '../../shared/widgets/empty_state.dart';
 import '../../shared/widgets/error_state.dart';
@@ -93,6 +94,8 @@ class CartScreen extends ConsumerWidget {
                               ),
                             ),
                           const SizedBox(height: AppSpacing.md),
+                          const CouponPanel(),
+                          const SizedBox(height: AppSpacing.sm),
                           AppPanel(
                             padding: const EdgeInsets.all(AppSpacing.md),
                             child: Column(
@@ -116,6 +119,12 @@ class CartScreen extends ConsumerWidget {
                                       ? AppColors.success
                                       : null,
                                 ),
+                                if (totals.discount > 0)
+                                  _SummaryRow(
+                                    l10n.cartDiscount(totals.offer!.code),
+                                    '−${money.format(totals.discount)}',
+                                    color: AppColors.success,
+                                  ),
                                 _SummaryRow(
                                   l10n.cartTax,
                                   money.format(totals.tax),
@@ -429,6 +438,12 @@ class OrderSummaryLines extends ConsumerWidget {
           totals.freeDelivery ? l10n.cartFree : money.format(totals.shipping),
           color: totals.freeDelivery ? AppColors.success : null,
         ),
+        if (totals.discount > 0)
+          _SummaryRow(
+            l10n.cartDiscount(totals.offer!.code),
+            '−${money.format(totals.discount)}',
+            color: AppColors.success,
+          ),
         _SummaryRow(l10n.cartTax, money.format(totals.tax)),
         Divider(color: c.border, height: AppSpacing.lg),
         _SummaryRow(l10n.cartTotal, money.format(totals.total), bold: true),
@@ -488,6 +503,111 @@ class LineThumbRow extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Coupon entry: apply a code from the offers screen, see it as a chip,
+/// remove it. Shows a hint when the bag is under the offer's minimum.
+class CouponPanel extends ConsumerStatefulWidget {
+  const CouponPanel({super.key});
+
+  @override
+  ConsumerState<CouponPanel> createState() => _CouponPanelState();
+}
+
+class _CouponPanelState extends ConsumerState<CouponPanel> {
+  final _code = TextEditingController();
+  var _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _code.dispose();
+    super.dispose();
+  }
+
+  Future<void> _apply() async {
+    final l10n = AppL10n.of(context);
+    if (_code.text.trim().isEmpty) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    final ok = await ref.read(appliedOfferProvider.notifier).apply(_code.text);
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _error = ok ? null : l10n.cartCouponInvalid;
+    });
+    if (ok) {
+      _code.clear();
+      FocusScope.of(context).unfocus();
+      showToast(context, l10n.cartCouponApplied, icon: Icons.local_offer_outlined);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppL10n.of(context);
+    final c = context.colors;
+    final text = Theme.of(context).textTheme;
+    final money = ref.watch(moneyFormatterProvider);
+    final totals = ref.watch(cartTotalsProvider);
+    final offer = totals.offer;
+    return AppPanel(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      child: offer != null
+          ? Row(
+              children: [
+                Icon(Icons.local_offer_rounded, color: c.accent, size: 20),
+                const SizedBox(width: AppSpacing.xs),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(offer.code, style: text.titleSmall),
+                      Text(
+                        totals.offerIneligible
+                            ? l10n.cartCouponMinimum(money.format(offer.minSubtotal))
+                            : l10n.cartCouponActive,
+                        style: text.labelSmall!.copyWith(
+                          color: totals.offerIneligible ? AppColors.warning : AppColors.success,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => ref.read(appliedOfferProvider.notifier).clear(),
+                  child: Text(l10n.actionRemove),
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: AppTextField(
+                    label: l10n.cartCoupon,
+                    controller: _code,
+                    icon: Icons.local_offer_outlined,
+                    error: _error,
+                    textCapitalization: TextCapitalization.characters,
+                    textInputAction: TextInputAction.done,
+                    onSubmitted: (_) => _apply(),
+                  ),
+                ),
+                const SizedBox(width: AppSpacing.xs),
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: OutlinedButton(
+                    onPressed: _busy ? null : _apply,
+                    child: Text(l10n.cartCouponApply),
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

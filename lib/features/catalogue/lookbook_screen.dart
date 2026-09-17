@@ -19,6 +19,7 @@ import '../../shared/widgets/price_text.dart';
 import '../../shared/widgets/skeleton.dart';
 import '../../shared/widgets/staggered_reveal.dart';
 import '../shell/fino_header.dart';
+import 'commission_sheet.dart';
 
 /// Lookbook (survey: ListMasterPage): the whole catalogue as rows; swipe
 /// left hides a row for this visit.
@@ -40,7 +41,16 @@ class _LookbookScreenState extends ConsumerState<LookbookScreen> {
     final items = ref.watch(catalogueListProvider(query));
 
     return Scaffold(
-      appBar: FinoHeader.page(title: l10n.lookbookTitle),
+      appBar: FinoHeader.page(
+        title: l10n.lookbookTitle,
+        actions: [
+          IconButton(
+            tooltip: l10n.commissionTitle,
+            icon: const Icon(Icons.add_rounded),
+            onPressed: () => showCommissionSheet(context),
+          ),
+        ],
+      ),
       body: ContentWidth(
         child: items.when(
           loading: () => ListView.builder(

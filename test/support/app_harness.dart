@@ -59,3 +59,15 @@ Future<ProviderContainer> bootApp(
   );
   return container;
 }
+
+/// Scrolls the first scrollable, without flinging, until [finder] is on
+/// screen and clear of the tab bar / FAB band at the bottom, so a tap lands.
+Future<void> revealForTap(WidgetTester tester, Finder finder) async {
+  final scrollable = find.byType(Scrollable).first;
+  final limit = tester.view.physicalSize.height / tester.view.devicePixelRatio - 140;
+  for (var i = 0; i < 30; i++) {
+    if (finder.evaluate().isNotEmpty && tester.getCenter(finder).dy <= limit) return;
+    await tester.timedDrag(scrollable, const Offset(0, -120), const Duration(milliseconds: 300));
+    await settle(tester, 300);
+  }
+}

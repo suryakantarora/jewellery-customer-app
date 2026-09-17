@@ -19,6 +19,8 @@ class RetailAttributes {
     this.collection = '',
     this.stone = 'None',
     this.description = '',
+    this.tags = const [],
+    this.brand = '',
   });
 
   final num? originalPrice;
@@ -39,6 +41,12 @@ class RetailAttributes {
   final String stone;
   final String description;
 
+  /// Merchandising tags (`solitaire`, `gift`, `bridal`…) for curated lists.
+  final List<String> tags;
+
+  /// House brand / line the piece belongs to (empty = unbranded).
+  final String brand;
+
   factory RetailAttributes.fromJson(Map<String, dynamic> json) =>
       RetailAttributes(
         originalPrice: json['originalPrice'] as num?,
@@ -58,6 +66,8 @@ class RetailAttributes {
         collection: json['collection'] as String? ?? '',
         stone: json['stone'] as String? ?? 'None',
         description: json['description'] as String? ?? '',
+        tags: (json['tags'] as List? ?? const []).map((e) => e.toString()).toList(),
+        brand: json['brand'] as String? ?? '',
       );
 }
 

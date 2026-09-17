@@ -26,12 +26,39 @@ abstract final class AppRoutes {
   static const addresses = '/addresses';
   static const paymentMethods = '/payment-methods';
 
-  /// Placeholders for later phases; the drawer links to them already.
+  // --- Settings & content (C7) -------------------------------------------
   static const goldRates = '/goldvalue';
   static const contact = '/contact';
+  static const about = '/about';
+  static const feedback = '/feedback';
+  static const rateUs = '/rate-us';
+  static const stories = '/stories';
+  static const policy = '/policy';
 
-  static String categoryPath(String id, {String? audience}) =>
-      audience == null ? '$category/$id' : '$category/$id?audience=$audience';
+  // --- Support & extras (C8) ---------------------------------------------
+  static const notifications = '/notifications';
+  static const stores = '/stores';
+  static const offers = '/offers';
+
+  static String categoryPath(
+    String id, {
+    String? audience,
+    String? metal,
+    String? tag,
+    String? brand,
+  }) {
+    final params = {
+      if (audience != null) 'audience': audience,
+      if (metal != null) 'metal': metal,
+      if (tag != null) 'tag': tag,
+      if (brand != null) 'brand': brand,
+    };
+    if (params.isEmpty) return '$category/$id';
+    return Uri(path: '$category/$id', queryParameters: params).toString();
+  }
+
+  static String policyPath(String key) => '$policy/$key';
+  static String storePath(String id) => '$stores/$id';
 
   static String productPath(String id) => '$product/$id';
   static String orderPath(String id) => '$orders/$id';

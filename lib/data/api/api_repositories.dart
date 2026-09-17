@@ -3,6 +3,7 @@ import '../models/banner.dart';
 import '../models/catalogue_item.dart';
 import '../models/category.dart';
 import '../models/commerce.dart';
+import '../models/content.dart';
 import '../models/review.dart';
 import '../repositories/repositories.dart';
 
@@ -142,7 +143,7 @@ class ApiGoldRateRepository implements GoldRateRepository {
   const ApiGoldRateRepository(this.client);
   final ApiClient client;
   @override
-  Future<List<GoldRate>> current() => _todo('GoldRateRepository.current');
+  Future<GoldRateSheet> current() => _todo('GoldRateRepository.current');
 }
 
 class ApiPolicyRepository implements PolicyRepository {
@@ -152,4 +153,62 @@ class ApiPolicyRepository implements PolicyRepository {
   Future<List<PolicyDoc>> list() => _todo('PolicyRepository.list');
   @override
   Future<PolicyDoc?> byKey(String key) => _todo('PolicyRepository.byKey');
+}
+
+class ApiStoreRepository implements StoreRepository {
+  const ApiStoreRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<List<Store>> list() => _todo('StoreRepository.list');
+  @override
+  Future<Store?> byId(String id) => _todo('StoreRepository.byId');
+}
+
+class ApiOfferRepository implements OfferRepository {
+  const ApiOfferRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<List<Offer>> list() => _todo('OfferRepository.list');
+  @override
+  Future<Offer?> byCode(String code) => _todo('OfferRepository.byCode');
+}
+
+class ApiContentRepository implements ContentRepository {
+  const ApiContentRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<List<Brand>> brands() => _todo('ContentRepository.brands');
+  @override
+  Future<List<TrendingCard>> trending() => _todo('ContentRepository.trending');
+  @override
+  Future<List<Story>> stories() => _todo('ContentRepository.stories');
+  @override
+  Future<AboutContent> about() => _todo('ContentRepository.about');
+}
+
+class ApiFeedbackRepository implements FeedbackRepository {
+  const ApiFeedbackRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<String> submit(FeedbackDraft draft) => _todo('FeedbackRepository.submit');
+  @override
+  Future<void> rate(int stars, {String? comment}) => _todo('FeedbackRepository.rate');
+}
+
+/// C10 will call the same `/notifications/devices` endpoints the staff app
+/// uses, with the customer principal.
+class ApiNotificationRepository implements NotificationRepository {
+  const ApiNotificationRepository(this.client);
+  final ApiClient client;
+  @override
+  Future<List<AppNotification>> list() => _todo('NotificationRepository.list');
+  @override
+  Future<List<AppNotification>> markRead(String id) => _todo('NotificationRepository.markRead');
+  @override
+  Future<List<AppNotification>> markAllRead() => _todo('NotificationRepository.markAllRead');
+  @override
+  Future<void> registerDevice({required String token, required String platform}) =>
+      _todo('NotificationRepository.registerDevice');
+  @override
+  Future<void> unregisterDevice(String token) => _todo('NotificationRepository.unregisterDevice');
 }

@@ -10,6 +10,10 @@ class AppArt extends StatelessWidget {
   const AppArt.facets({super.key, required this.color, this.size = 320})
     : asset = 'assets/art/facets.svg';
 
+  /// A 10:1 hairline flourish; [size] is its width.
+  const AppArt.flourish({super.key, required this.color, this.size = 120})
+    : asset = 'assets/art/flourish.svg';
+
   final String asset;
   final Color color;
   final double size;
@@ -18,7 +22,7 @@ class AppArt extends StatelessWidget {
   Widget build(BuildContext context) => SvgPicture.asset(
     asset,
     width: size,
-    height: size,
+    height: asset.endsWith('flourish.svg') ? size / 10 : size,
     colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
   );
 }

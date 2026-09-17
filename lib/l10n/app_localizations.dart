@@ -940,7 +940,7 @@ abstract class AppL10n {
   /// No description provided for @homeTrendingTitle.
   ///
   /// In en, this message translates to:
-  /// **'Trending'**
+  /// **'What\'s trending'**
   String get homeTrendingTitle;
 
   /// No description provided for @homeBestEyebrow.
@@ -2400,6 +2400,1074 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Your bag will be cleared on this device.'**
   String get accountSignOutBody;
+
+  /// No description provided for @metalListing.
+  ///
+  /// In en, this message translates to:
+  /// **'{metal} jewellery'**
+  String metalListing(String metal);
+
+  /// No description provided for @menuAllJewellery.
+  ///
+  /// In en, this message translates to:
+  /// **'All Jewellery'**
+  String get menuAllJewellery;
+
+  /// No description provided for @menuGold.
+  ///
+  /// In en, this message translates to:
+  /// **'Gold'**
+  String get menuGold;
+
+  /// No description provided for @menuDiamond.
+  ///
+  /// In en, this message translates to:
+  /// **'Diamond'**
+  String get menuDiamond;
+
+  /// No description provided for @menuSilver.
+  ///
+  /// In en, this message translates to:
+  /// **'Silver'**
+  String get menuSilver;
+
+  /// No description provided for @menuPlatinum.
+  ///
+  /// In en, this message translates to:
+  /// **'Platinum'**
+  String get menuPlatinum;
+
+  /// No description provided for @menuCoinsBars.
+  ///
+  /// In en, this message translates to:
+  /// **'Coins & Bars'**
+  String get menuCoinsBars;
+
+  /// No description provided for @menuSolitaire.
+  ///
+  /// In en, this message translates to:
+  /// **'Solitaire'**
+  String get menuSolitaire;
+
+  /// No description provided for @menuCollections.
+  ///
+  /// In en, this message translates to:
+  /// **'Collections'**
+  String get menuCollections;
+
+  /// No description provided for @menuGiftStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Gift Store'**
+  String get menuGiftStore;
+
+  /// No description provided for @menuOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers'**
+  String get menuOffers;
+
+  /// No description provided for @drawerBrowse.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse'**
+  String get drawerBrowse;
+
+  /// No description provided for @drawerNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get drawerNotifications;
+
+  /// No description provided for @drawerStores.
+  ///
+  /// In en, this message translates to:
+  /// **'Our stores'**
+  String get drawerStores;
+
+  /// No description provided for @homeRateTicker.
+  ///
+  /// In en, this message translates to:
+  /// **'GOLD {purity} / 1 g'**
+  String homeRateTicker(String purity);
+
+  /// No description provided for @homeSearchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for necklaces, rings, 22K…'**
+  String get homeSearchHint;
+
+  /// No description provided for @homeBrandsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our Brands'**
+  String get homeBrandsTitle;
+
+  /// No description provided for @homeCuratedEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest collection'**
+  String get homeCuratedEyebrow;
+
+  /// No description provided for @homeCuratedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Curated for you'**
+  String get homeCuratedTitle;
+
+  /// No description provided for @homeCuratedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Picked from the collections you love'**
+  String get homeCuratedSubtitle;
+
+  /// No description provided for @homeStoresTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Come visit us'**
+  String get homeStoresTitle;
+
+  /// No description provided for @homeStoresSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Try pieces on at any of our boutiques'**
+  String get homeStoresSubtitle;
+
+  /// No description provided for @homeAboutEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'About us'**
+  String get homeAboutEyebrow;
+
+  /// No description provided for @homeAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The {brand} story'**
+  String homeAboutTitle(String brand);
+
+  /// No description provided for @homeAboutCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Our story'**
+  String get homeAboutCta;
+
+  /// No description provided for @actionViewCollection.
+  ///
+  /// In en, this message translates to:
+  /// **'View collection'**
+  String get actionViewCollection;
+
+  /// No description provided for @actionDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get actionDone;
+
+  /// No description provided for @storeFlagship.
+  ///
+  /// In en, this message translates to:
+  /// **'Flagship'**
+  String get storeFlagship;
+
+  /// No description provided for @storeDirections.
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get storeDirections;
+
+  /// No description provided for @storeServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get storeServices;
+
+  /// No description provided for @storesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Our stores'**
+  String get storesTitle;
+
+  /// No description provided for @storesEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Store locator'**
+  String get storesEyebrow;
+
+  /// No description provided for @storesHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit a boutique'**
+  String get storesHeadline;
+
+  /// No description provided for @storesAllCities.
+  ///
+  /// In en, this message translates to:
+  /// **'All cities'**
+  String get storesAllCities;
+
+  /// No description provided for @settingsTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get settingsTheme;
+
+  /// No description provided for @settingsThemeSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your boutique\'s colour'**
+  String get settingsThemeSub;
+
+  /// No description provided for @settingsThemeApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme applied'**
+  String get settingsThemeApplied;
+
+  /// No description provided for @settingsShopping.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping'**
+  String get settingsShopping;
+
+  /// No description provided for @settingsTrackOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'Track order'**
+  String get settingsTrackOrder;
+
+  /// No description provided for @settingsSizeGuide.
+  ///
+  /// In en, this message translates to:
+  /// **'Size guide'**
+  String get settingsSizeGuide;
+
+  /// No description provided for @settingsPolicies.
+  ///
+  /// In en, this message translates to:
+  /// **'Policies'**
+  String get settingsPolicies;
+
+  /// No description provided for @settingsSupport.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get settingsSupport;
+
+  /// No description provided for @settingsFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Send feedback'**
+  String get settingsFeedback;
+
+  /// No description provided for @settingsRateUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate us'**
+  String get settingsRateUs;
+
+  /// No description provided for @settingsShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share app'**
+  String get settingsShare;
+
+  /// No description provided for @settingsShareText.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop {brand} on your phone: {url}'**
+  String settingsShareText(String brand, String url);
+
+  /// No description provided for @settingsShareFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing isn\'t available on this device'**
+  String get settingsShareFailed;
+
+  /// No description provided for @settingsTour.
+  ///
+  /// In en, this message translates to:
+  /// **'Take the tour'**
+  String get settingsTour;
+
+  /// No description provided for @themeRuby.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruby Red'**
+  String get themeRuby;
+
+  /// No description provided for @themeRubySub.
+  ///
+  /// In en, this message translates to:
+  /// **'The signature red'**
+  String get themeRubySub;
+
+  /// No description provided for @themeBurgundy.
+  ///
+  /// In en, this message translates to:
+  /// **'Royal Burgundy'**
+  String get themeBurgundy;
+
+  /// No description provided for @themeBurgundySub.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep and warm'**
+  String get themeBurgundySub;
+
+  /// No description provided for @themeEmerald.
+  ///
+  /// In en, this message translates to:
+  /// **'Emerald Luxury'**
+  String get themeEmerald;
+
+  /// No description provided for @themeEmeraldSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Green with gold'**
+  String get themeEmeraldSub;
+
+  /// No description provided for @themeSapphire.
+  ///
+  /// In en, this message translates to:
+  /// **'Sapphire'**
+  String get themeSapphire;
+
+  /// No description provided for @themeSapphireSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Cool blue, silver accent'**
+  String get themeSapphireSub;
+
+  /// No description provided for @themeRose.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose'**
+  String get themeRose;
+
+  /// No description provided for @themeRoseSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft pink, copper accent'**
+  String get themeRoseSub;
+
+  /// No description provided for @themeBlack.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic Black'**
+  String get themeBlack;
+
+  /// No description provided for @themeBlackSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Ink with gold'**
+  String get themeBlackSub;
+
+  /// No description provided for @policyUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {date}'**
+  String policyUpdated(String date);
+
+  /// No description provided for @policyFaq.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequently asked'**
+  String get policyFaq;
+
+  /// No description provided for @goldEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Live rates'**
+  String get goldEyebrow;
+
+  /// No description provided for @goldTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s gold rate'**
+  String get goldTitle;
+
+  /// No description provided for @goldUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated {time}'**
+  String goldUpdated(String time);
+
+  /// No description provided for @goldColPurity.
+  ///
+  /// In en, this message translates to:
+  /// **'Purity'**
+  String get goldColPurity;
+
+  /// No description provided for @goldPerGram.
+  ///
+  /// In en, this message translates to:
+  /// **'Per gram, selling rate. USD and THB are indicative.'**
+  String get goldPerGram;
+
+  /// No description provided for @goldDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Rates move with the market and are confirmed at the counter. Coins and bars are priced on the rate at the time of order.'**
+  String get goldDisclaimer;
+
+  /// No description provided for @aboutEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {year}'**
+  String aboutEyebrow(String year);
+
+  /// No description provided for @aboutVisit.
+  ///
+  /// In en, this message translates to:
+  /// **'Visit a boutique'**
+  String get aboutVisit;
+
+  /// No description provided for @contactHeadline.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re here to help'**
+  String get contactHeadline;
+
+  /// No description provided for @contactChannels.
+  ///
+  /// In en, this message translates to:
+  /// **'Reach us'**
+  String get contactChannels;
+
+  /// No description provided for @contactCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get contactCall;
+
+  /// No description provided for @contactWhatsapp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp'**
+  String get contactWhatsapp;
+
+  /// No description provided for @contactEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get contactEmail;
+
+  /// No description provided for @contactStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Flagship store'**
+  String get contactStore;
+
+  /// No description provided for @contactMessageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message'**
+  String get contactMessageTitle;
+
+  /// No description provided for @contactMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get contactMessage;
+
+  /// No description provided for @contactMessageShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us a little more (at least 10 characters).'**
+  String get contactMessageShort;
+
+  /// No description provided for @contactSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get contactSend;
+
+  /// No description provided for @contactSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Message sent. We\'ll reply within a working day.'**
+  String get contactSent;
+
+  /// No description provided for @contactCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied {value}'**
+  String contactCopied(String value);
+
+  /// No description provided for @feedbackEyebrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get feedbackEyebrow;
+
+  /// No description provided for @feedbackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How was your experience?'**
+  String get feedbackTitle;
+
+  /// No description provided for @feedbackIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Every note reaches the atelier. Tell us what to keep and what to fix.'**
+  String get feedbackIntro;
+
+  /// No description provided for @feedbackHappy.
+  ///
+  /// In en, this message translates to:
+  /// **'Happy'**
+  String get feedbackHappy;
+
+  /// No description provided for @feedbackSad.
+  ///
+  /// In en, this message translates to:
+  /// **'Not happy'**
+  String get feedbackSad;
+
+  /// No description provided for @feedbackTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic'**
+  String get feedbackTopic;
+
+  /// No description provided for @feedbackTopicApp.
+  ///
+  /// In en, this message translates to:
+  /// **'App experience'**
+  String get feedbackTopicApp;
+
+  /// No description provided for @feedbackTopicRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Product range'**
+  String get feedbackTopicRange;
+
+  /// No description provided for @feedbackTopicPricing.
+  ///
+  /// In en, this message translates to:
+  /// **'Pricing'**
+  String get feedbackTopicPricing;
+
+  /// No description provided for @feedbackTopicDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get feedbackTopicDelivery;
+
+  /// No description provided for @feedbackTopicStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Store visit'**
+  String get feedbackTopicStore;
+
+  /// No description provided for @feedbackTopicOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get feedbackTopicOther;
+
+  /// No description provided for @feedbackMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your feedback'**
+  String get feedbackMessage;
+
+  /// No description provided for @feedbackTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Please write at least {min} characters.'**
+  String feedbackTooShort(int min);
+
+  /// No description provided for @feedbackFollowUp.
+  ///
+  /// In en, this message translates to:
+  /// **'You may follow up with me'**
+  String get feedbackFollowUp;
+
+  /// No description provided for @feedbackThanksTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you'**
+  String get feedbackThanksTitle;
+
+  /// No description provided for @feedbackThanksBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We read every message. If you asked for a follow-up, expect one within two working days.'**
+  String get feedbackThanksBody;
+
+  /// No description provided for @feedbackTicket.
+  ///
+  /// In en, this message translates to:
+  /// **'Ticket {ticket}'**
+  String feedbackTicket(String ticket);
+
+  /// No description provided for @feedbackBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to settings'**
+  String get feedbackBack;
+
+  /// No description provided for @feedbackAnother.
+  ///
+  /// In en, this message translates to:
+  /// **'Send another'**
+  String get feedbackAnother;
+
+  /// No description provided for @feedbackRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate the app'**
+  String get feedbackRate;
+
+  /// No description provided for @rateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enjoying {brand}?'**
+  String rateTitle(String brand);
+
+  /// No description provided for @rateIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a star. Your rating helps other customers find us.'**
+  String get rateIntro;
+
+  /// No description provided for @rateCaption0.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a star to rate'**
+  String get rateCaption0;
+
+  /// No description provided for @rateCaption1.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re sorry. Tell us what went wrong.'**
+  String get rateCaption1;
+
+  /// No description provided for @rateCaption2.
+  ///
+  /// In en, this message translates to:
+  /// **'Not great. We\'d like to do better.'**
+  String get rateCaption2;
+
+  /// No description provided for @rateCaption3.
+  ///
+  /// In en, this message translates to:
+  /// **'Okay. What would make it better?'**
+  String get rateCaption3;
+
+  /// No description provided for @rateCaption4.
+  ///
+  /// In en, this message translates to:
+  /// **'Glad you like it!'**
+  String get rateCaption4;
+
+  /// No description provided for @rateCaption5.
+  ///
+  /// In en, this message translates to:
+  /// **'Wonderful, thank you!'**
+  String get rateCaption5;
+
+  /// No description provided for @rateOnStore.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate on the store'**
+  String get rateOnStore;
+
+  /// No description provided for @rateNotNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Not now'**
+  String get rateNotNow;
+
+  /// No description provided for @rateStoreDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'The store listing opens here once the app is published.'**
+  String get rateStoreDemo;
+
+  /// No description provided for @rateWhatWentWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'What went wrong?'**
+  String get rateWhatWentWrong;
+
+  /// No description provided for @rateDetailedFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Send detailed feedback'**
+  String get rateDetailedFeedback;
+
+  /// No description provided for @rateThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for your rating'**
+  String get rateThanks;
+
+  /// No description provided for @rateSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Ratings'**
+  String get rateSummary;
+
+  /// No description provided for @rateCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} ratings'**
+  String rateCount(String count);
+
+  /// No description provided for @rateWhatsNew.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s new in {version}'**
+  String rateWhatsNew(String version);
+
+  /// No description provided for @rateNew1.
+  ///
+  /// In en, this message translates to:
+  /// **'Live gold rates and a store locator'**
+  String get rateNew1;
+
+  /// No description provided for @rateNew2.
+  ///
+  /// In en, this message translates to:
+  /// **'Offers and coupon codes in the bag'**
+  String get rateNew2;
+
+  /// No description provided for @rateNew3.
+  ///
+  /// In en, this message translates to:
+  /// **'Support chat with a live agent'**
+  String get rateNew3;
+
+  /// No description provided for @rateNew4.
+  ///
+  /// In en, this message translates to:
+  /// **'Bespoke commission requests'**
+  String get rateNew4;
+
+  /// No description provided for @storiesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer stories'**
+  String get storiesTitle;
+
+  /// No description provided for @storiesShopNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Shop now'**
+  String get storiesShopNow;
+
+  /// No description provided for @storiesLike.
+  ///
+  /// In en, this message translates to:
+  /// **'Like'**
+  String get storiesLike;
+
+  /// No description provided for @supportRoot.
+  ///
+  /// In en, this message translates to:
+  /// **'Hello! I\'m the boutique assistant. What can I help you with today?'**
+  String get supportRoot;
+
+  /// No description provided for @supportOptTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Track my order'**
+  String get supportOptTrack;
+
+  /// No description provided for @supportOptReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'Returns & exchange'**
+  String get supportOptReturns;
+
+  /// No description provided for @supportOptCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Jewellery care & sizing'**
+  String get supportOptCare;
+
+  /// No description provided for @supportOptPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments & offers'**
+  String get supportOptPayments;
+
+  /// No description provided for @supportOptHelped.
+  ///
+  /// In en, this message translates to:
+  /// **'That helped'**
+  String get supportOptHelped;
+
+  /// No description provided for @supportOptAgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Talk to a live agent'**
+  String get supportOptAgent;
+
+  /// No description provided for @supportOptMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Something else'**
+  String get supportOptMore;
+
+  /// No description provided for @supportTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Orders, pick the order and you\'ll see its five-stage timeline with the courier\'s tracking number. Out-for-delivery parcels also send a notification.'**
+  String get supportTrack;
+
+  /// No description provided for @supportReturns.
+  ///
+  /// In en, this message translates to:
+  /// **'Unworn pieces can be returned within 14 days and exchanged within 30. Coins, bars and engraved pieces are excluded. I can open the policy for you.'**
+  String get supportReturns;
+
+  /// No description provided for @supportCare.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove jewellery before swimming or chemicals, store pieces separately, and bring them in any time for a free clean. Ring sizes are in the size guide.'**
+  String get supportCare;
+
+  /// No description provided for @supportPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'We accept cards, BCEL One and cash on delivery, with 0% instalments over three months. Current coupon codes are on the Offers page.'**
+  String get supportPayments;
+
+  /// No description provided for @supportHelped.
+  ///
+  /// In en, this message translates to:
+  /// **'Wonderful. Is there anything else?'**
+  String get supportHelped;
+
+  /// No description provided for @supportConnecting.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting you to an agent…'**
+  String get supportConnecting;
+
+  /// No description provided for @supportAgentJoined.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} joined the chat'**
+  String supportAgentJoined(String name);
+
+  /// No description provided for @supportAgentGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi, I\'m {name} from the boutique. How can I help?'**
+  String supportAgentGreeting(String name);
+
+  /// No description provided for @supportAgentAck.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks, noted. Let me check that for you and come back in a moment.'**
+  String get supportAgentAck;
+
+  /// No description provided for @supportComposerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a message'**
+  String get supportComposerHint;
+
+  /// No description provided for @supportWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'One moment…'**
+  String get supportWaiting;
+
+  /// No description provided for @supportOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get supportOpenLink;
+
+  /// No description provided for @supportRestart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start over'**
+  String get supportRestart;
+
+  /// No description provided for @notificationsMarkAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all read'**
+  String get notificationsMarkAll;
+
+  /// No description provided for @notificationsUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Unread'**
+  String get notificationsUnread;
+
+  /// No description provided for @notificationsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No notifications'**
+  String get notificationsEmptyTitle;
+
+  /// No description provided for @notificationsEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Order updates, offers and gold-rate alerts will appear here.'**
+  String get notificationsEmptyBody;
+
+  /// No description provided for @offersEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No offers right now'**
+  String get offersEmptyTitle;
+
+  /// No description provided for @offersEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Check back soon. Follow us for seasonal edits.'**
+  String get offersEmptyBody;
+
+  /// No description provided for @offerPercentOff.
+  ///
+  /// In en, this message translates to:
+  /// **'{value}% off'**
+  String offerPercentOff(String value);
+
+  /// No description provided for @offerAmountOff.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} off'**
+  String offerAmountOff(String amount);
+
+  /// No description provided for @offerFreeDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Free delivery'**
+  String get offerFreeDelivery;
+
+  /// No description provided for @offerMinimum.
+  ///
+  /// In en, this message translates to:
+  /// **'Min. order {amount}'**
+  String offerMinimum(String amount);
+
+  /// No description provided for @offerExpires.
+  ///
+  /// In en, this message translates to:
+  /// **'Valid until {date}'**
+  String offerExpires(String date);
+
+  /// No description provided for @offerCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied {code}'**
+  String offerCopied(String code);
+
+  /// No description provided for @cartCoupon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon code'**
+  String get cartCoupon;
+
+  /// No description provided for @cartCouponApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get cartCouponApply;
+
+  /// No description provided for @cartCouponApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon applied'**
+  String get cartCouponApplied;
+
+  /// No description provided for @cartCouponInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That code isn\'t valid or has expired.'**
+  String get cartCouponInvalid;
+
+  /// No description provided for @cartCouponActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied to this bag'**
+  String get cartCouponActive;
+
+  /// No description provided for @cartCouponMinimum.
+  ///
+  /// In en, this message translates to:
+  /// **'Add more to reach {amount}'**
+  String cartCouponMinimum(String amount);
+
+  /// No description provided for @cartDiscount.
+  ///
+  /// In en, this message translates to:
+  /// **'Coupon {code}'**
+  String cartDiscount(String code);
+
+  /// No description provided for @commissionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Bespoke commission'**
+  String get commissionTitle;
+
+  /// No description provided for @commissionIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Share a reference and a budget; the atelier replies with a sketch and a quote within three working days.'**
+  String get commissionIntro;
+
+  /// No description provided for @commissionPhotoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reference photo'**
+  String get commissionPhotoHint;
+
+  /// No description provided for @commissionCamera.
+  ///
+  /// In en, this message translates to:
+  /// **'Camera'**
+  String get commissionCamera;
+
+  /// No description provided for @commissionGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get commissionGallery;
+
+  /// No description provided for @commissionBudget.
+  ///
+  /// In en, this message translates to:
+  /// **'Budget'**
+  String get commissionBudget;
+
+  /// No description provided for @commissionBrief.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about the piece'**
+  String get commissionBrief;
+
+  /// No description provided for @commissionNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add your name.'**
+  String get commissionNameRequired;
+
+  /// No description provided for @commissionSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get commissionSend;
+
+  /// No description provided for @commissionDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request received'**
+  String get commissionDoneTitle;
+
+  /// No description provided for @commissionDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A designer will be in touch with a first sketch.'**
+  String get commissionDoneBody;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

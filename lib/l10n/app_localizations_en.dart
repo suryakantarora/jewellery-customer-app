@@ -474,7 +474,7 @@ class AppL10nEn extends AppL10n {
   String get homeTrendingEyebrow => 'Popular now';
 
   @override
-  String get homeTrendingTitle => 'Trending';
+  String get homeTrendingTitle => 'What\'s trending';
 
   @override
   String get homeBestEyebrow => 'Loved';
@@ -1317,4 +1317,599 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get accountSignOutBody => 'Your bag will be cleared on this device.';
+
+  @override
+  String metalListing(String metal) {
+    return '$metal jewellery';
+  }
+
+  @override
+  String get menuAllJewellery => 'All Jewellery';
+
+  @override
+  String get menuGold => 'Gold';
+
+  @override
+  String get menuDiamond => 'Diamond';
+
+  @override
+  String get menuSilver => 'Silver';
+
+  @override
+  String get menuPlatinum => 'Platinum';
+
+  @override
+  String get menuCoinsBars => 'Coins & Bars';
+
+  @override
+  String get menuSolitaire => 'Solitaire';
+
+  @override
+  String get menuCollections => 'Collections';
+
+  @override
+  String get menuGiftStore => 'Gift Store';
+
+  @override
+  String get menuOffers => 'Offers';
+
+  @override
+  String get drawerBrowse => 'Browse';
+
+  @override
+  String get drawerNotifications => 'Notifications';
+
+  @override
+  String get drawerStores => 'Our stores';
+
+  @override
+  String homeRateTicker(String purity) {
+    return 'GOLD $purity / 1 g';
+  }
+
+  @override
+  String get homeSearchHint => 'Search for necklaces, rings, 22K…';
+
+  @override
+  String get homeBrandsTitle => 'Our Brands';
+
+  @override
+  String get homeCuratedEyebrow => 'Latest collection';
+
+  @override
+  String get homeCuratedTitle => 'Curated for you';
+
+  @override
+  String get homeCuratedSubtitle => 'Picked from the collections you love';
+
+  @override
+  String get homeStoresTitle => 'Come visit us';
+
+  @override
+  String get homeStoresSubtitle => 'Try pieces on at any of our boutiques';
+
+  @override
+  String get homeAboutEyebrow => 'About us';
+
+  @override
+  String homeAboutTitle(String brand) {
+    return 'The $brand story';
+  }
+
+  @override
+  String get homeAboutCta => 'Our story';
+
+  @override
+  String get actionViewCollection => 'View collection';
+
+  @override
+  String get actionDone => 'Done';
+
+  @override
+  String get storeFlagship => 'Flagship';
+
+  @override
+  String get storeDirections => 'Directions';
+
+  @override
+  String get storeServices => 'Services';
+
+  @override
+  String get storesTitle => 'Our stores';
+
+  @override
+  String get storesEyebrow => 'Store locator';
+
+  @override
+  String get storesHeadline => 'Visit a boutique';
+
+  @override
+  String get storesAllCities => 'All cities';
+
+  @override
+  String get settingsTheme => 'Theme';
+
+  @override
+  String get settingsThemeSub => 'Choose your boutique\'s colour';
+
+  @override
+  String get settingsThemeApplied => 'Theme applied';
+
+  @override
+  String get settingsShopping => 'Shopping';
+
+  @override
+  String get settingsTrackOrder => 'Track order';
+
+  @override
+  String get settingsSizeGuide => 'Size guide';
+
+  @override
+  String get settingsPolicies => 'Policies';
+
+  @override
+  String get settingsSupport => 'Support';
+
+  @override
+  String get settingsFeedback => 'Send feedback';
+
+  @override
+  String get settingsRateUs => 'Rate us';
+
+  @override
+  String get settingsShare => 'Share app';
+
+  @override
+  String settingsShareText(String brand, String url) {
+    return 'Shop $brand on your phone: $url';
+  }
+
+  @override
+  String get settingsShareFailed => 'Sharing isn\'t available on this device';
+
+  @override
+  String get settingsTour => 'Take the tour';
+
+  @override
+  String get themeRuby => 'Ruby Red';
+
+  @override
+  String get themeRubySub => 'The signature red';
+
+  @override
+  String get themeBurgundy => 'Royal Burgundy';
+
+  @override
+  String get themeBurgundySub => 'Deep and warm';
+
+  @override
+  String get themeEmerald => 'Emerald Luxury';
+
+  @override
+  String get themeEmeraldSub => 'Green with gold';
+
+  @override
+  String get themeSapphire => 'Sapphire';
+
+  @override
+  String get themeSapphireSub => 'Cool blue, silver accent';
+
+  @override
+  String get themeRose => 'Rose';
+
+  @override
+  String get themeRoseSub => 'Soft pink, copper accent';
+
+  @override
+  String get themeBlack => 'Classic Black';
+
+  @override
+  String get themeBlackSub => 'Ink with gold';
+
+  @override
+  String policyUpdated(String date) {
+    return 'Updated $date';
+  }
+
+  @override
+  String get policyFaq => 'Frequently asked';
+
+  @override
+  String get goldEyebrow => 'Live rates';
+
+  @override
+  String get goldTitle => 'Today\'s gold rate';
+
+  @override
+  String goldUpdated(String time) {
+    return 'Updated $time';
+  }
+
+  @override
+  String get goldColPurity => 'Purity';
+
+  @override
+  String get goldPerGram =>
+      'Per gram, selling rate. USD and THB are indicative.';
+
+  @override
+  String get goldDisclaimer =>
+      'Rates move with the market and are confirmed at the counter. Coins and bars are priced on the rate at the time of order.';
+
+  @override
+  String aboutEyebrow(String year) {
+    return 'Since $year';
+  }
+
+  @override
+  String get aboutVisit => 'Visit a boutique';
+
+  @override
+  String get contactHeadline => 'We\'re here to help';
+
+  @override
+  String get contactChannels => 'Reach us';
+
+  @override
+  String get contactCall => 'Call';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactEmail => 'Email';
+
+  @override
+  String get contactStore => 'Flagship store';
+
+  @override
+  String get contactMessageTitle => 'Send a message';
+
+  @override
+  String get contactMessage => 'Message';
+
+  @override
+  String get contactMessageShort =>
+      'Tell us a little more (at least 10 characters).';
+
+  @override
+  String get contactSend => 'Send';
+
+  @override
+  String get contactSent => 'Message sent. We\'ll reply within a working day.';
+
+  @override
+  String contactCopied(String value) {
+    return 'Copied $value';
+  }
+
+  @override
+  String get feedbackEyebrow => 'Feedback';
+
+  @override
+  String get feedbackTitle => 'How was your experience?';
+
+  @override
+  String get feedbackIntro =>
+      'Every note reaches the atelier. Tell us what to keep and what to fix.';
+
+  @override
+  String get feedbackHappy => 'Happy';
+
+  @override
+  String get feedbackSad => 'Not happy';
+
+  @override
+  String get feedbackTopic => 'Topic';
+
+  @override
+  String get feedbackTopicApp => 'App experience';
+
+  @override
+  String get feedbackTopicRange => 'Product range';
+
+  @override
+  String get feedbackTopicPricing => 'Pricing';
+
+  @override
+  String get feedbackTopicDelivery => 'Delivery';
+
+  @override
+  String get feedbackTopicStore => 'Store visit';
+
+  @override
+  String get feedbackTopicOther => 'Something else';
+
+  @override
+  String get feedbackMessage => 'Your feedback';
+
+  @override
+  String feedbackTooShort(int min) {
+    return 'Please write at least $min characters.';
+  }
+
+  @override
+  String get feedbackFollowUp => 'You may follow up with me';
+
+  @override
+  String get feedbackThanksTitle => 'Thank you';
+
+  @override
+  String get feedbackThanksBody =>
+      'We read every message. If you asked for a follow-up, expect one within two working days.';
+
+  @override
+  String feedbackTicket(String ticket) {
+    return 'Ticket $ticket';
+  }
+
+  @override
+  String get feedbackBack => 'Back to settings';
+
+  @override
+  String get feedbackAnother => 'Send another';
+
+  @override
+  String get feedbackRate => 'Rate the app';
+
+  @override
+  String rateTitle(String brand) {
+    return 'Enjoying $brand?';
+  }
+
+  @override
+  String get rateIntro =>
+      'Tap a star. Your rating helps other customers find us.';
+
+  @override
+  String get rateCaption0 => 'Tap a star to rate';
+
+  @override
+  String get rateCaption1 => 'We\'re sorry. Tell us what went wrong.';
+
+  @override
+  String get rateCaption2 => 'Not great. We\'d like to do better.';
+
+  @override
+  String get rateCaption3 => 'Okay. What would make it better?';
+
+  @override
+  String get rateCaption4 => 'Glad you like it!';
+
+  @override
+  String get rateCaption5 => 'Wonderful, thank you!';
+
+  @override
+  String get rateOnStore => 'Rate on the store';
+
+  @override
+  String get rateNotNow => 'Not now';
+
+  @override
+  String get rateStoreDemo =>
+      'The store listing opens here once the app is published.';
+
+  @override
+  String get rateWhatWentWrong => 'What went wrong?';
+
+  @override
+  String get rateDetailedFeedback => 'Send detailed feedback';
+
+  @override
+  String get rateThanks => 'Thanks for your rating';
+
+  @override
+  String get rateSummary => 'Ratings';
+
+  @override
+  String rateCount(String count) {
+    return '$count ratings';
+  }
+
+  @override
+  String rateWhatsNew(String version) {
+    return 'What\'s new in $version';
+  }
+
+  @override
+  String get rateNew1 => 'Live gold rates and a store locator';
+
+  @override
+  String get rateNew2 => 'Offers and coupon codes in the bag';
+
+  @override
+  String get rateNew3 => 'Support chat with a live agent';
+
+  @override
+  String get rateNew4 => 'Bespoke commission requests';
+
+  @override
+  String get storiesTitle => 'Customer stories';
+
+  @override
+  String get storiesShopNow => 'Shop now';
+
+  @override
+  String get storiesLike => 'Like';
+
+  @override
+  String get supportRoot =>
+      'Hello! I\'m the boutique assistant. What can I help you with today?';
+
+  @override
+  String get supportOptTrack => 'Track my order';
+
+  @override
+  String get supportOptReturns => 'Returns & exchange';
+
+  @override
+  String get supportOptCare => 'Jewellery care & sizing';
+
+  @override
+  String get supportOptPayments => 'Payments & offers';
+
+  @override
+  String get supportOptHelped => 'That helped';
+
+  @override
+  String get supportOptAgent => 'Talk to a live agent';
+
+  @override
+  String get supportOptMore => 'Something else';
+
+  @override
+  String get supportTrack =>
+      'Open Orders, pick the order and you\'ll see its five-stage timeline with the courier\'s tracking number. Out-for-delivery parcels also send a notification.';
+
+  @override
+  String get supportReturns =>
+      'Unworn pieces can be returned within 14 days and exchanged within 30. Coins, bars and engraved pieces are excluded. I can open the policy for you.';
+
+  @override
+  String get supportCare =>
+      'Remove jewellery before swimming or chemicals, store pieces separately, and bring them in any time for a free clean. Ring sizes are in the size guide.';
+
+  @override
+  String get supportPayments =>
+      'We accept cards, BCEL One and cash on delivery, with 0% instalments over three months. Current coupon codes are on the Offers page.';
+
+  @override
+  String get supportHelped => 'Wonderful. Is there anything else?';
+
+  @override
+  String get supportConnecting => 'Connecting you to an agent…';
+
+  @override
+  String supportAgentJoined(String name) {
+    return '$name joined the chat';
+  }
+
+  @override
+  String supportAgentGreeting(String name) {
+    return 'Hi, I\'m $name from the boutique. How can I help?';
+  }
+
+  @override
+  String get supportAgentAck =>
+      'Thanks, noted. Let me check that for you and come back in a moment.';
+
+  @override
+  String get supportComposerHint => 'Write a message';
+
+  @override
+  String get supportWaiting => 'One moment…';
+
+  @override
+  String get supportOpenLink => 'Open';
+
+  @override
+  String get supportRestart => 'Start over';
+
+  @override
+  String get notificationsMarkAll => 'Mark all read';
+
+  @override
+  String get notificationsUnread => 'Unread';
+
+  @override
+  String get notificationsEmptyTitle => 'No notifications';
+
+  @override
+  String get notificationsEmptyBody =>
+      'Order updates, offers and gold-rate alerts will appear here.';
+
+  @override
+  String get offersEmptyTitle => 'No offers right now';
+
+  @override
+  String get offersEmptyBody =>
+      'Check back soon. Follow us for seasonal edits.';
+
+  @override
+  String offerPercentOff(String value) {
+    return '$value% off';
+  }
+
+  @override
+  String offerAmountOff(String amount) {
+    return '$amount off';
+  }
+
+  @override
+  String get offerFreeDelivery => 'Free delivery';
+
+  @override
+  String offerMinimum(String amount) {
+    return 'Min. order $amount';
+  }
+
+  @override
+  String offerExpires(String date) {
+    return 'Valid until $date';
+  }
+
+  @override
+  String offerCopied(String code) {
+    return 'Copied $code';
+  }
+
+  @override
+  String get cartCoupon => 'Coupon code';
+
+  @override
+  String get cartCouponApply => 'Apply';
+
+  @override
+  String get cartCouponApplied => 'Coupon applied';
+
+  @override
+  String get cartCouponInvalid => 'That code isn\'t valid or has expired.';
+
+  @override
+  String get cartCouponActive => 'Applied to this bag';
+
+  @override
+  String cartCouponMinimum(String amount) {
+    return 'Add more to reach $amount';
+  }
+
+  @override
+  String cartDiscount(String code) {
+    return 'Coupon $code';
+  }
+
+  @override
+  String get commissionTitle => 'Bespoke commission';
+
+  @override
+  String get commissionIntro =>
+      'Share a reference and a budget; the atelier replies with a sketch and a quote within three working days.';
+
+  @override
+  String get commissionPhotoHint => 'Add a reference photo';
+
+  @override
+  String get commissionCamera => 'Camera';
+
+  @override
+  String get commissionGallery => 'Gallery';
+
+  @override
+  String get commissionBudget => 'Budget';
+
+  @override
+  String get commissionBrief => 'Tell us about the piece';
+
+  @override
+  String get commissionNameRequired => 'Please add your name.';
+
+  @override
+  String get commissionSend => 'Send request';
+
+  @override
+  String get commissionDoneTitle => 'Request received';
+
+  @override
+  String get commissionDoneBody =>
+      'A designer will be in touch with a first sketch.';
 }

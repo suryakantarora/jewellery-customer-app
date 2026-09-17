@@ -1307,4 +1307,594 @@ class AppL10nLo extends AppL10n {
 
   @override
   String get accountSignOutBody => 'ກະເປົາຂອງທ່ານໃນອຸປະກອນນີ້ຈະຖືກລ້າງ.';
+
+  @override
+  String metalListing(String metal) {
+    return 'ເຄື່ອງປະດັບ$metal';
+  }
+
+  @override
+  String get menuAllJewellery => 'ເຄື່ອງປະດັບທັງໝົດ';
+
+  @override
+  String get menuGold => 'ຄຳ';
+
+  @override
+  String get menuDiamond => 'ເພັດ';
+
+  @override
+  String get menuSilver => 'ເງິນ';
+
+  @override
+  String get menuPlatinum => 'ແພລັດຕິນຳ';
+
+  @override
+  String get menuCoinsBars => 'ຫຼຽນ ແລະ ຄຳແທ່ງ';
+
+  @override
+  String get menuSolitaire => 'ໂຊລິແທ';
+
+  @override
+  String get menuCollections => 'ຄໍເລັກຊັນ';
+
+  @override
+  String get menuGiftStore => 'ຮ້ານຂອງຂວັນ';
+
+  @override
+  String get menuOffers => 'ໂປຣໂມຊັນ';
+
+  @override
+  String get drawerBrowse => 'ເລືອກຊົມ';
+
+  @override
+  String get drawerNotifications => 'ການແຈ້ງເຕືອນ';
+
+  @override
+  String get drawerStores => 'ຮ້ານຂອງພວກເຮົາ';
+
+  @override
+  String homeRateTicker(String purity) {
+    return 'ຄຳ $purity / 1 g';
+  }
+
+  @override
+  String get homeSearchHint => 'ຄົ້ນຫາສາຍຄໍ, ແຫວນ, 22K…';
+
+  @override
+  String get homeBrandsTitle => 'ແບຣນຂອງພວກເຮົາ';
+
+  @override
+  String get homeCuratedEyebrow => 'ຄໍເລັກຊັນຫຼ້າສຸດ';
+
+  @override
+  String get homeCuratedTitle => 'ຄັດເລືອກສຳລັບທ່ານ';
+
+  @override
+  String get homeCuratedSubtitle => 'ເລືອກຈາກຄໍເລັກຊັນທີ່ທ່ານມັກ';
+
+  @override
+  String get homeStoresTitle => 'ມາຢ້ຽມຢາມພວກເຮົາ';
+
+  @override
+  String get homeStoresSubtitle => 'ລອງໃສ່ໄດ້ທີ່ຮ້ານໃດກໍໄດ້ຂອງພວກເຮົາ';
+
+  @override
+  String get homeAboutEyebrow => 'ກ່ຽວກັບພວກເຮົາ';
+
+  @override
+  String homeAboutTitle(String brand) {
+    return 'ເລື່ອງລາວຂອງ $brand';
+  }
+
+  @override
+  String get homeAboutCta => 'ເລື່ອງລາວຂອງພວກເຮົາ';
+
+  @override
+  String get actionViewCollection => 'ເບິ່ງຄໍເລັກຊັນ';
+
+  @override
+  String get actionDone => 'ສຳເລັດ';
+
+  @override
+  String get storeFlagship => 'ຮ້ານຫຼັກ';
+
+  @override
+  String get storeDirections => 'ເສັ້ນທາງ';
+
+  @override
+  String get storeServices => 'ບໍລິການ';
+
+  @override
+  String get storesTitle => 'ຮ້ານຂອງພວກເຮົາ';
+
+  @override
+  String get storesEyebrow => 'ຄົ້ນຫາຮ້ານ';
+
+  @override
+  String get storesHeadline => 'ຢ້ຽມຊົມຮ້ານ';
+
+  @override
+  String get storesAllCities => 'ທຸກເມືອງ';
+
+  @override
+  String get settingsTheme => 'ທີມສີ';
+
+  @override
+  String get settingsThemeSub => 'ເລືອກສີຂອງຮ້ານທ່ານ';
+
+  @override
+  String get settingsThemeApplied => 'ນຳໃຊ້ທີມສີແລ້ວ';
+
+  @override
+  String get settingsShopping => 'ການຊື້ເຄື່ອງ';
+
+  @override
+  String get settingsTrackOrder => 'ຕິດຕາມຄຳສັ່ງຊື້';
+
+  @override
+  String get settingsSizeGuide => 'ຄູ່ມືຂະໜາດ';
+
+  @override
+  String get settingsPolicies => 'ນະໂຍບາຍ';
+
+  @override
+  String get settingsSupport => 'ການຊ່ວຍເຫຼືອ';
+
+  @override
+  String get settingsFeedback => 'ສົ່ງຄຳຕິຊົມ';
+
+  @override
+  String get settingsRateUs => 'ໃຫ້ຄະແນນພວກເຮົາ';
+
+  @override
+  String get settingsShare => 'ແບ່ງປັນແອັບ';
+
+  @override
+  String settingsShareText(String brand, String url) {
+    return 'ຊື້ເຄື່ອງ $brand ໃນໂທລະສັບຂອງທ່ານ: $url';
+  }
+
+  @override
+  String get settingsShareFailed => 'ອຸປະກອນນີ້ບໍ່ສາມາດແບ່ງປັນໄດ້';
+
+  @override
+  String get settingsTour => 'ເບິ່ງການແນະນຳ';
+
+  @override
+  String get themeRuby => 'ແດງທັບທິມ';
+
+  @override
+  String get themeRubySub => 'ສີແດງເອກະລັກ';
+
+  @override
+  String get themeBurgundy => 'ແດງເບີກັນດີ';
+
+  @override
+  String get themeBurgundySub => 'ເຂັ້ມ ແລະ ອົບອຸ່ນ';
+
+  @override
+  String get themeEmerald => 'ມໍລະກົດ';
+
+  @override
+  String get themeEmeraldSub => 'ຂຽວກັບຄຳ';
+
+  @override
+  String get themeSapphire => 'ໄພລິນ';
+
+  @override
+  String get themeSapphireSub => 'ຟ້າເຢັນ, ແຕ້ມເງິນ';
+
+  @override
+  String get themeRose => 'ກຸຫຼາບ';
+
+  @override
+  String get themeRoseSub => 'ບົວອ່ອນ, ແຕ້ມທອງແດງ';
+
+  @override
+  String get themeBlack => 'ດຳຄລາສສິກ';
+
+  @override
+  String get themeBlackSub => 'ດຳກັບຄຳ';
+
+  @override
+  String policyUpdated(String date) {
+    return 'ອັບເດດ $date';
+  }
+
+  @override
+  String get policyFaq => 'ຄຳຖາມທີ່ພົບເລື້ອຍ';
+
+  @override
+  String get goldEyebrow => 'ລາຄາສົດ';
+
+  @override
+  String get goldTitle => 'ລາຄາຄຳມື້ນີ້';
+
+  @override
+  String goldUpdated(String time) {
+    return 'ອັບເດດ $time';
+  }
+
+  @override
+  String get goldColPurity => 'ຄວາມບໍລິສຸດ';
+
+  @override
+  String get goldPerGram => 'ຕໍ່ກຣາມ, ລາຄາຂາຍ. USD ແລະ THB ເປັນລາຄາອ້າງອີງ.';
+
+  @override
+  String get goldDisclaimer =>
+      'ລາຄາປ່ຽນແປງຕາມຕະຫຼາດ ແລະ ຢືນຢັນທີ່ເຄົາເຕີ. ຫຼຽນ ແລະ ຄຳແທ່ງຄິດລາຄາຕາມອັດຕາ ณ ເວລາສັ່ງຊື້.';
+
+  @override
+  String aboutEyebrow(String year) {
+    return 'ຕັ້ງແຕ່ $year';
+  }
+
+  @override
+  String get aboutVisit => 'ຢ້ຽມຊົມຮ້ານ';
+
+  @override
+  String get contactHeadline => 'ພວກເຮົາພ້ອມຊ່ວຍທ່ານ';
+
+  @override
+  String get contactChannels => 'ຕິດຕໍ່ພວກເຮົາ';
+
+  @override
+  String get contactCall => 'ໂທ';
+
+  @override
+  String get contactWhatsapp => 'WhatsApp';
+
+  @override
+  String get contactEmail => 'ອີເມວ';
+
+  @override
+  String get contactStore => 'ຮ້ານຫຼັກ';
+
+  @override
+  String get contactMessageTitle => 'ສົ່ງຂໍ້ຄວາມ';
+
+  @override
+  String get contactMessage => 'ຂໍ້ຄວາມ';
+
+  @override
+  String get contactMessageShort =>
+      'ກະລຸນາບອກລາຍລະອຽດເພີ່ມ (ຢ່າງໜ້ອຍ 10 ຕົວອັກສອນ).';
+
+  @override
+  String get contactSend => 'ສົ່ງ';
+
+  @override
+  String get contactSent => 'ສົ່ງຂໍ້ຄວາມແລ້ວ. ພວກເຮົາຈະຕອບພາຍໃນໜຶ່ງວັນເຮັດວຽກ.';
+
+  @override
+  String contactCopied(String value) {
+    return 'ຄັດລອກ $value ແລ້ວ';
+  }
+
+  @override
+  String get feedbackEyebrow => 'ຄຳຕິຊົມ';
+
+  @override
+  String get feedbackTitle => 'ປະສົບການຂອງທ່ານເປັນແນວໃດ?';
+
+  @override
+  String get feedbackIntro =>
+      'ທຸກຂໍ້ຄວາມສົ່ງເຖິງໂຮງງານ. ບອກພວກເຮົາວ່າຄວນຮັກສາຫຍັງ ແລະ ແກ້ໄຂຫຍັງ.';
+
+  @override
+  String get feedbackHappy => 'ພໍໃຈ';
+
+  @override
+  String get feedbackSad => 'ບໍ່ພໍໃຈ';
+
+  @override
+  String get feedbackTopic => 'ຫົວຂໍ້';
+
+  @override
+  String get feedbackTopicApp => 'ປະສົບການແອັບ';
+
+  @override
+  String get feedbackTopicRange => 'ຄວາມຫຼາກຫຼາຍສິນຄ້າ';
+
+  @override
+  String get feedbackTopicPricing => 'ລາຄາ';
+
+  @override
+  String get feedbackTopicDelivery => 'ການຈັດສົ່ງ';
+
+  @override
+  String get feedbackTopicStore => 'ການຢ້ຽມຮ້ານ';
+
+  @override
+  String get feedbackTopicOther => 'ອື່ນໆ';
+
+  @override
+  String get feedbackMessage => 'ຄຳຕິຊົມຂອງທ່ານ';
+
+  @override
+  String feedbackTooShort(int min) {
+    return 'ກະລຸນາຂຽນຢ່າງໜ້ອຍ $min ຕົວອັກສອນ.';
+  }
+
+  @override
+  String get feedbackFollowUp => 'ທ່ານສາມາດຕິດຕໍ່ຂ້ອຍກັບໄດ້';
+
+  @override
+  String get feedbackThanksTitle => 'ຂອບໃຈ';
+
+  @override
+  String get feedbackThanksBody =>
+      'ພວກເຮົາອ່ານທຸກຂໍ້ຄວາມ. ຖ້າທ່ານຂໍໃຫ້ຕິດຕໍ່ກັບ, ຈະໄດ້ຮັບພາຍໃນສອງວັນເຮັດວຽກ.';
+
+  @override
+  String feedbackTicket(String ticket) {
+    return 'ໝາຍເລກ $ticket';
+  }
+
+  @override
+  String get feedbackBack => 'ກັບໄປຕັ້ງຄ່າ';
+
+  @override
+  String get feedbackAnother => 'ສົ່ງອີກ';
+
+  @override
+  String get feedbackRate => 'ໃຫ້ຄະແນນແອັບ';
+
+  @override
+  String rateTitle(String brand) {
+    return 'ມັກ $brand ບໍ?';
+  }
+
+  @override
+  String get rateIntro => 'ແຕະດາວ. ຄະແນນຂອງທ່ານຊ່ວຍໃຫ້ລູກຄ້າຄົນອື່ນພົບພວກເຮົາ.';
+
+  @override
+  String get rateCaption0 => 'ແຕະດາວເພື່ອໃຫ້ຄະແນນ';
+
+  @override
+  String get rateCaption1 => 'ຂໍອະໄພ. ບອກພວກເຮົາວ່າມີຫຍັງຜິດພາດ.';
+
+  @override
+  String get rateCaption2 => 'ບໍ່ດີປານໃດ. ພວກເຮົາຢາກເຮັດໃຫ້ດີຂຶ້ນ.';
+
+  @override
+  String get rateCaption3 => 'ພໍໃຊ້ໄດ້. ຈະດີຂຶ້ນໄດ້ແນວໃດ?';
+
+  @override
+  String get rateCaption4 => 'ດີໃຈທີ່ທ່ານມັກ!';
+
+  @override
+  String get rateCaption5 => 'ຍອດຢ້ຽມ, ຂອບໃຈ!';
+
+  @override
+  String get rateOnStore => 'ໃຫ້ຄະແນນໃນສະໂຕ';
+
+  @override
+  String get rateNotNow => 'ບໍ່ແມ່ນຕອນນີ້';
+
+  @override
+  String get rateStoreDemo => 'ໜ້າສະໂຕຈະເປີດຢູ່ນີ້ເມື່ອແອັບຖືກເຜີຍແຜ່ແລ້ວ.';
+
+  @override
+  String get rateWhatWentWrong => 'ມີຫຍັງຜິດພາດ?';
+
+  @override
+  String get rateDetailedFeedback => 'ສົ່ງຄຳຕິຊົມລະອຽດ';
+
+  @override
+  String get rateThanks => 'ຂອບໃຈສຳລັບຄະແນນ';
+
+  @override
+  String get rateSummary => 'ຄະແນນ';
+
+  @override
+  String rateCount(String count) {
+    return '$count ຄະແນນ';
+  }
+
+  @override
+  String rateWhatsNew(String version) {
+    return 'ມີຫຍັງໃໝ່ໃນ $version';
+  }
+
+  @override
+  String get rateNew1 => 'ລາຄາຄຳສົດ ແລະ ຄົ້ນຫາຮ້ານ';
+
+  @override
+  String get rateNew2 => 'ໂປຣໂມຊັນ ແລະ ລະຫັດຄູປອງໃນກະເປົາ';
+
+  @override
+  String get rateNew3 => 'ສົນທະນາຊ່ວຍເຫຼືອກັບພະນັກງານ';
+
+  @override
+  String get rateNew4 => 'ສັ່ງເຮັດພິເສດ';
+
+  @override
+  String get storiesTitle => 'ເລື່ອງລາວລູກຄ້າ';
+
+  @override
+  String get storiesShopNow => 'ຊື້ເລີຍ';
+
+  @override
+  String get storiesLike => 'ມັກ';
+
+  @override
+  String get supportRoot =>
+      'ສະບາຍດີ! ຂ້ອຍແມ່ນຜູ້ຊ່ວຍຂອງຮ້ານ. ມື້ນີ້ຊ່ວຍຫຍັງໄດ້ແດ່?';
+
+  @override
+  String get supportOptTrack => 'ຕິດຕາມຄຳສັ່ງຊື້';
+
+  @override
+  String get supportOptReturns => 'ສົ່ງຄືນ ແລະ ແລກປ່ຽນ';
+
+  @override
+  String get supportOptCare => 'ການດູແລ ແລະ ຂະໜາດ';
+
+  @override
+  String get supportOptPayments => 'ການຊຳລະ ແລະ ໂປຣໂມຊັນ';
+
+  @override
+  String get supportOptHelped => 'ຊ່ວຍໄດ້ແລ້ວ';
+
+  @override
+  String get supportOptAgent => 'ຄຸຍກັບພະນັກງານ';
+
+  @override
+  String get supportOptMore => 'ເລື່ອງອື່ນ';
+
+  @override
+  String get supportTrack =>
+      'ເປີດຄຳສັ່ງຊື້, ເລືອກຄຳສັ່ງ ແລະ ທ່ານຈະເຫັນເສັ້ນເວລາຫ້າຂັ້ນຕອນພ້ອມເລກຕິດຕາມຂອງຜູ້ສົ່ງ. ພັດສະດຸທີ່ກຳລັງສົ່ງກໍຈະແຈ້ງເຕືອນເຊັ່ນກັນ.';
+
+  @override
+  String get supportReturns =>
+      'ຊິ້ນທີ່ຍັງບໍ່ໄດ້ໃສ່ສາມາດສົ່ງຄືນພາຍໃນ 14 ວັນ ແລະ ແລກປ່ຽນພາຍໃນ 30 ວັນ. ຫຼຽນ, ຄຳແທ່ງ ແລະ ຊິ້ນທີ່ແກະສະຫຼັກບໍ່ລວມ. ຂ້ອຍສາມາດເປີດນະໂຍບາຍໃຫ້ທ່ານໄດ້.';
+
+  @override
+  String get supportCare =>
+      'ຖອດເຄື່ອງປະດັບກ່ອນລອຍນ້ຳ ຫຼື ສຳຜັດສານເຄມີ, ເກັບແຍກກັນ, ແລະ ນຳມາທຳຄວາມສະອາດຟຣີໄດ້ທຸກເວລາ. ຂະໜາດແຫວນຢູ່ໃນຄູ່ມືຂະໜາດ.';
+
+  @override
+  String get supportPayments =>
+      'ພວກເຮົາຮັບບັດ, BCEL One ແລະ ເກັບເງິນປາຍທາງ, ພ້ອມຜ່ອນ 0% ສາມເດືອນ. ລະຫັດຄູປອງປັດຈຸບັນຢູ່ໜ້າໂປຣໂມຊັນ.';
+
+  @override
+  String get supportHelped => 'ຍອດຢ້ຽມ. ມີຫຍັງອີກບໍ?';
+
+  @override
+  String get supportConnecting => 'ກຳລັງເຊື່ອມຕໍ່ກັບພະນັກງານ…';
+
+  @override
+  String supportAgentJoined(String name) {
+    return '$name ເຂົ້າຮ່ວມການສົນທະນາ';
+  }
+
+  @override
+  String supportAgentGreeting(String name) {
+    return 'ສະບາຍດີ, ຂ້ອຍແມ່ນ $name ຈາກຮ້ານ. ຊ່ວຍຫຍັງໄດ້ແດ່?';
+  }
+
+  @override
+  String get supportAgentAck =>
+      'ຂອບໃຈ, ຮັບຊາບແລ້ວ. ຂໍກວດເບິ່ງແລ້ວຈະກັບມາຕອບໃນອີກບໍ່ດົນ.';
+
+  @override
+  String get supportComposerHint => 'ຂຽນຂໍ້ຄວາມ';
+
+  @override
+  String get supportWaiting => 'ລໍຖ້າບຶດໜຶ່ງ…';
+
+  @override
+  String get supportOpenLink => 'ເປີດ';
+
+  @override
+  String get supportRestart => 'ເລີ່ມໃໝ່';
+
+  @override
+  String get notificationsMarkAll => 'ໝາຍວ່າອ່ານທັງໝົດ';
+
+  @override
+  String get notificationsUnread => 'ຍັງບໍ່ໄດ້ອ່ານ';
+
+  @override
+  String get notificationsEmptyTitle => 'ບໍ່ມີການແຈ້ງເຕືອນ';
+
+  @override
+  String get notificationsEmptyBody =>
+      'ອັບເດດຄຳສັ່ງຊື້, ໂປຣໂມຊັນ ແລະ ແຈ້ງເຕືອນລາຄາຄຳຈະສະແດງຢູ່ນີ້.';
+
+  @override
+  String get offersEmptyTitle => 'ຕອນນີ້ບໍ່ມີໂປຣໂມຊັນ';
+
+  @override
+  String get offersEmptyBody => 'ກັບມາເບິ່ງອີກໄວໆນີ້.';
+
+  @override
+  String offerPercentOff(String value) {
+    return 'ຫຼຸດ $value%';
+  }
+
+  @override
+  String offerAmountOff(String amount) {
+    return 'ຫຼຸດ $amount';
+  }
+
+  @override
+  String get offerFreeDelivery => 'ສົ່ງຟຣີ';
+
+  @override
+  String offerMinimum(String amount) {
+    return 'ສັ່ງຂັ້ນຕ່ຳ $amount';
+  }
+
+  @override
+  String offerExpires(String date) {
+    return 'ໃຊ້ໄດ້ຮອດ $date';
+  }
+
+  @override
+  String offerCopied(String code) {
+    return 'ຄັດລອກ $code ແລ້ວ';
+  }
+
+  @override
+  String get cartCoupon => 'ລະຫັດຄູປອງ';
+
+  @override
+  String get cartCouponApply => 'ນຳໃຊ້';
+
+  @override
+  String get cartCouponApplied => 'ນຳໃຊ້ຄູປອງແລ້ວ';
+
+  @override
+  String get cartCouponInvalid => 'ລະຫັດນີ້ບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸແລ້ວ.';
+
+  @override
+  String get cartCouponActive => 'ນຳໃຊ້ກັບກະເປົານີ້';
+
+  @override
+  String cartCouponMinimum(String amount) {
+    return 'ເພີ່ມອີກເພື່ອໃຫ້ຮອດ $amount';
+  }
+
+  @override
+  String cartDiscount(String code) {
+    return 'ຄູປອງ $code';
+  }
+
+  @override
+  String get commissionTitle => 'ສັ່ງເຮັດພິເສດ';
+
+  @override
+  String get commissionIntro =>
+      'ແບ່ງປັນຮູບອ້າງອີງ ແລະ ງົບປະມານ; ໂຮງງານຈະຕອບພ້ອມແບບຮ່າງ ແລະ ລາຄາພາຍໃນສາມວັນເຮັດວຽກ.';
+
+  @override
+  String get commissionPhotoHint => 'ເພີ່ມຮູບອ້າງອີງ';
+
+  @override
+  String get commissionCamera => 'ກ້ອງ';
+
+  @override
+  String get commissionGallery => 'ຄັງຮູບ';
+
+  @override
+  String get commissionBudget => 'ງົບປະມານ';
+
+  @override
+  String get commissionBrief => 'ບອກພວກເຮົາກ່ຽວກັບຊິ້ນງານ';
+
+  @override
+  String get commissionNameRequired => 'ກະລຸນາໃສ່ຊື່ຂອງທ່ານ.';
+
+  @override
+  String get commissionSend => 'ສົ່ງຄຳຮ້ອງ';
+
+  @override
+  String get commissionDoneTitle => 'ໄດ້ຮັບຄຳຮ້ອງແລ້ວ';
+
+  @override
+  String get commissionDoneBody => 'ນັກອອກແບບຈະຕິດຕໍ່ພ້ອມແບບຮ່າງທຳອິດ.';
 }

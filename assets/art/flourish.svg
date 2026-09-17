@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 12" fill="none" stroke="#000" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hairline flourish under centred display headings. Single ink; tinted at runtime. -->
+  <path d="M2 6 H44"/>
+  <path d="M76 6 H118"/>
+  <path d="M60 1.5 L64.5 6 L60 10.5 L55.5 6 Z"/>
+  <path d="M48 6 C 50 3.5, 53 3.5, 55.5 6 M64.5 6 C 67 3.5, 70 3.5, 72 6"/>
+  <circle cx="46" cy="6" r=".9" fill="#000" stroke="none"/>
+  <circle cx="74" cy="6" r=".9" fill="#000" stroke="none"/>
+</svg>

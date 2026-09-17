@@ -103,7 +103,9 @@ class _HeroCarouselState extends ConsumerState<HeroCarousel> {
                         width: i == _index ? 20 : 6,
                         height: 6,
                         decoration: BoxDecoration(
-                          color: i == _index ? c.accent : AppColors.bannerInkFaint,
+                          color: i == _index
+                              ? c.accent
+                              : AppColors.photoInkFaint,
                           borderRadius: AppRadius.circular(AppRadius.pill),
                         ),
                       ),
@@ -132,7 +134,10 @@ class _HeroSlide extends ConsumerWidget {
       duration: AppMotion.of(context, AppMotion.slow),
       child: AnimatedSlide(
         offset: active ? Offset.zero : const Offset(0, .15),
-        duration: AppMotion.of(context, AppMotion.slow + Duration(milliseconds: 80 * index)),
+        duration: AppMotion.of(
+          context,
+          AppMotion.slow + Duration(milliseconds: 80 * index),
+        ),
         curve: AppMotion.easeOut,
         child: child,
       ),
@@ -155,7 +160,9 @@ class _HeroSlide extends ConsumerWidget {
                 1,
                 Text(
                   banner.title.resolve(locale),
-                  style: text.displayMedium!.copyWith(color: AppColors.bannerInk),
+                  style: text.displayMedium!.copyWith(
+                    color: AppColors.photoInk,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -165,7 +172,9 @@ class _HeroSlide extends ConsumerWidget {
                 2,
                 Text(
                   banner.subtitle.resolve(locale),
-                  style: text.bodyMedium!.copyWith(color: AppColors.bannerInkSoft),
+                  style: text.bodyMedium!.copyWith(
+                    color: AppColors.photoInkSoft,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -175,7 +184,10 @@ class _HeroSlide extends ConsumerWidget {
                 3,
                 FilledButton(
                   style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 18,
+                      vertical: 12,
+                    ),
                     minimumSize: const Size(0, 40),
                   ),
                   onPressed: () => context.push(banner.link),
