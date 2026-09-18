@@ -6,12 +6,18 @@ import 'app_exception.dart';
 
 /// Assembles the configured [Dio] instance for the public storefront API.
 ///
-/// The customer principal (C2/C10) will add an auth interceptor here; C1 only
-/// stamps the tenant key and maps transport errors.
+/// Stamps the tenant key, attaches the customer token when there is one, and
+/// maps transport errors. A 401 on a request that carried a token means the
+/// token is dead; [onSessionExpired] lets the app fall back to guest.
 abstract final class DioClient {
   static const tenantHeader = 'X-Tenant-Key';
 
-  static Dio create({required AppConfig config, required String tenantKey}) {
+  static Dio create({
+    required AppConfig config,
+    required String tenantKey,
+    String? Function()? readToken,
+    void Function()? onSessionExpired,
+  }) {
     final dio = Dio(
       BaseOptions(
         baseUrl: config.apiRoot,
@@ -38,8 +44,20 @@ abstract final class DioClient {
 
     dio.interceptors.add(
       InterceptorsWrapper(
-        onError: (error, handler) =>
-            handler.reject(error.copyWith(error: mapDioError(error))),
+        onRequest: (options, handler) {
+          final token = readToken?.call();
+          if (token != null && token.isNotEmpty) {
+            options.headers['Authorization'] = 'Bearer $token';
+          }
+          handler.next(options);
+        },
+        onError: (error, handler) {
+          final sentToken = error.requestOptions.headers.containsKey('Authorization');
+          if (error.response?.statusCode == 401 && sentToken) {
+            onSessionExpired?.call();
+          }
+          handler.reject(error.copyWith(error: mapDioError(error)));
+        },
       ),
     );
 
@@ -58,11 +76,22 @@ abstract final class DioClient {
       case DioExceptionType.badResponse:
         final status = error.response?.statusCode;
         if (status == 404) return const NotFoundException();
+        if (status == 401) return UnauthorizedException(_serverMessage(error) ?? 'Sign in again');
+        if (status == 400 || status == 403 || status == 409 || status == 422) {
+          return RejectedException(_serverMessage(error) ?? 'HTTP $status', status!);
+        }
         return ServerException('HTTP $status', status);
       case DioExceptionType.cancel:
       case DioExceptionType.unknown:
       case DioExceptionType.transformTimeout:
         return NetworkException(error.message ?? 'Network error');
     }
+  }
+
+  /// The `message` of the backend's `ApiError` body, when there is one.
+  static String? _serverMessage(DioException error) {
+    final body = error.response?.data;
+    final message = body is Map ? body['message'] : null;
+    return message is String && message.isNotEmpty ? message : null;
   }
 }

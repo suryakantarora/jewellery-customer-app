@@ -18,6 +18,15 @@ final dataModeProvider = Provider<DataMode>(
 
 final demoStoreProvider = Provider<DemoStore>((ref) => DemoStore());
 
+/// Api-mode caches, one per Dio client (a tenant switch rebuilds them).
+final _apiCatalogueCacheProvider = Provider<ApiCatalogueCache>(
+  (ref) => ApiCatalogueCache(ref.watch(apiClientProvider)),
+);
+
+final _apiContentCacheProvider = Provider<ApiContentCache>(
+  (ref) => ApiContentCache(ref.watch(apiClientProvider)),
+);
+
 T _pick<T>(Ref ref, {required T Function() demo, required T Function() api}) =>
     switch (ref.watch(dataModeProvider)) {
       DataMode.demo => demo(),
@@ -28,7 +37,7 @@ final catalogueRepositoryProvider = Provider<CatalogueRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoCatalogueRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiCatalogueRepository(ref.watch(apiClientProvider)),
+    api: () => ApiCatalogueRepository(ref.watch(_apiCatalogueCacheProvider)),
   ),
 );
 
@@ -44,7 +53,7 @@ final bannerRepositoryProvider = Provider<BannerRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoBannerRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiBannerRepository(ref.watch(apiClientProvider)),
+    api: () => ApiBannerRepository(ref.watch(_apiContentCacheProvider)),
   ),
 );
 
@@ -63,7 +72,10 @@ final authRepositoryProvider = Provider<AuthRepository>(
       ref.watch(demoStoreProvider),
       ref.watch(localStoreProvider),
     ),
-    api: () => ApiAuthRepository(ref.watch(apiClientProvider)),
+    api: () => ApiAuthRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -71,7 +83,10 @@ final cartRepositoryProvider = Provider<CartRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoCartRepository(ref.watch(localStoreProvider)),
-    api: () => ApiCartRepository(ref.watch(apiClientProvider)),
+    api: () => ApiCartRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -79,7 +94,10 @@ final wishlistRepositoryProvider = Provider<WishlistRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoWishlistRepository(ref.watch(localStoreProvider)),
-    api: () => ApiWishlistRepository(ref.watch(apiClientProvider)),
+    api: () => ApiWishlistRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -90,7 +108,11 @@ final orderRepositoryProvider = Provider<OrderRepository>(
       ref.watch(demoStoreProvider),
       ref.watch(localStoreProvider),
     ),
-    api: () => ApiOrderRepository(ref.watch(apiClientProvider)),
+    api: () => ApiOrderRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(_apiCatalogueCacheProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -101,7 +123,10 @@ final addressRepositoryProvider = Provider<AddressRepository>(
       ref.watch(demoStoreProvider),
       ref.watch(localStoreProvider),
     ),
-    api: () => ApiAddressRepository(ref.watch(apiClientProvider)),
+    api: () => ApiAddressRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -112,7 +137,10 @@ final paymentMethodRepositoryProvider = Provider<PaymentMethodRepository>(
       ref.watch(demoStoreProvider),
       ref.watch(localStoreProvider),
     ),
-    api: () => ApiPaymentMethodRepository(ref.watch(apiClientProvider)),
+    api: () => ApiPaymentMethodRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 
@@ -128,7 +156,7 @@ final policyRepositoryProvider = Provider<PolicyRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoPolicyRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiPolicyRepository(ref.watch(apiClientProvider)),
+    api: () => ApiPolicyRepository(ref.watch(_apiContentCacheProvider)),
   ),
 );
 
@@ -136,7 +164,7 @@ final storeRepositoryProvider = Provider<StoreRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoStoreRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiStoreRepository(ref.watch(apiClientProvider)),
+    api: () => ApiStoreRepository(ref.watch(_apiContentCacheProvider)),
   ),
 );
 
@@ -144,7 +172,7 @@ final offerRepositoryProvider = Provider<OfferRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoOfferRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiOfferRepository(ref.watch(apiClientProvider)),
+    api: () => ApiOfferRepository(ref.watch(_apiContentCacheProvider)),
   ),
 );
 
@@ -152,7 +180,7 @@ final contentRepositoryProvider = Provider<ContentRepository>(
   (ref) => _pick(
     ref,
     demo: () => DemoContentRepository(ref.watch(demoStoreProvider)),
-    api: () => ApiContentRepository(ref.watch(apiClientProvider)),
+    api: () => ApiContentRepository(ref.watch(_apiContentCacheProvider)),
   ),
 );
 
@@ -171,7 +199,10 @@ final notificationRepositoryProvider = Provider<NotificationRepository>(
       ref.watch(demoStoreProvider),
       ref.watch(localStoreProvider),
     ),
-    api: () => ApiNotificationRepository(ref.watch(apiClientProvider)),
+    api: () => ApiNotificationRepository(
+      ref.watch(apiClientProvider),
+      ref.watch(localStoreProvider),
+    ),
   ),
 );
 

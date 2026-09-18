@@ -39,7 +39,7 @@ flutter build apk --flavor prod --dart-define=ENV=prod
 | `ENV` | `dev` / `staging` / `prod` | `dev` | Base URL default, developer tools (shop-code screen, request logging). `prod` hides them. |
 | `API_BASE_URL` | URL | `http://localhost:8081` (`10.0.2.2` on Android) | Backend root; `/api/v1` is appended. |
 | `TENANT_KEY` | shop code | `fino` | Which company this build belongs to (white-label builds bake it in). |
-| `DATA_MODE` | `demo` / `api` | `demo` | `demo` reads bundled JSON with 420 ms simulated latency; `api` uses the Dio repositories (C10 — they throw `UnimplementedError` today). |
+| `DATA_MODE` | `demo` / `api` | `demo` | `demo` reads bundled JSON with 420 ms simulated latency; `api` talks to the ERP backend's storefront API (see "Api mode" in `docs/CUSTOMER-APP-STATUS.md`; `tool/seed_storefront.sh` publishes the demo branding and content to a backend). |
 
 Example: `flutter run --flavor dev --dart-define=DATA_MODE=api --dart-define=API_BASE_URL=http://192.168.1.20:8081`
 
@@ -87,7 +87,7 @@ lib/
                 stores, offers, content, feedback, notifications
     demo/       DemoStore (assets/demo/*.json) + Demo* repositories (customer data
                 persisted in LocalStore)
-    api/        Api* repositories (UnimplementedError until C10)
+    api/        Api* repositories over the backend storefront API
     repository_providers.dart  the single Demo/Api switch + read-side providers
   features/     splash, onboarding (tour, welcome), auth (phone, OTP, profile setup,
                 ensureSignedIn), shell (header, drawer, tabs), home, search,

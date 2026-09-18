@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/network/app_exception.dart';
 import '../../core/router/app_routes.dart';
 import '../../core/session/session_provider.dart';
 import '../../core/tenant/tenant_provider.dart';
@@ -58,6 +59,9 @@ class _PhoneScreenState extends ConsumerState<PhoneScreen> {
       );
       if (!mounted) return;
       if (ok == true && !widget.fromWelcome) context.pop(true);
+    } on RejectedException catch (error) {
+      // "Please wait before requesting another code", "number is not valid".
+      if (mounted) showToast(context, error.message);
     } on Object {
       if (mounted) showToast(context, l10n.errorGeneric);
     } finally {

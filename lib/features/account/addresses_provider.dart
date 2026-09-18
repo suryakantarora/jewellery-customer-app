@@ -1,11 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/session/session_provider.dart';
 import '../../data/models/commerce.dart';
 import '../../data/repository_providers.dart';
 
 class AddressesController extends AsyncNotifier<List<Address>> {
   @override
-  Future<List<Address>> build() => ref.watch(addressRepositoryProvider).list();
+  Future<List<Address>> build() {
+    ref.watch(sessionIdentityProvider);
+    return ref.watch(addressRepositoryProvider).list();
+  }
 
   Future<void> save(Address address) async {
     state = AsyncData(await ref.read(addressRepositoryProvider).save(address));
@@ -32,8 +36,10 @@ final defaultAddressProvider = Provider<Address?>((ref) {
 
 class PaymentMethodsController extends AsyncNotifier<List<PaymentMethod>> {
   @override
-  Future<List<PaymentMethod>> build() =>
-      ref.watch(paymentMethodRepositoryProvider).list();
+  Future<List<PaymentMethod>> build() {
+    ref.watch(sessionIdentityProvider);
+    return ref.watch(paymentMethodRepositoryProvider).list();
+  }
 
   Future<void> setDefault(String id) async {
     state = AsyncData(

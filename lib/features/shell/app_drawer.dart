@@ -17,7 +17,6 @@ import '../../shared/widgets/banner_ground.dart';
 import '../../shared/widgets/eyebrow.dart';
 import '../../shared/widgets/press_scale.dart';
 import '../../shared/widgets/staggered_reveal.dart';
-import '../cart/cart_provider.dart';
 import '../notifications/notifications_provider.dart';
 
 /// One entry of the "Browse" list: a bundled monoline icon, a label and
@@ -264,7 +263,6 @@ class AppDrawer extends ConsumerWidget {
               onTap: () async {
                 Navigator.of(context).pop();
                 if (ref.read(isSignedInProvider)) {
-                  await ref.read(cartProvider.notifier).clear();
                   await ref.read(sessionProvider.notifier).signOut();
                 }
                 if (context.mounted) context.go(AppRoutes.welcome);

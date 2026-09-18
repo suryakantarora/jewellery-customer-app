@@ -2,13 +2,13 @@ import 'dart:math';
 
 import '../../core/storage/local_store.dart';
 import '../../core/storage/storage_keys.dart';
+import '../catalogue_logic.dart';
 import '../models/banner.dart';
 import '../models/catalogue_item.dart';
 import '../models/category.dart';
 import '../models/commerce.dart';
 import '../models/content.dart';
 import '../models/localized_text.dart';
-import '../models/retail_attributes.dart';
 import '../models/review.dart';
 import '../repositories/repositories.dart';
 import 'demo_store.dart';
@@ -21,86 +21,15 @@ class DemoCatalogueRepository implements CatalogueRepository {
   @override
   Future<List<CatalogueItem>> list([
     CatalogueQuery query = const CatalogueQuery(),
-  ]) => _store.read((d) {
-    var items = d.items.where((i) {
-      final r = i.retail;
-      if (query.categoryId != null &&
-          query.categoryId != 'all' &&
-          i.categoryId != query.categoryId) {
-        return false;
-      }
-      if (query.audience != null &&
-          r.audience.name != query.audience!.toLowerCase() &&
-          r.audience != Audience.unisex) {
-        return false;
-      }
-      if (query.metals.isNotEmpty && !query.metals.contains(i.metalName)) {
-        return false;
-      }
-      if (query.purities.isNotEmpty && !query.purities.contains(i.purityCode)) {
-        return false;
-      }
-      if (query.stones.isNotEmpty && !query.stones.contains(r.stone)) {
-        return false;
-      }
-      if (query.minPrice != null && i.price < query.minPrice!) return false;
-      if (query.maxPrice != null && i.price > query.maxPrice!) return false;
-      if (query.minRating != null && r.rating < query.minRating!) return false;
-      if (query.inStockOnly && !r.inStock) return false;
-      if (query.tag != null &&
-          !r.tags.map((t) => t.toLowerCase()).contains(query.tag!.toLowerCase())) {
-        return false;
-      }
-      if (query.brand != null &&
-          r.brand.toLowerCase() != query.brand!.toLowerCase()) {
-        return false;
-      }
-      final term = query.search?.trim().toLowerCase();
-      if (term != null && term.isNotEmpty) {
-        final hay = [
-          i.productName,
-          i.categoryName,
-          i.metalName,
-          i.purityName,
-          r.stone,
-          r.collection,
-          r.audience.name,
-          r.brand,
-          ...r.tags,
-        ].join(' ').toLowerCase();
-        if (!hay.contains(term)) return false;
-      }
-      return true;
-    }).toList();
-
-    int byFeatured(CatalogueItem a, CatalogueItem b) {
-      final fa = a.retail.isFeatured ? 0 : 1;
-      final fb = b.retail.isFeatured ? 0 : 1;
-      return fa != fb ? fa - fb : b.retail.rating.compareTo(a.retail.rating);
-    }
-
-    items = switch (query.sort) {
-      CatalogueSort.featured => (items..sort(byFeatured)),
-      CatalogueSort.newest => (items
-        ..sort((a, b) => (b.retail.isNew ? 1 : 0) - (a.retail.isNew ? 1 : 0))),
-      CatalogueSort.priceAsc => (items..sort((a, b) => a.price.compareTo(b.price))),
-      CatalogueSort.priceDesc => (items..sort((a, b) => b.price.compareTo(a.price))),
-      CatalogueSort.rating => (items
-        ..sort((a, b) => b.retail.rating.compareTo(a.retail.rating))),
-    };
-    return items;
-  });
+  ]) => _store.read((d) => CatalogueLogic.apply(d.items, query));
 
   @override
   Future<CatalogueItem?> byId(String id) =>
       _store.read((d) => d.items.where((i) => i.id == id).firstOrNull);
 
   @override
-  Future<List<CatalogueItem>> byIds(List<String> ids) => _store.read(
-    (d) => [
-      for (final id in ids) ...d.items.where((i) => i.id == id),
-    ],
-  );
+  Future<List<CatalogueItem>> byIds(List<String> ids) =>
+      _store.read((d) => CatalogueLogic.byIds(d.items, ids));
 
   @override
   Future<List<CatalogueItem>> featured() =>
@@ -118,42 +47,19 @@ class DemoCatalogueRepository implements CatalogueRepository {
   Future<List<CatalogueItem>> bestSellers() =>
       _store.read((d) => d.items.where((i) => i.retail.isBestSeller).toList());
 
-  /// Affinity-scored like the reference: category 4, collection 3, stone 2,
-  /// metal 1.
   @override
   Future<List<CatalogueItem>> related(String id, {int limit = 8}) =>
-      _store.read((d) {
-        final base = d.items.where((i) => i.id == id).firstOrNull;
-        if (base == null) return const [];
-        int score(CatalogueItem o) =>
-            (o.categoryId == base.categoryId ? 4 : 0) +
-            (o.retail.collection == base.retail.collection ? 3 : 0) +
-            (o.retail.stone == base.retail.stone ? 2 : 0) +
-            (o.metalName == base.metalName ? 1 : 0);
-        final others = d.items.where((i) => i.id != id).toList()
-          ..sort((a, b) => score(b).compareTo(score(a)));
-        return others.take(limit).toList();
-      });
+      _store.read((d) => CatalogueLogic.related(d.items, id, limit: limit));
 
   @override
   Future<PriceBounds> priceBounds({String? categoryId, String? audience}) =>
-      _store.read((d) {
-        final scoped = d.items.where((i) {
-          if (categoryId != null &&
-              categoryId != 'all' &&
-              i.categoryId != categoryId) {
-            return false;
-          }
-          if (audience != null &&
-              i.retail.audience.name != audience.toLowerCase() &&
-              i.retail.audience != Audience.unisex) {
-            return false;
-          }
-          return true;
-        }).map((i) => i.price);
-        if (scoped.isEmpty) return const PriceBounds(0, 0);
-        return PriceBounds(scoped.reduce(min), scoped.reduce(max));
-      });
+      _store.read(
+        (d) => CatalogueLogic.priceBounds(
+          d.items,
+          categoryId: categoryId,
+          audience: audience,
+        ),
+      );
 }
 
 class DemoCategoryRepository implements CategoryRepository {

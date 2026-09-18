@@ -242,7 +242,11 @@ class _ProductScreenState extends ConsumerState<ProductScreen>
         Row(
           children: [
             Expanded(child: Eyebrow(l10n.productQuantity)),
-            QuantityStepper(value: _qty, onChanged: (v) => setState(() => _qty = v)),
+            QuantityStepper(
+              value: _qty,
+              max: ref.read(cartProvider.notifier).maxQuantity,
+              onChanged: (v) => setState(() => _qty = v),
+            ),
           ],
         ),
         const SizedBox(height: AppSpacing.lg),

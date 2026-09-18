@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/format/formatters_provider.dart';
 import '../../core/layout/breakpoints.dart';
 import '../../core/motion/motion.dart';
+import '../../core/network/app_exception.dart';
 import '../../core/router/app_routes.dart';
 import '../../core/session/session_provider.dart';
 import '../../core/theme/app_colors.dart';
@@ -154,6 +155,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
           shipping: totals.shipping,
           tax: totals.tax,
           total: totals.total,
+          offerCode: totals.offerIneligible ? null : totals.offer?.code,
         ),
       );
       await ref.read(cartProvider.notifier).clear();
@@ -162,6 +164,11 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
         _order = order;
         _step = _Step.confirmed;
       });
+    } on RejectedException catch (error) {
+      // The backend's own sentence: a piece just sold, an offer expired.
+      if (!mounted) return;
+      setState(() => _step = _Step.review);
+      showToast(context, error.message);
     } on Object {
       if (!mounted) return;
       setState(() => _step = _Step.review);

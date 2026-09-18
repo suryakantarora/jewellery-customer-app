@@ -328,6 +328,7 @@ class _LineCard extends ConsumerWidget {
                   children: [
                     QuantityStepper(
                       value: line.quantity,
+                      max: ref.read(cartProvider.notifier).maxQuantity,
                       compact: true,
                       onChanged: (v) =>
                           ref.read(cartProvider.notifier).setQuantity(line, v),

@@ -25,7 +25,6 @@ import '../../shared/widgets/skeleton.dart';
 import '../../shared/widgets/staggered_reveal.dart';
 import '../../shared/widgets/status_pill.dart';
 import '../auth/auth_gate.dart';
-import '../cart/cart_provider.dart';
 import '../orders/order_timeline.dart';
 import '../orders/orders_provider.dart';
 import '../wishlist/wishlist_provider.dart';
@@ -66,7 +65,6 @@ class AccountScreen extends ConsumerWidget {
         ),
       );
       if (ok != true) return;
-      await ref.read(cartProvider.notifier).clear();
       await ref.read(sessionProvider.notifier).signOut();
       if (context.mounted) context.go(AppRoutes.welcome);
     }

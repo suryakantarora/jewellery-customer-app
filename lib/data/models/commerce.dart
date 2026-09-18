@@ -211,10 +211,15 @@ class OrderDraft {
     required this.shipping,
     required this.tax,
     required this.total,
+    this.offerCode,
   });
   final List<CartLine> lines;
   final Address address;
   final PaymentMethod payment;
+
+  /// The coupon applied in the bag. The backend re-checks it and prices the
+  /// order itself; the amounts below are what the customer was shown.
+  final String? offerCode;
   final num subtotal;
   final num shipping;
   final num tax;

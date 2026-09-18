@@ -33,3 +33,19 @@ class ServerException extends AppException {
 class ParseException extends AppException {
   const ParseException([super.message = 'Unexpected response']);
 }
+
+/// The customer token is missing, expired or revoked (401).
+class UnauthorizedException extends AppException {
+  const UnauthorizedException([super.message = 'Sign in again'])
+    : super(statusCode: 401);
+}
+
+/// The request was understood and refused: a piece just sold (409), a rule
+/// not met (422), a field rejected (400). [message] is the server's sentence,
+/// written for customers, so screens may show it.
+class RejectedException extends AppException {
+  const RejectedException(super.message, int statusCode)
+    : super(statusCode: statusCode);
+
+  bool get isConflict => statusCode == 409;
+}

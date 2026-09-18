@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/tenant/tenant_config.dart';
 import '../../core/tenant/tenant_provider.dart';
 import '../../data/models/catalogue_item.dart';
+import '../../core/config/data_mode.dart';
 import '../../core/providers.dart';
+import '../../core/session/session_provider.dart';
 import '../../core/storage/storage_keys.dart';
 import '../../data/models/commerce.dart';
 import '../../data/models/content.dart';
@@ -12,12 +14,15 @@ import '../../data/repository_providers.dart';
 /// The bag: persisted line items joined with their products.
 ///
 /// Lines are keyed by product + size, as in the reference. Quantity is
-/// clamped to 1–9.
+/// clamped to 1–[maxQuantity].
 class CartController extends AsyncNotifier<List<CartLine>> {
-  static const maxQuantity = 9;
+  /// Demo products are stocked lines; against the ERP every piece is one of a
+  /// kind, so there is never a second one to add.
+  int get maxQuantity => ref.read(dataModeProvider) == DataMode.api ? 1 : 9;
 
   @override
   Future<List<CartLine>> build() async {
+    ref.watch(sessionIdentityProvider);
     final items = await ref.watch(cartRepositoryProvider).items();
     return _resolve(items);
   }

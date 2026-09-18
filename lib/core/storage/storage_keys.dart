@@ -27,6 +27,11 @@ abstract final class StorageKeys {
   static const demoStoryLikes = 'demo.story_likes';
   static const demoFeedback = 'demo.feedback';
 
+  // Api mode: a guest's bag and wishlist live on the device and move to the
+  // account on sign-in.
+  static const guestCart = 'guest.cart';
+  static const guestWishlist = 'guest.wishlist';
+
   /// Coupon code applied in the bag.
   static const appliedOffer = 'cart.offer';
 

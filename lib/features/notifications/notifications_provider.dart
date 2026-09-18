@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/session/session_provider.dart';
 import '../../data/models/content.dart';
 import '../../data/repository_providers.dart';
 
@@ -11,8 +12,10 @@ import '../../data/repository_providers.dart';
 /// `PushRegistrationService` so the swap is one call.
 class NotificationsController extends AsyncNotifier<List<AppNotification>> {
   @override
-  Future<List<AppNotification>> build() =>
-      ref.watch(notificationRepositoryProvider).list();
+  Future<List<AppNotification>> build() {
+    ref.watch(sessionIdentityProvider);
+    return ref.watch(notificationRepositoryProvider).list();
+  }
 
   Future<void> markRead(String id) async {
     final current = state.valueOrNull ?? const [];

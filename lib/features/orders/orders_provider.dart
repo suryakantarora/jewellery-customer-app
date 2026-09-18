@@ -1,11 +1,15 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/session/session_provider.dart';
 import '../../data/models/commerce.dart';
 import '../../data/repository_providers.dart';
 
 class OrdersController extends AsyncNotifier<List<Order>> {
   @override
-  Future<List<Order>> build() => ref.watch(orderRepositoryProvider).list();
+  Future<List<Order>> build() {
+    ref.watch(sessionIdentityProvider);
+    return ref.watch(orderRepositoryProvider).list();
+  }
 
   Future<Order> place(OrderDraft draft) async {
     final order = await ref.read(orderRepositoryProvider).place(draft);

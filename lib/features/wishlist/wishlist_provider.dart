@@ -1,13 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/session/session_provider.dart';
 import '../../data/models/catalogue_item.dart';
 import '../../data/models/commerce.dart';
 import '../../data/repository_providers.dart';
 
 class WishlistController extends AsyncNotifier<List<WishlistItem>> {
   @override
-  Future<List<WishlistItem>> build() =>
-      ref.watch(wishlistRepositoryProvider).items();
+  Future<List<WishlistItem>> build() {
+    ref.watch(sessionIdentityProvider);
+    return ref.watch(wishlistRepositoryProvider).items();
+  }
 
   List<WishlistItem> get _items => state.valueOrNull ?? const [];
 

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/config/data_mode.dart';
 import '../../data/models/content.dart';
 import '../../data/repository_providers.dart';
 
@@ -11,6 +12,10 @@ import '../../data/repository_providers.dart';
 /// up to ±0.4% and remembers its delta so the table can flash it. The
 /// clock lives in [GoldRateDriftDriver] (a widget), so it stops with the
 /// screen that shows it.
+///
+/// Against the backend nothing is invented: the same clock re-reads the
+/// published rates once a minute, and a row's delta is the real change since
+/// the previous reading.
 class GoldRatesController extends AsyncNotifier<GoldRateSheet> {
   static const maxDrift = .004;
 
@@ -20,9 +25,16 @@ class GoldRatesController extends AsyncNotifier<GoldRateSheet> {
   Future<GoldRateSheet> build() =>
       ref.watch(goldRateRepositoryProvider).current();
 
+  static const _pollEveryTicks = 12;
+  int _ticks = 0;
+
   void drift() {
     final current = state.valueOrNull;
     if (current == null) return;
+    if (ref.read(dataModeProvider) == DataMode.api) {
+      if (++_ticks % _pollEveryTicks == 0) unawaited(_poll(current));
+      return;
+    }
     state = AsyncData(
       GoldRateSheet(
         updatedAt: DateTime.now(),
@@ -40,6 +52,32 @@ class GoldRatesController extends AsyncNotifier<GoldRateSheet> {
         ],
       ),
     );
+  }
+
+  Future<void> _poll(GoldRateSheet previous) async {
+    final GoldRateSheet next;
+    try {
+      next = await ref.read(goldRateRepositoryProvider).current();
+    } on Object {
+      return; // Keep showing the last good sheet.
+    }
+    state = AsyncData(
+      GoldRateSheet(
+        updatedAt: next.updatedAt,
+        rates: [
+          for (final r in next.rates)
+            r.copyWith(delta: _change(previous.byPurity(r.purityCode), r)),
+        ],
+      ),
+    );
+  }
+
+  static double _change(GoldRate? before, GoldRate after) {
+    for (final entry in after.rates.entries) {
+      final was = before?.rates[entry.key];
+      if (was != null && was != 0) return (entry.value - was) / was;
+    }
+    return 0;
   }
 
   /// Kip stays whole; other currencies keep two decimals.

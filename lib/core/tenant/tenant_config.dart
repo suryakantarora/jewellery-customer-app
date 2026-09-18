@@ -1,4 +1,5 @@
 import '../media/image_ref.dart';
+import '../theme/palettes.dart';
 import 'tenant_palette.dart';
 
 /// Currency presentation, driven entirely by the tenant.
@@ -127,6 +128,13 @@ class TenantConfig {
       flags[k] = v == true;
     });
     final logo = json['logo'] as Map<String, dynamic>? ?? const {};
+    // A tenant that has only named a built-in palette (or nothing at all)
+    // still gets a complete theme: the backend fills brand and currency from
+    // the company record and leaves colours to the app.
+    final builtIn =
+        FallbackPalettes.byId(json['paletteId'] as String?) ?? FallbackPalettes.ruby;
+    final light = json['palette'] as Map<String, dynamic>?;
+    final dark = json['darkPalette'] as Map<String, dynamic>?;
     return TenantConfig(
       key: json['key'] as String,
       brandName: json['brandName'] as String,
@@ -136,11 +144,9 @@ class TenantConfig {
       logoDark: ImageRef.fromString(
         logo['dark'] as String? ?? logo['light'] as String? ?? '',
       ),
-      paletteId: json['paletteId'] as String? ?? 'custom',
-      palette: TenantPalette.fromJson(json['palette'] as Map<String, dynamic>),
-      darkPalette: TenantPalette.fromJson(
-        json['darkPalette'] as Map<String, dynamic>,
-      ),
+      paletteId: json['paletteId'] as String? ?? (light == null ? builtIn.id : 'custom'),
+      palette: light == null ? builtIn.light : TenantPalette.fromJson(light),
+      darkPalette: dark == null ? builtIn.dark : TenantPalette.fromJson(dark),
       fontDisplay: json['fontDisplay'] as String? ?? 'PlayfairDisplay',
       fontBody: json['fontBody'] as String? ?? 'Inter',
       currency: TenantCurrency.fromJson(
